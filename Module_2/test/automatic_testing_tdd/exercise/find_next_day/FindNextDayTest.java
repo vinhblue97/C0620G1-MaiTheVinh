@@ -11,9 +11,9 @@ class FindNextDayTest {
         int days = 1;
         int month = 1;
         int year = 2020;
-        int expected = 2;
+        String expected = "Ngày: 2, tháng: 1, năm: 2020";
 
-        int result = FindNextDay.findNextDay(days,month,year);
+        String result = FindNextDay.findNextDay(days,month,year);
         assertEquals(expected,result);
     }
 
@@ -22,9 +22,9 @@ class FindNextDayTest {
         int days = 28;
         int month = 2;
         int year = 400;
-        int expected = 29;
+        String expected = "Ngày: 29, tháng: 2, năm: 400";
 
-        int result = FindNextDay.findNextDay(days,month,year);
+        String result = FindNextDay.findNextDay(days,month,year);
         assertEquals(expected,result);
     }
 
@@ -33,9 +33,9 @@ class FindNextDayTest {
         int days = 31;
         int month = 1;
         int year = 2020;
-        int expected = 1;
+        String expected = "Ngày: 1, tháng: 2, năm: 2020";
 
-        int result = FindNextDay.findNextDay(days,month,year);
+        String result = FindNextDay.findNextDay(days,month,year);
         assertEquals(expected,result);
     }
 
@@ -44,9 +44,9 @@ class FindNextDayTest {
         int days = 30;
         int month = 4;
         int year = 2020;
-        int expected = 1;
+        String expected = "Ngày: 1, tháng: 5, năm: 2020";
 
-        int result = FindNextDay.findNextDay(days,month,year);
+        String result = FindNextDay.findNextDay(days,month,year);
         assertEquals(expected,result);
     }
 
@@ -55,9 +55,20 @@ class FindNextDayTest {
         int days = -1;
         int month = 1;
         int year = 2020;
-        int expected = 0;
+        String expected = "";
 
-        int result = FindNextDay.findNextDay(days,month,year);
+        String result = FindNextDay.findNextDay(days,month,year);
+        assertEquals(expected,result);
+    }
+
+    @Test
+    void findNextDay6() {
+        int days = 31;
+        int month = 12;
+        int year = 2020;
+        String expected = "Ngày: 1, tháng: 1, năm: 2021";
+
+        String result = FindNextDay.findNextDay(days,month,year);
         assertEquals(expected,result);
     }
 }
