@@ -71,4 +71,15 @@ class FindNextDayTest {
         String result = FindNextDay.findNextDay(days,month,year);
         assertEquals(expected,result);
     }
+
+    @Test
+    void findNextDay7() {
+        int days = 28;
+        int month = 2;
+        int year = 300;
+        String expected = "Ngày: 1, tháng: 3, năm: 300";
+
+        String result = FindNextDay.findNextDay(days,month,year);
+        assertEquals(expected,result);
+    }
 }

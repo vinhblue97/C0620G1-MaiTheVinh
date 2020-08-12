@@ -24,9 +24,10 @@ public class MyList<E> {
     public void remove(int index) {
 //        E element = (E) elements[index];
         int size = elements.length;
-        elements = Arrays.copyOfRange(elements,0,index);
+        Object[] elements1 = Arrays.copyOfRange(elements,0,elements.length-1);
+        elements = Arrays.copyOfRange(elements1,0,index);
         getList();
-        elements = Arrays.copyOfRange(elements,index+1,size-1);
+        elements = Arrays.copyOfRange(elements1,index+1,size-1);
         getList();
 //        return element;
     }
