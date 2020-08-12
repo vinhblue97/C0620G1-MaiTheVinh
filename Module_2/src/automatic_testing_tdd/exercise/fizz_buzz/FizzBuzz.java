@@ -43,19 +43,6 @@ public class FizzBuzz {
 
     private static String getUnitNumber(int unitNum, int dozensNum, String stringUnitNum) {
         switch (unitNum) {
-            case 0:
-                boolean isEqualByOne = dozensNum == 1;
-                boolean isGreaterThanTwo = dozensNum >= 2;
-                if (isEqualByOne) {
-                    stringUnitNum = "";
-                } else {
-                    if (isGreaterThanTwo) {
-                        stringUnitNum = "muoi";
-                    } else {
-                        stringUnitNum = "khong";
-                    }
-                }
-                break;
             case 1:
                 stringUnitNum = "mot";
                 break;
@@ -67,9 +54,6 @@ public class FizzBuzz {
                 break;
             case 4:
                 stringUnitNum = "bon";
-                break;
-            case 5:
-                stringUnitNum = "nam";
                 break;
             case 6:
                 stringUnitNum = "sau";
@@ -89,9 +73,6 @@ public class FizzBuzz {
 
     private static String getDozenNumber(int dozensNum, String stringDozensNum) {
         switch (dozensNum) {
-            case 1:
-                stringDozensNum = "muoi";
-                break;
             case 2:
                 stringDozensNum = "hai";
                 break;
