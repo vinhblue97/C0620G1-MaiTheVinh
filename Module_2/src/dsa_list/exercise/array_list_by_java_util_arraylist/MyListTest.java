@@ -6,7 +6,9 @@ public class MyListTest {
         for (int index = 0; index < 20; index++){
             myList.add(index,index+10);
         }
-        myList.remove(3);
+        myList.getList();
+        System.out.println("");
+        myList.clear();
         myList.getList();
     }
 }

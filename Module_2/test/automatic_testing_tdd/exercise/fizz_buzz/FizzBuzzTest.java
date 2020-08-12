@@ -41,7 +41,7 @@ class FizzBuzzTest {
     @Test
     void findResultFizzBuzz5() {
         int number = 100;
-        String expected = "Buzz";
+        String expected = "";
         String result = FizzBuzz.findResultFizzBuzz(number);
         assertEquals(expected,result);
     }
@@ -49,8 +49,42 @@ class FizzBuzzTest {
     @Test
     void findResultFizzBuzz6() {
         int number = 26;
-        String expected = "26";
+        String expected = "hai sau";
         String result = FizzBuzz.findResultFizzBuzz(number);
         assertEquals(expected,result);
     }
+
+    @Test
+    void findResultFizzBuzz7() {
+        int number = 0;
+        String expected = "";
+        String result = FizzBuzz.findResultFizzBuzz(number);
+        assertEquals(expected,result);
+    }
+
+    @Test
+    void findResultFizzBuzz9() {
+        int number = 17;
+        String expected = "muoi bay";
+        String result = FizzBuzz.findResultFizzBuzz(number);
+        assertEquals(expected,result);
+    }
+
+    @Test
+    void findResultFizzBuzz10() {
+        int number = 101;
+        String expected = "";
+        String result = FizzBuzz.findResultFizzBuzz(number);
+        assertEquals(expected,result);
+    }
+
+    @Test
+    void findResultFizzBuzz11() {
+        int number = 38;
+        String expected = "ba tam";
+        String result = FizzBuzz.findResultFizzBuzz(number);
+        assertEquals(expected,result);
+    }
+
+
 }

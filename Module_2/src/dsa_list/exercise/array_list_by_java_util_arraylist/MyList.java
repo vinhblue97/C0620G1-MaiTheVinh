@@ -21,15 +21,62 @@ public class MyList<E> {
         elements[index] = element;
     }
 
-    public void remove(int index) {
-//        E element = (E) elements[index];
-        int size = elements.length;
-        Object[] elements1 = Arrays.copyOfRange(elements,0,elements.length-1);
-        elements = Arrays.copyOfRange(elements1,0,index);
-        getList();
-        elements = Arrays.copyOfRange(elements1,index+1,size-1);
-        getList();
-//        return element;
+    public E remove(int index) {
+        Object[] newElements = new Object[size() - 1];
+        E element = (E) elements[index];
+        for (int i = 0; i < size() - 1; i++) {
+            if (i >= index) {
+                newElements[i] = elements[i + 1];
+            } else {
+                newElements[i] = elements[i];
+            }
+        }
+        elements = newElements;
+        return element;
+    }
+
+    public int size() {
+        return elements.length;
+    }
+
+    public boolean contain(E o) {
+        int check = 0;
+        for (Object element : elements) {
+            if (element == o) {
+                return true;
+            } else check = 1;
+        }
+        return check != 1;
+    }
+
+    public int indexOf(E o) {
+        int index = 0;
+        for (; index < size(); index++) {
+            boolean isEqualElement = elements[index] == o;
+            if (isEqualElement) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    public boolean add(E o) {
+        elements = Arrays.copyOf(elements, size() + 1);
+        elements[size()] = o;
+        return true;
+    }
+
+    public E get(int index) {
+        return (E) elements[index];
+    }
+
+    public void ensureCapacity(int minCapacity){
+        int newSize = minCapacity;
+        elements = Arrays.copyOf(elements,newSize);
+    }
+
+    public void clear(){
+        elements = new Object[0];
     }
 
     public void getList() {
