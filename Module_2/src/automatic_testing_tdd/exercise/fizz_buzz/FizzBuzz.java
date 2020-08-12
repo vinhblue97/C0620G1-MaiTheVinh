@@ -36,12 +36,12 @@ public class FizzBuzz {
         int dozensNum = (number - unitNum) / 10;
         String stringUnitNum = "";
         String stringDozensNum = "";
-        stringUnitNum = getUnitNumber(unitNum, dozensNum, stringUnitNum);
+        stringUnitNum = getUnitNumber(unitNum,stringUnitNum);
         stringDozensNum = getDozenNumber(dozensNum, stringDozensNum);
         return stringDozensNum + " " + stringUnitNum;
     }
 
-    private static String getUnitNumber(int unitNum, int dozensNum, String stringUnitNum) {
+    private static String getUnitNumber(int unitNum, String stringUnitNum) {
         switch (unitNum) {
             case 1:
                 stringUnitNum = "mot";
