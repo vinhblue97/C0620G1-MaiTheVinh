@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Luyện tập vòng lặp 01</title>
+</head>
+<body>
+<input type="text" id="fibonacyNumber" placeholder="nhập số số hạng"/>
+<input type="button" value="Hiển Thị" onclick="displayNum();">
+<script>
+    function displayNum(){
+        let fiboAmount = parseInt(document.getElementById("fibonacyNumber").value);
+        let fiboNum = [1, 1];
+        let i;
+        for (i = 2; i<=(fiboAmount-1); i++){
+            fiboNum[i] = parseInt(fiboNum[i-1]) + parseInt(fiboNum[i-2]) + "";
+        }
+        document.write(fiboNum);
+    }
+
+</script>
+</body>
+</html>

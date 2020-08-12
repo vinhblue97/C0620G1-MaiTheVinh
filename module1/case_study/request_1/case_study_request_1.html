@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage The Furuma Resort </title>
+    <link rel="stylesheet" type="text/css" href="case_study_request_1.css"/>
+</head>
+<body>
+    <div>
+        <form>
+            <label>Họ và tên:</label>
+            <input type="text" id="mName" placeholder="Nhập tên người dùng"/><br><br>
+            <label>Số chứng minh nhân dân:</label>
+            <input type="text" id="mCMND" placeholder="Nhập số chứng minh nhân dân"/><br><br>
+            <label>Ngày sinh:</label>
+            <input type="date" id="mDateBorn"/><br><br>
+            <label>Email:</label>
+            <input type="email" id="mEmail" placeholder="Nhập địa chỉ email"/><br><br>
+            <label>Địa chỉ:</label>
+            <input type="text" id="mAddress" placeholder="Nhập địa chỉ thường trú"/><br><br>
+            <label>Loại Customer:</label>
+            <select id="mSpecies">
+                <option value="member">Member</option>
+                <option value="silver">Silver</option>
+                <option value="gold">Gold</option>
+                <option value="platium">Platium</option>
+                <option value="diamond">Diamond</option>
+            </select><br><br>
+            <label>Số người đi cùng:</label>
+            <input type="text" id="mNumDer" placeholder="Nhập số người đi cùng"/><br><br>
+            <label>Giảm giá</label>
+            <input type="text" id="mVoucher"><br><br>
+            <label>Số ngày thuê:</label>
+            <input type="text" id="mRentOates" placeholder="Số ngày thuê"/><br><br>
+            <label>Loại dịch vụ:</label>
+            <label><input type="radio" class="specieService" name="specieService" checked>Villa</label>
+            <label><input type="radio" class="specieService" name="specieService">House</label>
+            <label><input type="radio" class="specieService" name="specieService">Room</label><br><br>
+            <label>Loại phòng thuê:</label>
+            <label><input type="radio" class="specieRoom" name="mSpeRoom" checked>Normal</label>
+            <label><input type="radio" class="specieRoom" name="mSpeRoom">Business</label>
+            <label><input type="radio" class="specieRoom" name="mSpeRoom">VIP</label>
+            <p>
+                Bảng giá:<br>
+                - Villa 500$/1 ngày<br>
+                - House 300$/1 ngày<br>
+                - Room 100$/1 ngày<br>
+            </p>
+            <input type="button" value="Đăng ký" onclick="fResult();">
+            <input type="reset" value="Nhập lại">
+            <input type="button" value="Thêm thông tin" onclick="fAddInformation();">
+        </form>
+    </div>
+<script type="text/javascript" src="case_study_request_1.js"></script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Customer {
+        constructor() {
+            this.userName;
+            this.userCmnd;
+            this.userDateBorn;
+            this.userEmail;
+            this.userAddress;
+            this.customerType;
+            this.voucher;
+            this.customerAttachment;
+            this.rentDays;
+            this.serviceType;
+            this.roomType;
+            this.roomFee;
+        }
+
+        setName() {
+            do{
+                this.userName = prompt("Nhập tên:");
+            } while (!isNaN(this.userName));
+
+        }
+
+        getName() {
+            return this.userName;
+        }
+
+        setCmnd() {
+            do{
+                this.userCmnd = parseInt(prompt("Nhập chứng minh nhân dân:"));
+            } while (isNaN(this.userCmnd ));
+
+        }
+
+        getCmnd() {
+            return this.userCmnd;
+        }
+
+        setEmail() {
+            do {
+            var stringEmail = /^[a-z][\w_\.]{5,32}@[a-z]{3}\.[a-z]{3}$/g;
+            this.userEmail = prompt("Nhập địa chỉ email");
+            } while (this.userEmail.match(stringEmail) == null);
+
+        }
+
+        getEmail() {
+            return this.userEmail;
+        }
+
+        setDateBorn() {
+            do {
+            var stringDate = /^([0-9]{1,2}\/)+[1-2][0-9]{3}$/g;
+            this.userDateBorn = prompt("Nhập ngày tháng năm sinh:");
+            } while (this.userDateBorn.match(stringDate) == null);
+
+        }
+
+
+        getDateBorn() {
+            return this.userDateBorn;
+        }
+
+        setAddress() {
+            this.userAddress = prompt("Nhập địa chỉ hiện tại:");
+        }
+
+        getAddress() {
+            return this.userAddress;
+        }
+
+        setCustomerType() {
+            do {
+                var index;
+                index = parseInt(prompt("Chọn kiểu khách hàng:\n" +
+                    "1. Diamond \n" +
+                    "2. Platium \n" +
+                    "3. Gold\n" +
+                    "4. Silver\n" +
+                    "5. Member"));
+                switch (index) {
+                    case 1:
+                        this.customerType = 'Diamond';
+                        break;
+                    case 2:
+                        this.customerType = 'Platium';
+                        break;
+                    case 3:
+                        this.customerType = 'Gold';
+                        break;
+                    case 4:
+                        this.customerType = 'Silver';
+                        break;
+                    case 5:
+                        this.customerType = 'Member';
+                        break;
+                }
+            } while (isNaN(index) || index < 1 || index > 5);
+        }
+
+        getCustomerType() {
+            return this.customerType;
+        }
+
+        setVouncher() {
+            do {
+            this.voucher = prompt("Nhập giảm giá : (0-100) (%)");
+            } while (this.voucher < 0 || this.voucher > 100 || isNaN(this.voucher));
+        }
+
+        getVoucher() {
+            return this.voucher;
+        }
+
+        setCustomerAttachment() {
+            do {
+                this.customerAttachment = prompt("Nhập sô người đi cùng");
+            } while (this.customerAttachment < 0 || isNaN(this.customerAttachment));
+        }
+
+        getCustomerAttachment() {
+            return this.customerAttachment;
+        }
+
+        setRentDay() {
+            do {
+                this.rentDays = prompt("Nhập số ngày thuê:");
+            } while (this.rentDays < 0 || isNaN(this.rentDays));
+        }
+
+        getRentDay() {
+            return this.rentDays;
+        }
+
+        setServiceType() {
+            do {
+                var index = parseInt(prompt("Chọn loại dịch vụ:\n" +
+                    "1. Villa\n" +
+                    "2. House\n" +
+                    "3. Room"));
+                switch (index) {
+                    case 1:
+                        this.serviceType = 'Villa';
+                        break;
+                    case 2:
+                        this.serviceType = 'Villa';
+                        break;
+                    case 3:
+                        this.serviceType = 'Villa';
+                        break;
+                }
+            } while (index < 0 || index > 3 || isNaN(index));
+        }
+
+        getServiceType() {
+            return this.serviceType;
+        }
+
+        setRoomType() {
+            do {
+                var index = parseInt(prompt("Chọn loại phòng thuê:\n" +
+                    "1. Vip\n" +
+                    "2. Bussines\n" +
+                    "3. Normal"));
+                switch (index) {
+                    case 1:
+                        this.roomType = 'Vip';
+                        break;
+                    case 2:
+                        this.roomType = 'Bussines';
+                        break
+                    case 3:
+                        this.roomType = 'Normal';
+                        break;
+                }
+            } while (index < 0 || index > 3 || isNaN(index));
+        }
+
+        getRoomType() {
+            return this.roomType;
+        }
+
+        calculateRoomFee() {
+            if (this.serviceType == 'Villa') {
+                this.roomFee = 500 * this.rentDays * (1 - this.voucher / 100);
+            } else if (this.serviceType == 'House') {
+                this.roomFee = 300 * this.rentDays * (1 - this.voucher / 100);
+            } else if (this.serviceType == 'Room') {
+                this.roomFee = 100 * this.rentDays * (1 - this.voucher / 100);
+            }
+            return this.roomFee;
+        }
+
+    }
+
+    class Employee extends Customer {
+        constructor() {
+            super();
+            this.employeeType;
+            this.salary;
+        }
+        setEmployeeType(){
+            do {
+                var index;
+                index = parseInt(prompt("Chọn loại nhân viên:\n" +
+                    "1. Manager \n" +
+                    "2. Sale \n" +
+                    "3. Marketing\n"));
+                switch (index) {
+                    case 1:
+                        this.employeeType = 'Manager';
+                        break;
+                    case 2:
+                        this.employeeType = 'Sale';
+                        break;
+                    case 3:
+                        this.employeeType = 'Marketing';
+                        break;
+                }
+            } while (isNaN(index) || index < 1 || index > 3);
+
+        }
+
+        calculateSalary(){
+            if (this.serviceType == 'Manager') {
+                this.salary = 500;
+            } else if (this.serviceType == 'Sale') {
+                this.salary = 300;
+            } else if (this.serviceType == 'Marketing') {
+                this.salary = 100;
+            }
+            return this.salary;
+        }
+    }
+
+    let listCustomer = [];
+    let arrEmployees = [];
+    menu();
+
+    function menu() {
+        do {
+            var choise = parseInt(prompt("Lựa chọn\n" +
+                "1. Add new customer\n" +
+                "2. Display customer's information\n" +
+                "3. Display total pay of customer\n" +
+                "4. Edit customer's information\n" +
+                "5. Delete customer\n" +
+                "6. Add New Employeee\n" +
+                "0. Exit"));
+            switch (choise) {
+                case 1:
+                    addNewCustomer();
+                    menu();
+                    break;
+                case 2:
+                    displayCustomerInformation();
+                    menu();
+                    break;
+                case 3:
+                    displayTotalPay();
+                    menu();
+                    break;
+                case 4:
+                    editCustomerInformation();
+                    menu();
+                    break;
+                case 5:
+                    deleteCustomer();
+                    menu();
+                    break;
+                case 6:
+                    addNewEmployee();
+                    menu();
+                    break;
+                case 0:
+                    break;
+            }
+        } while (choise < 0 || choise > 5 || isNaN(choise));
+
+    }
+
+    function addNewCustomer() {
+        let customer = new Customer();
+        customer.setName();
+        customer.setCmnd();
+        customer.setEmail();
+        customer.setDateBorn();
+        customer.setAddress();
+        customer.setCustomerType();
+        customer.setVouncher();
+        customer.setCustomerAttachment();
+        customer.setRentDay();
+        customer.setServiceType();
+        customer.setRoomType();
+        listCustomer.push(customer);
+    }
+
+    function displayListCustomerInformation() {
+        var display;
+        let stringListCustomer = '';
+        for (let i = 0; i < listCustomer.length; i++) {
+            stringListCustomer += (i + 1) + '. ' + listCustomer[i].getName() + '\n' +
+                '    ' + listCustomer[i].getCmnd() + '\n';
+        }
+        display = parseInt(prompt("Danh sách customer:\n" + stringListCustomer + '\n' +
+            '0. Back'));
+        return display;
+
+    }
+
+    function displayTotalPay() {
+        do {
+            var display = displayListCustomerInformation();
+            if (display == 0) {
+                break;
+            } else {
+                let fee = listCustomer[display - 1].calculateRoomFee();
+                var choise = parseInt(prompt(display + ' .' + listCustomer[display - 1].getName() + ': ' + fee + '\n' +
+                    '0. Back'));
+            }
+        } while (choise == 0);
+    }
+
+    function displayCustomerInformation() {
+        do {
+            if (choise == 0) {
+                break;
+            }
+            var display = displayListCustomerInformation();
+            if (display == 0) {
+                break;
+            } else {
+                var choise = parseInt(prompt(display + '. ' + listCustomer[display - 1].getName() + '\n' +
+                    '    ' + listCustomer[display - 1].getCmnd() + '\n' +
+                    '    ' + listCustomer[display - 1].getEmail() + '\n' +
+                    '    ' + listCustomer[display - 1].getDateBorn() + '\n' +
+                    '    ' + listCustomer[display - 1].getAddress + '\n' +
+                    '    ' + listCustomer[display - 1].getCustomerType() + '\n' +
+                    '    ' + listCustomer[display - 1].getVoucher() + '\n' +
+                    '    ' + listCustomer[display - 1].getCustomerAttachment() + '\n' +
+                    '    ' + listCustomer[display - 1].getRentDay() + '\n' +
+                    '    ' + listCustomer[display - 1].getServiceType() + '\n' +
+                    '    ' + listCustomer[display - 1].getRoomType() + '\n' +
+                    '0. Back'));
+                if (choise == 0) {
+                    displayCustomerInformation();
+                }
+            }
+        } while (1);
+    }
+
+    function editCustomerInformation() {
+        do {
+            if (choise == 0) {
+                break;
+            }
+            var display = displayListCustomerInformation();
+            if (display == 0) {
+                break;
+            } else {
+                var choise = parseInt(prompt("Chỉnh sửa: \n" +
+                    "1. Tên khách hàng\n" +
+                    "2. Chứng minh nhân dân\n" +
+                    "3. Ngày sinh\n" +
+                    "4. Địa chỉ\n" +
+                    "5. Loại khách hàng\n" +
+                    "6. Giảm giá\n" +
+                    "7. Số người đi cùng\n" +
+                    "8. Số ngày thuê\n" +
+                    "9. Loại dịch vụ\n" +
+                    "10. Loại phòng thuê\n" +
+                    "0. Back"));
+                switch (choise) {
+                    case 1:
+                        listCustomer[display - 1].setName();
+                        break;
+                    case 2:
+                        listCustomer[display - 1].setCmnd();
+                        break;
+                    case 3:
+                        listCustomer[display - 1].setDateBorn();
+                        break;
+                    case 4:
+                        listCustomer[display - 1].setAddress();
+                        break;
+                    case 5:
+                        listCustomer[display - 1].setCustomerType();
+                        break;
+                    case 6:
+                        listCustomer[display - 1].setVouncher();
+                        break;
+                    case 7:
+                        listCustomer[display - 1].setCustomerAttachment();
+                        break;
+                    case 8:
+                        listCustomer[display - 1].setRentDay();
+                        break;
+                    case 9:
+                        listCustomer[display - 1].setServiceType();
+                        break;
+                    case 10:
+                        listCustomer[display - 1].setRoomType();
+                        break;
+                    case 0:
+                        editCustomerInformation();
+                }
+            }
+        } while (1);
+    }
+
+    function deleteCustomer() {
+        do {
+            var display = displayListCustomerInformation();
+            if (display == 0) {
+                break;
+            } else {
+                let mConfirm = confirm("Bạn có chắc chắn xoá thông tin khách hàng: " + listCustomer[display - 1].getName());
+                if (mConfirm) {
+                    listCustomer.splice(display - 1, 1);
+                }
+            }
+            var choise = displayListCustomerInformation();
+            if (choise == 0) {
+                break;
+            }
+        } while (1)
+
+    }
+
+    function addNewEmployee() {
+        let employee = new Employee();
+        employee.setName();
+        employee.setCmnd();
+        employee.setEmail();
+        employee.setDateBorn();
+        employee.setAddress();
+        employee.setEmployeeType();
+        arrEmployees.push(employee);
+    }
+</script>
+</body>
+</html>

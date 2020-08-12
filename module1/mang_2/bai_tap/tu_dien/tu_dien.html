@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Từ điển</title>
+</head>
+<body>
+<input type="text" id="findSub" placeholder="Nhập từ tiếng Anh">
+<input type="button" value="Tìm kiếm" onclick="findText();">
+<script>
+    function findText() {
+        let engArr = ["cat", "dog", "tree"];
+        let vietSub = ["Con mèo", "Con chó", "Cái cây"];
+        let pFind = document.getElementById("findSub");
+        console.log(pFind.value);
+        for (let i = 0; i <= engArr.length;) {
+            if (engArr[i] == pFind.value) {
+                alert(vietSub[i]);
+                break;
+            } else if (i == engArr.length) {
+                alert("Không tìm thấy");
+                break;
+            }
+            i++;
+        }
+    }
+
+
+</script>
+</body>
+</html>

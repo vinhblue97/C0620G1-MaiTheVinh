@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Hàm kiểm tra số nguyên tố</title>
+</head>
+<body>
+<script>
+    checkPrime(10000);
+
+    function checkPrime(pNum) {
+        let i = 2, check = 0;
+        while (i < pNum) {
+            for (let j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    check++;
+                }
+            }
+            if (check == 0) {
+                document.write(i + " ");
+            }
+            check = 0;
+            i++;
+        }
+    }
+</script>
+</body>
+</html>

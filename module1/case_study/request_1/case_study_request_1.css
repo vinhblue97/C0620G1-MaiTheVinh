@@ -1,0 +1,33 @@
+#mName{
+    margin-left: 97px;
+}
+#mCMND{
+    width: 190px;
+}
+#mDateBorn{
+    margin-left: 94px;
+}
+#mEmail{
+    margin-left: 121px;
+}
+#mAddress{
+    margin-left: 113px
+}
+#mSpecies{
+    margin-left: 64px;
+}
+#mNumDer{
+    margin-left: 50px
+}
+#mVoucher{
+    margin-left: 105px
+}
+#mRentOates{
+    margin-left: 76px;
+}
+#mVilla, #mHouse, #mRoom{
+    margin-left: 30px;
+}
+#mBusiness, #mVip{
+    margin-left: 13px;
+}

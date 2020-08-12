@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Tic tac toe</title>
+    <link rel="stylesheet" href="tic_tac_toe.css" type="text/css"/>
+</head>
+<body>
+<p id="display"></p>
+<script>
+    var numberCell = 12;
+    var checkPlayer = 1, pCheckWin = 2;
+    var caroArr = new Array(numberCell);
+    for (let i = 0; i < numberCell; i++) {
+        caroArr[i] = new Array(numberCell);
+        for (let j = 0; j < numberCell; j++) {
+            caroArr[i][j] = '';
+        }
+    }
+    setGame();
+
+    function setGame() {
+        let tableCaro = '<table border="1">';
+        for (let i = 0; i < numberCell - 2; i++) {
+            tableCaro += '<tr>';
+            for (let j = 0; j < numberCell - 2; j++) {
+                tableCaro += '<td style="width: 30px; height: 30px" id="cellCaro" onclick="playCaro(' + i + ',' + j + ');">' + caroArr[i][j] + '</td>';
+            }
+            tableCaro += '</tr>';
+        }
+        tableCaro += '</table>';
+        tableCaro += '<br>'
+        tableCaro += '<input type="button" value="Chơi lại" style="margin-left: 150px" onclick="resetGame()"/>'
+        document.getElementById("display").innerHTML = tableCaro;
+    }
+
+    function playCaro(i, j) {
+        if (checkPlayer == 1 && checkPosition(i, j)) {
+            caroArr[i][j] = "X";
+            checkPlayer = 0;
+        } else if (checkPlayer == 0 && checkPosition(i, j)) {
+            caroArr[i][j] = "O";
+            checkPlayer = 1;
+        }
+        setGame();
+        checkWin();
+        if (pCheckWin == 1) {
+            setTimeout('alert("Player 1 chiến thắng")', 100);
+            pCheckWin = 2;
+        } else if (pCheckWin == 0) {
+            setTimeout('alert("Player 2 chiến thắng")', 100);
+            pCheckWin = 2;
+        }
+    }
+
+    function checkPosition(i, j) {
+        if (caroArr[i][j] == "X" || caroArr[i][j] == "O") {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function checkWin() {
+        for (let i = 0; i < numberCell - 2; i++) {
+            for (let j = 0; j < numberCell - 2; j++) {
+                if (caroArr[i][j] == "X") {
+                    if (caroArr[i][j] == "X" && caroArr[i][j + 1] == "X" && caroArr[i][j + 2] == "X") {
+                        pCheckWin = 1;
+                    }
+                    if (caroArr[i][j] == "X" && caroArr[i + 1][j] == "X" && caroArr[i + 2][j] == "X") {
+                        pCheckWin = 1;
+                    }
+                    if (caroArr[i][j] == "X" && caroArr[i + 1][j + 1] == "X" && caroArr[i + 2][j + 2] == "X") {
+                        pCheckWin = 1;
+                    }
+                    if (caroArr[i][j] == "X" && caroArr[i + 1][j - 1] == "X" && caroArr[i + 2][j - 2] == "X") {
+                        pCheckWin = 1;
+                    }
+                } else if (caroArr[i][j] == "O") {
+                    if (caroArr[i][j] == "O" && caroArr[i][j + 1] == "O" && caroArr[i][j + 2] == "O") {
+                        pCheckWin = 0;
+                    }
+                    if (caroArr[i][j] == "O" && caroArr[i + 1][j] == "O" && caroArr[i + 2][j] == "O") {
+                        pCheckWin = 0;
+                    }
+                    if (caroArr[i][j] == "O" && caroArr[i + 1][j + 1] == "O" && caroArr[i + 2][j + 2] == "O") {
+                        pCheckWin = 0;
+                    }
+                    if (caroArr[i][j] == "O" && caroArr[i + 1][j - 1] == "O" && caroArr[i + 2][j - 2] == "O") {
+                        pCheckWin = 0;
+                    }
+                }
+            }
+        }
+    }
+
+    function resetGame() {
+        for (let i = 0; i < numberCell - 2; i++) {
+            for (let j = 0; j < numberCell - 2; j++) {
+                caroArr[i][j] = '';
+
+            }
+        }
+        pCheckWin = 2;
+        setGame();
+    }
+</script>
+</body>
+</html>

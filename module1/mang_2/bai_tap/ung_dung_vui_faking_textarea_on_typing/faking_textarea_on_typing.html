@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Ứng dụng vui Faking Textarea on Typing</title>
+</head>
+<body>
+<div align="center">
+    <h2>Type anything slowly</h2>
+    <textarea cols="30" rows="15" id="faking" value=" " onkeypress="fakingTyping();"></textarea>
+</div>
+<script>
+    var stringArr = [];
+    var pString = "Anh như thế này, đã đủ tiêu chuẩn làm bạn trai em chưa?!";
+    stringArr = pString.split('');
+
+    function fakingTyping() {
+        let displayString = document.getElementById("faking");
+        let temString = displayString.value.substring(0, displayString.value.length - 1);
+        let count = temString.length;
+        console.log(`${count}`);
+        temString += stringArr[count];
+        displayString.value = temString;
+        if (count == pString.length) {
+            displayString.value = '';
+        }
+        setTimeout('fakingTyping()',100);
+    }
+</script>
+</body>
+</html>

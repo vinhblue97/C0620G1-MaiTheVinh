@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Chuyển đổi giữa feet và meters</title>
+</head>
+<body>
+<script>
+    
+    document.write(`Feet: ${convertToFeet(10)}`);
+    document.write("<br>")
+    document.write(`Meter: ${convertToMeter(10)}`);
+
+    function convertToFeet(pMeter) {
+        return 3.279 * pMeter;
+    }
+
+    function convertToMeter(pFeet) {
+        return 0.305 * pFeet;
+    }
+</script>
+</body>
+</html>

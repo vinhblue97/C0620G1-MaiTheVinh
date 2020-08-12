@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roman Numeral Converter</title>
+</head>
+<body>
+<script>
+
+    function convertToRoman() {
+        do {
+            let num = parseInt(prompt("Nhập số"));
+            let check = !isNaN(num) && num > 0;
+            if (check){
+                break;
+            }
+        } while (true);
+
+        const arrTemx = [1, 5, 10, 50, 100, 500, 1000];
+        const arrTemX = ['I', 'V', 'X', 'L', 'C', 'D', 'M'];
+        let arrLength = arrTemx.length;
+        let result = '';
+
+        return num;
+    }
+
+    console.log(convertToRoman());
+
+
+</script>
+
+</body>
+</html>

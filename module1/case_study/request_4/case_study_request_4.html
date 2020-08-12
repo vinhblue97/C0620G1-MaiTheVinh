@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case Study</title>
+</head>
+<body>
+<input type="text" id="addNew" style="width: 200px; height: 30px" placeholder="New Customer">
+<input type="button" value="Add" style="background-color: blue; color: white; width: 50px; height: 40px"
+       onclick="addNewCustomer();">
+<p id="dispayProduct"></p>
+<script>
+    var count = 0;
+    var arr = [];
+    var i;
+
+    function addNewCustomer() {
+        let customerName = document.getElementById("addNew");
+        arr[count] = customerName.value;
+        if (customerName.value != '') {
+            count++;
+            update();
+        }
+    }
+
+    function editCustomerName(i) {
+        arr[i] = prompt("Hãy chỉnh sửa tên");
+        update();
+    }
+
+    function deleteCustomer(i) {
+        arr.splice(i, 1);
+        count--;
+        update();
+    }
+
+    function update() {
+        let customerTable = '<table border="1">';
+        for (i = 0; i < count; i++) {
+            arr.sort();
+            customerTable += '<tr>';
+            customerTable += '<td width="30px" align="center">' + i + '</td>';
+            customerTable += '<td><p style="width: 200px; height: 20px" align="center">' + arr[i] + '</p></td>';
+            customerTable += '<td><input type="button" style="background-color: blue; color: white; width: 50px; height: 50px" value="Edit" onclick="editCustomerName(' + i + ');"></td>';
+            customerTable += '<td><input type="button" style="background-color: blue; color: white; width: 50px; height: 50px" value="Delete" onclick="deleteCustomer(' + i + ');"></td>';
+            customerTable += '</tr>';
+        }
+        customerTable += '</table>';
+        document.getElementById("dispayProduct").innerHTML = customerTable;
+    }
+</script>
+</body>
+</html>

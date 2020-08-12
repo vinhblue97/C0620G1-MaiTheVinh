@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ứng dụng chuyển đổi tiền tệ</title>
+
+</head>
+<body>
+<div class="vien">
+    <table>
+        <form>
+            <tr>
+                <th>Amount</th>
+                <th width="150px">From Currently</th>
+                <th width="90px">To Curently</th>
+            </tr>
+            <tr>
+                <td><input type="text" id="amount" value=""/></td>
+                <td align="center">
+                    <select id="mBefore">
+                        <option value="vnd">VietNam</option>
+                        <option value="usd">USD</option>
+                    </select>
+                </td>
+                <td align="center">
+                    <select id="mAfter">
+                        <option value="vnd">VietNam</option>
+                        <option value="usd">USD</option>
+                    </select>
+                </td>
+                <td style="background-color: plum; color:white; margin-left: 50px"><input type="button" name="convert" value="Convert" onclick="nhieu_tien()"></td>
+            </tr>
+        </form>
+    </table>
+</div>
+<p id="smoney" style="color: blue; font-size: 30px"></>
+<script type="text/javascript" src="convert_money.js"></script>
+</body>
+</html>

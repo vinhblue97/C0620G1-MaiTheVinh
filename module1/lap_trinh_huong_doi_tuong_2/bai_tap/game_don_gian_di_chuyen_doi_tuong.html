@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Game đơn giản - di chuyển đối tượng</title>
+</head>
+<body onload="pressKey()">
+<img src="game_don_gian_di_chuyen_doi_tuong.gif" id="target"/>
+<script>
+    class Character {
+        constructor(id) {
+            this.mName = document.getElementById(id);
+        }
+
+        control(event) {
+            switch (event.keyCode) {
+                case 37:
+                    this.evtLeft();
+                    break;
+                case 39:
+                    this.evtRight();
+                    break;
+                case 38:
+                    this.evtTop();
+                    break;
+                case 40:
+                    this.evtBotom();
+                    break;
+            }
+        }
+
+        evtLeft() {
+            console.log(1);
+            this.mName.style.left = parseInt(this.mName.style.left) - 5 + 'px';
+        }
+
+        evtRight() {
+            this.mName.style.left = parseInt(this.mName.style.left) + 5 + 'px';
+        }
+
+        evtTop() {
+            this.mName.style.top = parseInt(this.mName.style.top) - 5 + 'px';
+        }
+
+        evtBotom() {
+            this.mName.style.top = parseInt(this.mName.style.top) + 5 + 'px';
+        }
+    }
+
+    let element = new Character('target');
+
+    function pressKey() {
+        window.addEventListener('keydown', element.control);
+    }
+
+    // Lỗi không bắt được sự kiện
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Kiểm tra từ đối xứng</title>
+</head>
+<body>
+<input type="button" value="Kiểm tra" onclick="fInputString();"/>
+<script>
+    var arr = [];
+    let count = 0;
+    let index = 0;
+
+    function fInputString() {
+        let inputString = prompt("Hãy nhập chuỗi muốn kiểm tra");
+        arr = inputString.split('');
+        isPalindrome();
+        if (count == ~~((arr.length + 1) / 2)) {
+            alert(`${inputString} là chuỗi đối xứng`);
+            count = 0;
+        } else {
+            alert(`${inputString} không phải chuỗi đối xứng`);
+            count = 0;
+        }
+    }
+
+    function isPalindrome() {
+        if (index < ~~((arr.length + 1) / 2)) {
+            if (arr[index] == arr[arr.length - index - 1]) {
+                count++;
+            }
+            index++;
+            isPalindrome()
+        }
+        index = 0;
+        return count;
+    }
+</script>
+</body>
+</html>

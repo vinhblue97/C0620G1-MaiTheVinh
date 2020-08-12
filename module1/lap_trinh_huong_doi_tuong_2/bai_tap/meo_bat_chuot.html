@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Phát triển ứng dụng mô phỏng lại quá trình mèo bắt chuột và ăn chuột.</title>
+</head>
+<body>
+<script>
+    class Mouse {
+        constructor(mouseName, mouseWeight, mouseSpeed, mouseStatus) {
+            this.mouseName = mouseName;
+            this.mouseWeight = mouseWeight;
+            this.mouseSpeed = mouseSpeed;
+            this.mouseStatus = mouseStatus;
+        }
+
+        mouseSound() {
+            alert("Click Click")
+        }
+    }
+
+    class Cat {
+        constructor(catName, catWeight, catSpeed) {
+            this.catName = catName;
+            this.catWeight = catWeight;
+            this.catSpeed = catSpeed;
+        }
+
+        catSound() {
+            alert("Meow Meow ...")
+        }
+
+        catchMouse(mouse) {
+            if (mouse.mouseSpeed < this.catSpeed) {
+                alert('Mèo bắt được chuột');
+                return true;
+            } else {
+                alert("Mèo không bắt được con nào, nuôi tốn cơm tốn gạo");
+                return false;
+            }
+        }
+
+        eatMouse(mouse) {
+            if (this.catchMouse(mouse)) {
+                if (mouse.mouseStatus) {
+                    alert("Mèo ăn được chuột");
+                } else alert("Mèo không ăn chuột chết");
+            } else alert("không làm mà đòi có ăn thì chỉ có ăn ... ");
+        }
+    }
+
+    let cat1 = new Cat('tom', 100, 10);
+    let mouse1 = new Mouse('Jerry', 5, 40, 1);
+    setTimeout('mouse1.mouseSound()', 1000);
+    setTimeout('cat1.catSound()', 2000);
+    setTimeout('cat1.eatMouse(mouse1)', 4000);
+
+</script>
+</body>
+</html>

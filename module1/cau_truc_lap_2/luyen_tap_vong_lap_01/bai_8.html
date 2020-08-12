@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Luyện tập vòng lặp 01</title>
+</head>
+<body>
+<input type="button" value="Chơi" onclick="playGame();"/>
+<script>
+    function playGame() {
+        let pScore1, pScore2, i = 0, pGuess;
+        do {
+            pScore1 = parseInt(prompt("Hãy nhập số đầu tiên trong khoảng bạn muốn đoán số"));
+        } while (pScore1 == "");
+        do {
+            pScore2 = parseInt(prompt("Hãy nhập số kết thúc trong khoảng bạn muốn đoán số"));
+        } while (pScore2 == "");
+        let pSurprise = Math.floor(Math.random() * pScore2 + pScore1);
+        do {
+            i++;
+            pGuess = parseInt(prompt("Bây giờ hãy đoán đi thằng kia"));
+            if (i == 3) {
+                break;
+            }
+        } while (pGuess != pSurprise);
+        if (pGuess == pSurprise) {
+            alert("Game là dễ");
+        } else {
+            alert("Thằng gà =,=, đoán chừng đó mà cũng sai");
+        }
+    }
+</script>
+</body>
+</html>

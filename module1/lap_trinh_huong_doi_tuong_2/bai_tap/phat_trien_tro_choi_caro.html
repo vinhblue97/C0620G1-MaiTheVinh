@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="display"></p>
+<script>
+    let arrCaro = new Array(12);
+    for (let i = 0; i < 100 + 2; i++) {
+        arrCaro[i] = new Array(12);
+        for (let j = 0; j < 100 + 2; j++) {
+            arrCaro[i][j] = '';
+        }
+    }
+
+    class CaroTable {
+        constructor(rows, cols) {
+            this.rows = rows;
+            this.cols = cols;
+        }
+
+        setTable() {
+            let caroTable = '<tabble border="1">';
+            for (let i = 0; i < this.rows; i++) {
+                caroTable += '<tr>';
+                for (let j = 0; j < this.cols; j++) {
+                    caroTable += '<td width="20px" height="20px" style="border: blue" onclick="">' + arrCaro[i][j] + '</td>';
+                }
+                caroTable += '</tr>';
+            }
+            caroTable += '</table>';
+            document.getElementById("display").innerHTML = caroTable;
+        }
+
+        setX() {
+
+        }
+
+        setO() {
+
+        }
+    }
+    let caro1 = new CaroTable(10,10);
+    caro1.setTable();
+   </script>
+</body>
+</html>

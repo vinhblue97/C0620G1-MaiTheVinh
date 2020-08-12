@@ -1,0 +1,18 @@
+#fCalculate{
+    border: blue solid 1px;
+    width: 360px;
+    height: 120px
+}
+.press{
+    margin-bottom: 2px;
+    border: blue solid 1px;
+    width: 80px;
+    margin-left: 5px;
+}
+#display{
+    border: red solid 1px;
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 343px;
+    margin-bottom: 5px;
+}

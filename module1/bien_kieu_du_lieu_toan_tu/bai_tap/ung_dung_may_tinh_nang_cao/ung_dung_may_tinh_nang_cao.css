@@ -1,0 +1,28 @@
+#calculator{
+    border: blue solid 2px;
+    width: 350px;
+    height:262px;
+}
+#display{
+    border: black solid 1px;
+    margin-top: 10px;
+    font-size: 20px;
+    height: 30px;
+    width:330px;
+    margin-bottom: 1px;
+}
+#keyboard{
+    margin-left: 5px;
+}
+.press{
+    margin-top: px;
+    width: 45px;
+    background-color: #9fb4c5;
+}
+#seven, #eight, #nine, #four, #five, #six, #one, #two, #three,  #zero, #dot{
+    background-color: whitesmoke;
+}
+#equal{
+    background-color: blue;
+    color: white;
+}

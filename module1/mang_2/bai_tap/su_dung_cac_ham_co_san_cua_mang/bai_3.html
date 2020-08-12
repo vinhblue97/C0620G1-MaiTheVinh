@@ -1,0 +1,28 @@
+<!--Bài 1: Viết một chương trình Javascript để nối tất cả các phần tử trong một mảng chuỗi lại với nhau. Ví dụ có mảng chuỗi như sau: myColor = ["Red", "Green", "White", "Black"];-->
+<!--Sau khi thực thi chương trình sẽ trả về dạng như sau :-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Sử dụng các hàm có sẵn của mảng</title>
+</head>
+<body>
+<script>
+    let myName = "Mai The Vinh";
+    let nameArr = [], tem, pName="";
+    for (let i = 0; i < myName.length; i++) {
+        nameArr[i] = myName[i];
+        // console.log(`${myName[i]} : ${myName.charCodeAt(i)}`);
+        if ((myName.charCodeAt(i) <= 90) && (myName.charCodeAt(i) >= 65)) {
+            tem = nameArr[i].toLocaleLowerCase();
+            nameArr[i] = tem;
+        } else if ((myName.charCodeAt(i) <= 122) && (myName.charCodeAt(i) >= 97)) {
+            tem = nameArr[i].toLocaleUpperCase();
+            nameArr[i] = tem;
+        }
+        pName+=nameArr[i];
+    }
+    console.log(pName);
+</script>
+</body>
+</html>

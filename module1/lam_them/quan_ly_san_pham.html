@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sản phẩm</title>
+</head>
+<body>
+<input type="button" value="Add New Product" onclick="addNewProduct(listProduct);">
+<select id="sortProduct">
+    <label>
+        <option>Id</option>
+    </label>
+    <label>
+        <option>Name</option>
+    </label>
+    <label>
+        <option>Amout</option>
+    </label>
+    <label>
+        <option>Cost</option>
+    </label>
+</select>
+<input type="button" value="Sort" onclick="sortProduct(listProduct);">
+<input type="button" value="Tìm kiếm mặt hàng" onclick="findingProduct(listProduct);">
+<input type="button" value="Quay lại" onclick="displayList(listProduct);">
+<p id="display"></p>
+
+</table>
+<script>
+    class Product {
+        constructor(mId, mName, mAmount, mCost) {
+            this.id = mId;
+            this.name = mName;
+            this.amount = mAmount;
+            this.cost = mCost;
+        }
+
+        setId(id) {
+            this.id = id;
+        }
+
+        getId() {
+            return this.id;
+        }
+
+        setName(name) {
+            this.name = name;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        setAmount(amount) {
+            this.amount = amount;
+        }
+
+        getAmount() {
+            return this.amount;
+        }
+
+        setCost(cost) {
+            this.cost = cost;
+        }
+
+        getCost() {
+            return this.cost;
+        }
+
+        getInfor() {
+            return parseInt(prompt(` 1. Id: ${this.id}\n 2. Name: ${this.name}\n 3. Amount: ${this.amount}\n 4. Cost: ${this.cost} 0. Back`));
+        }
+    }
+
+    let listProduct = [];
+
+    function addNewProduct(list) {
+        let id = prompt("Nhập mã số Id");
+        let name = prompt("Nhập tên sản phẩm");
+        let amount = prompt("Nhập số lượng sản phẩm");
+        let cost = prompt("Nhập giá tiền của sản phẩm");
+        let product = new Product(id, name, amount, cost);
+        list.push(product);
+        displayList(list);
+    }
+
+    function displayList(list) {
+        let listLength = list.length;
+        let productTable = '<table border="1">' +
+            '<tr>' +
+            '<th>Index</th>' +
+            '<th>Id</th>' +
+            '<th>Name</th>' +
+            '<th>Amount</th>' +
+            '<th>Cost</th>' +
+            '<th>Edit</th>' +
+            '<th>Delete</th>' +
+            '</tr>';
+
+        for (let i = 0; i < listLength; i++) {
+            productTable += '<tr>' +
+                '<td align="center">' + (i + 1) + '</td>' +
+                '<td>' + list[i].getId() + '</td>' +
+                '<td>' + list[i].getName() + '</td>' +
+                '<td>' + list[i].getAmount() + '</td>' +
+                '<td>' + list[i].getCost() + '</td>' +
+                '<td><input type="button" value="Edit" onclick ="editInformation(' + i + ');"></td>' +
+                '<td><input type="button" value="Delete" onclick ="deleteInformation(' + i + ');"></td>' +
+                '</tr>';
+        }
+        productTable += '</table>';
+        document.getElementById("display").innerHTML = productTable;
+    }
+
+    function editInformation(i) {
+        let choise = listProduct[i].getInfor();
+        switch (choise) {
+            case 1:
+                let id = prompt("Nhập mã số Id");
+                listProduct[i].setId(id);
+                editInformation(i);
+                break;
+            case 2:
+                let name = prompt("Nhập tên sản phẩm");
+                listProduct[i].setName(name);
+                editInformation(i);
+                break;
+            case 3:
+                let amount = prompt("Nhập số lượng sản phẩm");
+                listProduct[i].setAmount(amount);
+                editInformation(i);
+                break;
+            case 4:
+                let cost = prompt("Nhập giá tiền của sản phẩm");
+                listProduct[i].setCost(cost);
+                editInformation(i);
+                break;
+            case 0:
+                break;
+        }
+        displayList(listProduct);
+    }
+
+    function deleteInformation(i) {
+        let mConfirm = confirm("Bạn có chắc chắn muốn xoá mặt hàng: " + listProduct[i].getName());
+        if (mConfirm) {
+            listProduct.splice(i, 1);
+            displayList(listProduct);
+        } else {
+            alert("Bạn không xoá mặt hàng này")
+        }
+    }
+
+    function sortProduct(list) {
+        let choise = document.getElementById("sortProduct").value;
+        switch (choise) {
+            case 'Id':
+                sortById(list);
+                break;
+            case 'Name':
+                sortByName(list);
+                break;
+            case 'Amount':
+                sortByAmount(list)
+                break;
+            case 'Cost':
+                sortByCost(list)
+                break;
+        }
+    }
+
+    function sortById(list) {
+        let listLength = list.length;
+        let arrTem = [];
+        let listSort = [];
+        for (let i = 0; i < listLength; i++) {
+            arrTem[i] = list[i].getId();
+        }
+        arrTem.sort(function (a, b) {
+            return a - b;
+        });
+        for (let i = 0; i < listLength; i++) {
+            for (let j = 0; j < listLength; j++) {
+                let compare = (arrTem[i] == list[j].getId());
+                if (compare) {
+                    listSort.push(list[j]);
+                }
+            }
+        }
+        displayList(listSort);
+    }
+
+    function sortByName(list) {
+        let listLength = list.length;
+        let arrIndex=[];
+        let arrTem = [];
+        let listSort = [];
+        for (let i = 0; i < listLength; i++) {
+            arrTem[i] = list[i].getName();
+        }
+        arrTem.sort(function (a, b) {
+            return a - b;
+        });
+        for (let i = 0; i < listLength; i++) {
+            for (let j = 0; j < listLength; j++) {
+                let check = 0;
+                for (let index = 0; index < j;index++){
+                    if (j==arrIndex[index]){
+                        check++;
+                    }
+                }
+                let compare = (arrTem[i] == list[j].getName())&&(check==0);
+                if (compare) {
+                    listSort.push(list[j]);
+                    arrIndex.push(j);
+                }
+            }
+        }
+        displayList(listSort);
+    }
+
+    function sortByAmount(list) {
+        let listLength = list.length;
+        let arrIndex = [];
+        let arrTem = [];
+        let listSort = [];
+        for (let i = 0; i < listLength; i++) {
+            arrTem[i] = list[i].getAmount();
+        }
+        arrTem.sort(function (a, b) {
+            return a - b;
+        });
+        for (let i = 0; i < listLength; i++) {
+            for (let j = 0; j < listLength; j++) {
+                let check = 0;
+                for (let index = 0; index < j;index++){
+                    if (j==arrIndex[index]){
+                        check++;
+                    }
+                }
+                console.log(check);
+                let compare = (arrTem[i] == list[j].getAmount())&&(check==0);
+                if (compare) {
+                    listSort.push(list[j]);
+                    arrIndex.push(j);
+                }
+            }
+        }
+        displayList(listSort);
+    }
+
+    function sortByCost(list) {
+        let listLength = list.length;
+        let arrTem = [];
+        let listSort = [];
+        for (let i = 0; i < listLength; i++) {
+            arrTem[i] = list[i].getCost();
+        }
+        arrTem.sort(function (a, b) {
+            return a - b;
+        });
+        for (let i = 0; i < listLength; i++) {
+            for (let j = 0; j < listLength; j++) {
+                let compare = (arrTem[i] == list[j].getCost());
+                if (compare) {
+                    if (listSort[i] == list[j]) {
+                        continue;
+                    } else {
+                        listSort.push(list[j]);
+                    }
+                    break;
+                }
+            }
+        }
+        displayList(listSort);
+    }
+
+    function findingProduct(list) {
+        let finding = prompt("Nhập tên mặt hàng bạn muốn tìm kiếm:");
+
+        let listFind = [];
+        let listLength = list.length;
+
+        for (let i = 0; i < listLength; i++) {
+            let compare = (finding == list[i].getName());
+            if (compare) {
+                listFind.push(list[i]);
+            }
+        }
+        displayList(listFind);
+    }
+
+
+</script>
+
+</body>
+</html>

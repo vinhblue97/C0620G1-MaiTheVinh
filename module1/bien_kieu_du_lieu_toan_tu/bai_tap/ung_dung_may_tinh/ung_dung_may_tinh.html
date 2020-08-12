@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ứng dụng máy tính</title>
+</head>
+<body>
+<h2>Calculator</h2>
+<form>
+    <input type="number" id="num1"  placeholder="Nhập số thứ nhất"/>
+    <input type="number" id="num2"  style="margin-left: 10px" placeholder="Nhập số thứ hai"/>
+    <br>
+    <br>
+    <input type="button" id="add" value="Addition(+)" style="border: blue solid 1px" onclick="addition()"/>
+    <input type="button" id="sub" value="Subtraction(-)" style="margin-left: 5px; border: blue solid 1px" onclick="subtraction()"/>
+    <input type="button" id="mul" value="Multiplication(X)" style="margin-left: 5px; border: blue solid 1px" onclick="mutiplication()"/>
+    <input type="button" id="div" value="Division(/)" style="margin-left: 6px; border: blue solid 1px" onclick="division()"/>
+</form>
+<div style="margin-top: 10px; color: red; " id="result"></div>
+<script type="text/javascript" src="calculator.js"></script>
+</body>
+</html>

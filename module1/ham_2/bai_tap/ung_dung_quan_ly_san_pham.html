@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Ứng dụng quản lý sản phẩm sử dụng hàm</title>
+</head>
+<body>
+<input type="text" id="addNew" style="width: 200px; height: 30px" placeholder="New Product">
+<input type="button" value="Add" style="background-color: #00e000; color: white; width: 50px; height: 40px"
+       onclick="newProduct();">
+<p id="dispayProduct"></p>
+<script>
+    var count = 0;
+    var arr = [];
+    var i;
+
+    function newProduct() {
+        let product = document.getElementById("addNew");
+        arr[count] = product.value;
+        if (product.value != ''){
+            count++;
+        }
+        let productTable = '<table >';
+        for (i = 0; i < count; i++) {
+            productTable += '<tr>';
+            productTable += '<td><p style="width: 200px; height: 30px">' + arr[i] + '</p></td>';
+            productTable += '<td><input type="button" style="background-color: #00e000; color: white; width: 50px; height: 40px" value="Edit" onclick="editProduct(' + i + ');"></td>';
+            productTable += '<td><input type="button" style="background-color: #00e000; color: white; width: 50px; height: 40px" value="Delete" onclick="deleteProduct(' + i + ');"></td>';
+            productTable += '</tr>';
+        }
+        productTable += '</table>';
+        document.getElementById("dispayProduct").innerHTML = productTable;
+    }
+
+    function editProduct(i) {
+        arr[i] = prompt("Hãy chỉnh sửa tên");
+        console.log(arr[i]);
+        setTimeout('update(i)', 10);
+    }
+
+    function deleteProduct(i) {
+        arr.splice(i, 1);
+        console.log(arr);
+        count--;
+        setTimeout('update(i)', 10);
+    }
+
+    function update(i) {
+        let productTable = '<table >';
+        for (i = 0; i < count; i++) {
+            productTable += '<tr>';
+            productTable += '<td><p style="width: 200px; height: 30px">' + arr[i] + '</p></td>';
+            productTable += '<td><input type="button" style="background-color: #00e000; color: white; width: 50px; height: 40px" value="Edit" onclick="editProduct(' + i + ');"></td>';
+            productTable += '<td><input type="button" style="background-color: #00e000; color: white; width: 50px; height: 40px" value="Delete" onclick="deleteProduct(' + i + ');"></td>';
+            productTable += '</tr>';
+        }
+        productTable += '</table>';
+        document.getElementById("dispayProduct").innerHTML = productTable;
+    }
+</script>
+</body>
+</html>

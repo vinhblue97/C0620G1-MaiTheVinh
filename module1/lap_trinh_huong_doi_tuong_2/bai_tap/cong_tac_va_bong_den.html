@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Phát triển chương trình thể hiện sự tương tác giữa hai đối tượng: công tắc và bóng đèn</title>
+</head>
+<body>
+<input type="button" value="Bật đèn" onclick="switchLamp(button1, lamp1, this.value);">
+<input type="button" value="Tắt đèn" onclick="switchLamp(button1, lamp1, this.value);">
+<script>
+    class SwitchButton {
+        constructor(buttonStatus, lamp) {
+            this.buttonStatus = buttonStatus;
+            this.lamp = lamp;
+        }
+
+        switchButton() {
+                if (this.buttonStatus) {
+                    this.switchOff();
+                } else {
+                    this.switchOn();
+                }
+                return this.buttonStatus;
+        }
+
+        connectToLamp(lamp) {
+            if (lamp){
+                this.buttonStatus = true;
+            }
+            else this.buttonStatus = false;
+            return this.buttonStatus;
+        }
+
+        switchOff() {
+            this.buttonStatus = false;
+        }
+
+        switchOn() {
+            this.buttonStatus = true;
+        }
+    }
+
+    class ElectricLamp {
+        constructor(lampStatus) {
+            this.lampStatus = lampStatus;
+        }
+
+        electricLamp() {
+            return this.lampStatus;
+        }
+
+        turnOff(button) {
+            if (!button){
+                this.lampStatus = false;
+            }
+            return this.lampStatus;
+        }
+
+        turnOn(button) {
+            if (button){
+                this.lampStatus = true;
+            }
+            return this.lampStatus;
+        }
+    }
+
+    let button1 = new SwitchButton(true, true);
+    let lamp1 = new ElectricLamp(true);
+    function switchLamp(button, lamp, check){
+        button.connectToLamp(lamp.electricLamp());
+        if (check == 'Tắt đèn'){
+            console.log(lamp.turnOff(button.switchButton()));
+        }
+        else if (check == 'Bật đèn'){
+            console.log(lamp.turnOn(button.switchButton()));
+        }
+        console.log(button.connectToLamp(lamp.electricLamp()));
+    }
+
+
+</script>
+</body>
+</html>

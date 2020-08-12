@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 2</title>
+</head>
+<body>
+<script>
+
+    let arr = [];
+    let arrLength = (parseInt(prompt("Nhap so phan tu cua mang")));
+    for (let i = 0; i < arrLength; i++) {
+        arr[i] = parseInt(prompt(`Nhap phan tu thu ${i}`));
+    }
+    alert(tryRemoveFromArray(arr, 7));
+
+    function tryRemoveFromArray(arr, x) {
+        // let i = 0;
+        let findX = arr.indexOf(x);
+        let arrResult = [];
+        let check = findX != -1;
+        if (!check) {
+            return arr;
+        } else {
+            while (check) {
+                arrResult = arr.splice(findX, 1);
+                findX = arr.indexOf(x);
+                check = findX != -1;
+            }
+            return arr;
+        }
+    }
+
+
+</script>
+</body>
+</html>

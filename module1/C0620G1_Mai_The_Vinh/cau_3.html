@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 3</title>
+</head>
+<body>
+<script>
+    alert(isFibonacci(parseInt(prompt("Hãy nhập một số để kiểm tra: "))));
+
+    function isFibonacci(number) {
+        let arrFibonacy = [1, 1];
+        let addNum;
+        let i = 0;
+        let loopCondition = number >= arrFibonacy[arrFibonacy.length - 1];
+        while (loopCondition) {
+            let firstCheck = number == arrFibonacy[arrFibonacy.length - 1];
+            let secCheck = number < arrFibonacy[arrFibonacy.length - 1];
+            addNum = arrFibonacy[i] + arrFibonacy[i + 1];
+            arrFibonacy.push(addNum);
+            if (firstCheck) {
+                return true;
+            } else if (secCheck) {
+                return false;
+            }
+            i++;
+        }
+    }
+
+
+</script>
+</body>
+</html>

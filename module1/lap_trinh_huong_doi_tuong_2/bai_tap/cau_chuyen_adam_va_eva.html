@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Phát triển ứng dụng nhỏ mô phỏng câu chuyện Adam và Eva</title>
+</head>
+<body>
+<input type="button" value="Ăn táo" onclick="eating(human1);">
+<input type="button" value="Ăn táo" onclick="eating(human2);">
+<input type="button" value="Thêm táo" onclick="apple();">
+
+<script>
+    let tem = 0;
+
+    class Apple {
+        constructor(appleWeight) {
+            this.mWeight = appleWeight;
+        }
+
+        decrease() {
+            if (this.mWeight > 0) {
+                this.mWeight--;
+            }
+            return this.mWeight;
+        }
+
+
+        isEmpty() {
+            if (parseInt(this.mWeight) == 0) {
+                return true;
+            } else return false;
+        }
+
+        getWeight() {
+            return this.mWeight;
+        }
+    }
+
+
+    class Human {
+        constructor(humanName, humanGender, humanWeight, humanSay) {
+            this.humanName = humanName;
+            this.humanGender = humanGender;
+            this.humanWeight = humanWeight;
+        }
+
+
+        setGender() {
+            if (this.humanGender == 'male') {
+                return true;
+            } else if (this.humanGender == 'female') {
+                return false;
+            }
+        }
+
+        checkApple(mCheck) {
+            if (!mCheck) {
+                console.log("Quả táo còn ăn được");
+            } else console.log("Quả táo đã hết");
+
+        }
+
+        eat(appleWeight) {
+            if (appleWeight > 0) {
+                this.humanWeight += 1;
+            }
+            console.log("Cân nặng của " + this.humanName + " là " + this.humanWeight);
+        }
+    }
+
+    let human1 = new Human('Vinh', 'male', 60, 'hello');
+    let human2 = new Human('Oke', 'female', 15, 'hello');
+
+    let apple1;
+
+    function apple() {
+        tem = 1;
+        apple1 = new Apple(10);
+        console.log("Đã thêm quả táo mới có trọng lượng là 10dv")
+
+    }
+
+    function eating(human) {
+        if (tem == 1) {
+            human.checkApple(apple1.isEmpty());
+            human.eat(apple1.decrease());
+            console.log(apple1.getWeight());
+        }
+        else console.log("Hãy thêm quả táo mới");
+    }
+</script>
+</body>
+</html>

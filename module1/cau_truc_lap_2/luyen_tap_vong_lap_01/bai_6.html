@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Luyện tập vòng lặp 01</title>
+</head>
+<body>
+<input type="text" id="intNumber" placeholder="nhập số số hạng"/>
+<input type="button" value="Tính tổng" onclick="displayNum();">
+<script>
+    function displayNum() {
+        let intNum = parseInt(document.getElementById("intNumber").value);
+        let i = 1, intAmount = 0, pSum = 0;
+
+        while (intAmount < intNum) {
+            if (i % 7 == 0) {
+                pSum += i;
+                intAmount += 1;
+            }
+            i += 1;
+        }
+        alert(`Tổng của ${intNum} đầu tiên chia hết cho 7 = ${pSum}`);
+    }
+</script>
+
+</body>
+</html>

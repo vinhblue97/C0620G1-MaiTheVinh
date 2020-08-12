@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Luyện tập tạo và sử dụng hàm 02</title>
+</head>
+<body>
+<script>
+    const pi = 3.14;
+
+    function calculateCircleArea(pRadius) {
+        return ~~(Math.pow(pRadius, 2) * pi*100)/100;
+    }
+
+    function calculatePerimeterArea(pRadius) {
+        return ~~(pRadius * 2 * pi*100)/100;
+    }
+    function displayResult(pRadius){
+        document.write(`Diện tích hình tròn ${calculateCircleArea(pRadius)}`);
+        document.write("<br>");
+        document.write(`Bán kính hình tròn ${calculatePerimeterArea(pRadius)}`);
+    }
+
+    displayResult(10);
+
+
+</script>
+</body>
+</html>

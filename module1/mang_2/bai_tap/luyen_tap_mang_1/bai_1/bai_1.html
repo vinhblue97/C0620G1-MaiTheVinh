@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Luyện tập mảng 01</title>
+</head>
+<body>
+<script>
+    let arr = [];
+    let arr1=[];
+    let j = 0;
+    for (let i = 0; i<10; i++){
+        arr[i]=Math.floor(Math.random()*100+1);
+        while (arr[i]>=10){
+            arr1[j]=arr[i];
+            j++;
+            break;
+        }
+    }
+    console.log(arr1);
+
+</script>
+
+</body>
+</html>

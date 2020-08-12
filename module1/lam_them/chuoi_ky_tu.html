@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let mString1 = prompt();
+    let mString2 = prompt();
+    // let arr = mString.split('');
+    function reverseString(string) {
+        let arr =[];
+        arr = string.split('');
+        string = arr.reverse().join('');
+        return string;
+    }
+
+    function formatString(string) {
+        let a = string.replace(/\s+/, ' ');
+        alert(a);
+    }
+    // console.log(mString1.concat(mString2));
+    // console.log(mString1);
+    let st = mString1.substring(3,5)
+    console.log(st)
+</script>
+</body>
+</html>

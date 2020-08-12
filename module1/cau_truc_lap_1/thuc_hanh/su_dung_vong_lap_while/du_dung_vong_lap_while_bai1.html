@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let pNumber = 0, pSum = 0;
+    while (pNumber != -1) {
+        pNumber = parseInt(prompt("Hãy nhập vào 1 số tùy ý"));
+        console.log(pNumber);
+        if (pNumber != NaN) {
+            pSum += pNumber;
+        }
+    }
+    if (pSum == -1) {
+        alert("pSum=0");
+    } else {
+        alert(`Tổng là: ${pSum + 1}`);
+    }
+</script>
+</body>
+</html>

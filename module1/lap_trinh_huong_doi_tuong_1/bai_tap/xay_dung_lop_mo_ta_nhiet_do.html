@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Xây dựng lớp mô tả Temperature</title>
+</head>
+<body>
+<script>
+    class Temperature {
+        constructor(mDegree) {
+            this.degree = mDegree;
+        }
+
+        getFDegree() {
+            return this.degree * 1.8 + 32;
+        }
+
+        getKDegree() {
+            return this.degree + 273.15;
+        }
+    }
+    let pTemperature = new Temperature(25);
+    console.log(pTemperature.getKDegree());
+</script>
+</body>
+</html>

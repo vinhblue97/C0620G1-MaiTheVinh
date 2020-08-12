@@ -1,0 +1,20 @@
+<!--Bài 1: Viết một chương trình Javascript để nối tất cả các phần tử trong một mảng chuỗi lại với nhau. Ví dụ có mảng chuỗi như sau: myColor = ["Red", "Green", "White", "Black"];-->
+<!--Sau khi thực thi chương trình sẽ trả về dạng như sau :-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Sử dụng các hàm có sẵn của mảng</title>
+</head>
+<body>
+<script>
+    let myColor = ["Red", "Green", "White", "Black"];
+    let tem="";
+    for (let i = myColor.length-1; i >=0 ; i--) {
+        tem += myColor.pop()+",";
+    }
+    myColor = tem;
+    console.log(myColor);
+</script>
+</body>
+</html>

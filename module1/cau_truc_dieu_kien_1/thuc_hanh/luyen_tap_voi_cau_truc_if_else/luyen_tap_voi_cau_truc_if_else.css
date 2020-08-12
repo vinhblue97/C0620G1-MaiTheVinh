@@ -1,0 +1,9 @@
+#gBox{
+    border: blue solid 1px;
+    width: 300px;
+
+}
+#fInput{
+    width: 230px;
+    margin-top: 10px;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UCLN-BCNN</title>
+</head>
+<body>
+<script>
+    function ucln(num1, num2) {
+        let number;
+        let check = num1 > num2;
+        check ? number = num2 : number = num1;
+        let checkUcln1 = num1 % number == 0 && num2 % number == 0;
+        while (!checkUcln1) {
+            number--;
+            checkUcln1 = num1 % number == 0 && num2 % number == 0;
+        }
+        return number;
+    }
+
+    function bcnn(num1, num2) {
+        let number;
+        let check = num1 > num2;
+        check ? number = num2 : number = num1;
+        let checkUcln1 = number % num1 == 0 && number % num2 == 0;
+        while (!checkUcln1) {
+            number++;
+            checkUcln1 = number % num1 == 0 && number % num2 == 0;
+        }
+        return number;
+    }
+
+    console.log(bcnn(9, 6));
+</script>
+</body>
+</html>

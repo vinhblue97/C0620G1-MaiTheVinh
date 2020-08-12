@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Luyện tập mảng 01</title>
+</head>
+<body>
+<script>
+    let arr = [], check = 0;
+    for (let i = 0; i < 9; i++) {
+        arr[i] = Math.floor(Math.random() * 100 + 1);
+    }
+    arr[9] = 7;
+    let numV = prompt("Nhập số V tùy ý");
+    for (let i = 0; i < 10; i++) {
+        if (numV == arr[i]) {
+            check++;
+        }
+    }
+    if (check > 0) {
+        alert(`${numV} is in the array`);
+    } else {
+        alert(`${numV} is not in the array`);
+    }
+    console.log(arr);
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

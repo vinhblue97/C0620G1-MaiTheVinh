@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Luyện tập mảng 02</title>
+</head>
+<body>
+<script>
+    let a = [
+        [1, 2, 1, 24],
+        [8, 11, 9, 4],
+        [7, 0, 7, 27],
+        [7, 4, 28, 14],
+        [3, 10, 26, 7]
+    ];
+    let b = [];
+    let i = 0;
+    for (let index = 0; index < a.length; index++) {
+        b = a[index];
+        document.writeln(`"row ${index}"`);
+        document.write("<br>")
+        for (let index2 = 0; index2 < b.length; index2++){
+            document.writeln(`"${b[index2]}"`);
+            document.write("<br>")
+        }
+        document.write("<br>")
+    }
+</script>
+</body>
+</html>

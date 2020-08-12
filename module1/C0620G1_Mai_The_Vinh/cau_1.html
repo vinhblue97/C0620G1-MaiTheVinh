@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 1</title>
+</head>
+<body>
+<script>
+    let arrayScore = [];
+    let arrLength = parseInt(prompt("Nhập số phần tử của mảng điểm"));
+    for (let i = 0; i < arrLength; i++) {
+        arrayScore[i] = parseInt(prompt(`Nhập thành phần thứ ${i} của mảng điểm:  `));
+    }
+    alert(findMax(arrayScore));
+
+    function findMax(arr) {
+        let maxScore = arr[0];
+        for (let i = 1; i < arrLength; i++) {
+            let checkCondition = maxScore < arr[i];
+            if (checkCondition) {
+                maxScore = arr[i];
+            }
+        }
+        return maxScore;
+    }
+
+</script>
+</body>
+</html>

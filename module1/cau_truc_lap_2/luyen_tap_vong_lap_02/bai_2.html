@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Luyện tập vòng lặp 02</title>
+</head>
+<body>
+<script>
+    let positiveNumber;
+    do{
+        positiveNumber = parseInt(prompt("Hãy nhập 1 số nguyên dương cần tính giai thừa"));
+    } while (positiveNumber<=0);
+    let pResult=1, i;
+    for (i=1; i<=positiveNumber;i++){
+        pResult*=i;
+    }
+    alert(` ${positiveNumber}! = ${pResult}`);
+</script>
+</body>
+</html>

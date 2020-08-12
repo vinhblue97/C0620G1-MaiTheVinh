@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Xây dựng lớp mô tả điện thoại</title>
+</head>
+<body>
+<label>Nokia</label>
+<textarea width="100px" height="100px" id="nokiaMessage"></textarea>
+<input type="button" value="Gửi tin nhắn" onclick="checkReceiveMess('nokiaMessage');">
+<input type="button" value="Kiểm tra pin" onclick="nokiaPhone.checkBattery();">
+<br><br>
+<p id="displayNokia"></p>
+<br><br>
+<label>iPhone</label>
+<textarea width="100px" height="100px" id="iPhoneMessage"></textarea>
+<input type="button" value="Gửi tin nhắn" onclick="checkReceiveMess('iPhoneMessage');">
+<input type="button" value="Kiểm tra pin" onclick="iPhone.checkBattery();">
+<br><br>
+<p id="displayiPhone"></p>
+
+<script>
+    let count = 0;
+    let i = 0;
+
+    class Phone {
+        constructor(phoneName, battery) {
+            this.mName = phoneName;
+            this.mBattery = battery;
+            this.mRecieveMessage = [];
+            this.mSentMessage = [];
+        }
+
+        sentMessage(id) {
+            this.mSentMessage.push(document.getElementById(id).value);
+            console.log(this.mSentMessage);
+            return this.mSentMessage;
+        }
+
+        receiveMessage(message) {
+
+            this.mRecieveMessage.push(message[message.length - 1]);
+            return this.mRecieveMessage[this.mRecieveMessage.length - 1];
+        }
+        checkBattery() {
+            this.mBattery -= count;
+            count = 0;
+            alert(this.mName + ": " + this.mBattery);
+        }
+    }
+
+    let nokiaPhone = new Phone('Nokia', 50);
+    let iPhone = new Phone('iPhone', 65);
+
+    function checkReceiveMess(id) {
+        if (id == "nokiaMessage") {
+            count++;
+            document.getElementById("displayiPhone").innerHTML = iPhone.receiveMessage(nokiaPhone.sentMessage("nokiaMessage"));
+
+        } else if (id == "iPhoneMessage") {
+            count++;
+            document.getElementById("displayNokia").innerHTML = nokiaPhone.receiveMessage(iPhone.sentMessage("iPhoneMessage"));
+        }
+    }
+
+
+</script>
+</body>
+</html>

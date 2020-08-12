@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Luyện tập mảng 02</title>
+</head>
+<body>
+<script>
+    let pString ="mas77asdasds6d7as6d87as"
+    let arr = [];
+    arr = pString.split('');
+    let i = 0;
+    for (let index = 0; index < arr.length; index++) {
+        if ((arr[index].charCodeAt(0) >= 97 && arr[index].charCodeAt(0) <= 122) || (arr[index].charCodeAt(0) >= 65 && arr[index].charCodeAt(0) <=90)) {
+            i++;
+        }
+    }
+    console.log(i);
+</script>
+</body>
+</html>

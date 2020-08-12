@@ -1,0 +1,15 @@
+#gForm{
+    align: center;
+    border: orange solid 2px;
+    background: #71dbff;
+    width: 300px;
+    height: 100px
+}
+#mYear{
+    width: 210px;
+    border-color: blue;
+}
+#bCheck{
+    background-color: mintcream;
+    border-color: blue;
+}

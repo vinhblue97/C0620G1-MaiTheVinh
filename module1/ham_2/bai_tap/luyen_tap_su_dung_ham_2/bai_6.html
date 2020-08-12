@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function checkNum() {
+        let pNum = prompt("Hãy nhập số");
+        return (pNum % 1 == 0)&&(pNum>0) ?  alert(`Số ${pNum} là một số nguyên dương`) :  alert(`Số ${pNum} không phải số nguyên dương`);
+    }
+    document.write(checkNum());
+</script>
+</body>
+</html>

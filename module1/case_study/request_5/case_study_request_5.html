@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case Study</title>
+</head>
+<body>
+<form>
+    <script>
+        let i = 0;
+        let tem;
+        let count = 0;
+        let arrListCustomer = [];
+
+        displayMainMenu();
+
+        function displayMainMenu() {
+            let selectMenu;
+            do {
+                selectMenu = parseInt(prompt("Hãy chọn một trong các mục dưới\n" +
+                    "1. Add New Customer\n" +
+                    "2. Display Information Customer\n" +
+                    "3. Edit Information Customer\n" +
+                    "4. Delete Customer\n" +
+                    "5. Exit"));
+                switch (selectMenu) {
+                    case 1:
+                        addNewCustomer();
+                        displayMainMenu();
+                        break;
+                    case 2:
+                        displayCustomerInformation();
+                        displayMainMenu();
+                        break;
+                    case 3:
+                        editInformationCustomer();
+                        displayMainMenu();
+                        break;
+                    case 4:
+                        deleteCustomer();
+                        displayMainMenu();
+                        break;
+                    case 5:
+                        break;
+                    default:
+                        displayMainMenu();
+                }
+            } while (selectMenu < 0 || selectMenu > 6 || isNaN(selectMenu));
+        }
+
+        function addNewCustomer() {
+            let userName = prompt("Nhập vào tên khách hàng");
+            let userCmnd = prompt("Nhập vào số chứng minh nhân dân");
+            let userDateBorn = prompt("Nhập vào ngày sinh");
+            let userEmail = prompt("Nhập vào địa chỉ email");
+            let userAddress = prompt("Nhập vào địa chỉ sinh sống");
+            let customerType;
+            do {
+                tem = parseInt(prompt("Chọn loại Customer:\n" +
+                    "1. Diamond\n" +
+                    "2. Platium\n" +
+                    "3. Gold\n" +
+                    "4.Silver\n" +
+                    "5. Member"));
+                switch (tem) {
+                    case 1:
+                        customerType = "Diamond";
+                        break;
+                    case 2:
+                        customerType = "Platium";
+                        break;
+                    case 3:
+                        customerType = "Gold";
+                        break;
+                    case 4:
+                        customerType = "Silver";
+                        break;
+                    case 5:
+                        customerType = "Member";
+                        break;
+                    default:
+                        alert("FAILED");
+                }
+            } while (tem < 0 || tem > 6 || isNaN(tem)) ;
+            let vouncher;
+            do {
+                vouncher = parseInt(prompt("Giảm giá (0% - 100%)"));
+            } while (vouncher < 0 || vouncher > 100 || isNaN(vouncher));
+            let customerAttachment = prompt("Nhập số lượng người đi cùng");
+            let rentDays = prompt("Nhập số ngày thuê");
+            let serviceType;
+            do {
+                tem = parseInt(prompt("Chọn loại dịch vụ:\n" +
+                    "1. Villa\n" +
+                    "2. House\n" +
+                    "3. Room"));
+                switch (tem) {
+                    case 1:
+                        serviceType = "Villa";
+                        break;
+                    case 2:
+                        serviceType = "House";
+                        break;
+                    case 3:
+                        serviceType = "Room";
+                        break;
+                }
+            } while (tem < 0 || tem > 3 || isNaN(tem));
+            let roomType;
+            do {
+
+                tem = parseInt(prompt("Chọn loại phòng\n" +
+                    "1. Vip\n" +
+                    "2. Business\n" +
+                    "3. Normal"));
+                switch (tem) {
+                    case 1:
+                        roomType = "Vip";
+                        break;
+                    case 2:
+                        roomType = "Business";
+                        break;
+                    case 3:
+                        roomType = "Normal";
+                        break;
+                }
+            } while (tem < 0 || tem > 3 || isNaN(tem)) ;
+            customersInformation(userName, userCmnd, userDateBorn, userEmail, userAddress, customerType, vouncher, customerAttachment, rentDays, serviceType, roomType);
+        }
+
+        function customersInformation(userName, userCmnd, userDateBorn, userEmail, userAddress, customerType, vouncher, customerAttachment, rentDays, serviceType, roomType) {
+            console.log(count);
+            arrListCustomer[count] = [];
+            arrListCustomer[count][0] = count + 1;
+            arrListCustomer[count][1] = "Tên khách hàng: " + userName;
+            arrListCustomer[count][2] = "Chứng minh nhân dân: " + userCmnd;
+            arrListCustomer[count][3] = "Ngày sinh: " + userDateBorn;
+            arrListCustomer[count][4] = "Email: " + userEmail;
+            arrListCustomer[count][5] = "Địa chỉ: " + userAddress;
+            arrListCustomer[count][6] = "Loại khách hàng: " + customerType;
+            arrListCustomer[count][7] = "Giảm giá: " + vouncher;
+            arrListCustomer[count][8] = "Số người đi theo: " + customerAttachment;
+            arrListCustomer[count][9] = "Số ngày thuê: " + rentDays;
+            arrListCustomer[count][10] = "Loại dịch vụ: " + serviceType;
+            arrListCustomer[count][11] = "Loại phòng: " + roomType;
+            count++;
+        }
+
+        function displayCustomerInformation() {
+            let detailCustomer = parseInt(prompt(arrListCustomer[listCustomer()].join('\n') + "\n" +
+                "0. Back"));
+            if (detailCustomer == 0) {
+                displayCustomerInformation();
+            }
+        }
+
+        function editInformationCustomer(userName) {
+            listCustomer();
+            do {
+                tem = parseInt(prompt("Thông tin bạn muốn sửa là:\n" +
+                    "1. Tên khách hàng\n" +
+                    "2. Chứng minh nhân dân\n" +
+                    "3. Ngày sinh\n" +
+                    "4. Email\n" +
+                    "5. Địa chỉ\n" +
+                    "6. Loại Customer\n" +
+                    "7. Giảm giá\n" +
+                    "8. Số lượng người đi cùng\n" +
+                    "9. Số ngày thuê\n" +
+                    "10. Loại dịch vụ\n" +
+                    "11. Loại phòng thuê\n" +
+                    "12. Back"));
+                switch (tem) {
+                    case 1:
+                        editName(userName);
+                        editInformationCustomer();
+                        break;
+                    case 2:
+                        editInformationCustomer();
+                        break;
+                    case 3:
+                        editInformationCustomer();
+                        break;
+                    case 4:
+                        editInformationCustomer();
+                        break;
+                    case 5:
+                        editInformationCustomer();
+                        break;
+                    case 6:
+                        editInformationCustomer();
+                        break;
+                    case 7:
+                        editInformationCustomer();
+                        break;
+                    case 8:
+                        editInformationCustomer();
+                        break;
+                    case 9:
+                        editInformationCustomer();
+                        break;
+                    case 10:
+                        editInformationCustomer();
+                        break;
+                    case 11:
+                        editInformationCustomer();
+                        break;
+                    default:
+                        editInformationCustomer();
+                }
+            } while (tem < 1 || tem > 12 || isNaN(tem));
+        }
+
+        function listCustomer() {
+            let stringCustomerName = '';
+            for (let i = 0; i < arrListCustomer.length; i++) {
+                stringCustomerName += (arrListCustomer[i][0] + "." + " " + arrListCustomer[i][1] + "\n " + " " + " " + " " + arrListCustomer[i][2]) + '\n';
+            }
+            let customerInformation = parseInt(prompt(stringCustomerName + '\n'
+                + "0 . Back"));
+            if (customerInformation == 0) {
+                displayMainMenu();
+            }
+            return customerInformation;
+        }
+
+        function editName(name) {
+            let arrName = [];
+            arrName = name.split('');
+            if (i < arrName.length) {
+                if (arrName[i] == " " && arrName[i + 1] == " ") {
+                    arrName.splice(i, 1);
+                    name = arrName.join('');
+                } else {
+                    i++;
+                }
+                name = arrName.join('');
+                return editName(name);
+            } else {
+                i = 0;
+                console.log(name);
+                return name;
+            }
+
+        }
+
+        function deleteCustomer() {
+            listCustomer();
+            let delCustomer = parseInt(prompt(listCustomer())) - 1;
+            console.log(delCustomer);
+            if (delCustomer != arrListCustomer.length) {
+                arrListCustomer.splice(delCustomer, 1);
+            }
+            listCustomer();
+        }
+
+    </script>
+</form>
+</body>
+</html>

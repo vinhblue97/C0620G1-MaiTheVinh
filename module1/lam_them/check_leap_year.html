@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<script>
+    function checkLeapYear(year) {
+        let checkLeapYear1 = year % 400 == 0;
+        let checkLeapYear2 = year % 4 == 0 && year % 100 != 0;
+        if (checkLeapYear1) {
+            return true;
+        } else if (checkLeapYear2) {
+            return true;
+        } else return false;
+    }
+
+    let checkYear = parseInt(prompt("Nhập số năm"));
+    let mCheckLeapYear = checkLeapYear(checkYear);
+    console.log(mCheckLeapYear);
+    mCheckLeapYear ? alert(`${checkYear} là năm nhuận`) : alert(`${checkYear} không phải là năm nhuận`);
+
+</script>
+</body>
+</html>

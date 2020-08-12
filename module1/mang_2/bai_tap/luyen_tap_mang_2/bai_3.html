@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Luyện tập mảng 02</title>
+</head>
+<body>
+<script>
+    let arr = ['a', 'b', 'c', '2', '3', 'a', '1','a','98'];
+    let result = [], i = 0;
+    for (let index = 0; index < arr.length; index++) {
+        if (arr[index].charCodeAt(0) >= 48 && arr[index].charCodeAt(0) <= 57) {
+            result[i] = arr[index];
+            i++;
+        }
+    }
+    console.log(result);
+
+    let arr = ['a', 'b', 'c', '2', '3', 'a', '1','a','98'];
+    let result = [], i = 0;
+    for (let index = 0; index < arr.length; index++) {
+        if (!isNaN(arr[index])){
+            result[i] = arr[index];
+            i++;
+        }
+    }
+</script>
+</body>
+</html>

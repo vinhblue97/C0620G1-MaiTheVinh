@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Luyện tập cấu trúc điều kiện 02</title>
+</head>
+<body>
+<input type="number" id="tienGoc" placeholder="Nhập số tiền gốc ban đầu">
+<input type="number" id="laisuat" placeholder="Nhập số lãi suất hàng tháng">
+<input type="number" id="thangvay" placeholder="Nhập số tháng vay">
+<input type="button" id="kiemtra" value="Kiểm tra" onclick="kiemtra();">
+<script>
+    function kiemtra() {
+        let i =1;
+        let pTienGoc = parseFloat(document.getElementById("tienGoc") .value);
+        let pLai = parseFloat(document.getElementById("laisuat") .value);
+        let pThang = parseFloat(document.getElementById("thangvay") .value);
+        let pTongTien = pTienGoc*pLai/100 + pTienGoc;
+        if (pThang==1){
+            alert(`Số tiền lãi của ngân hàng là: ${pTongTien}`);
+        }
+        else {
+            do {
+                pTongTien = pTongTien*pLai/100+pTongTien;
+                i++;
+                console.log("i= "+i);
+                console.log("Tổng tiền: " +pTongTien);
+            } while (i<pThang);
+            alert(`Số tiền lãi của ngân hàng là: ${pTongTien}`);
+        }
+    }
+</script>
+</body>
+</html>

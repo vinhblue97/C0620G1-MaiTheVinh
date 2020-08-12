@@ -1,0 +1,51 @@
+<!--Bài 1: Viết một chương trình Javascript để nối tất cả các phần tử trong một mảng chuỗi lại với nhau. Ví dụ có mảng chuỗi như sau: myColor = ["Red", "Green", "White", "Black"];-->
+<!--Sau khi thực thi chương trình sẽ trả về dạng như sau :-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Sử dụng các hàm có sẵn của mảng</title>
+</head>
+<body>
+<script>
+    let inputNum = prompt("Nhập 1 dãy số tùy ý");
+    let aEven = [];
+    aEven[0] = inputNum;
+    let pEven = parseFloat(aEven);
+    let index = 1, tem = [], pChange, saveArray = "";
+    //tách số từ 1 chuỗi vào 1 mảng
+    do {
+        if (pEven % 10 != 0) {
+            tem[index - 1] = pEven % 10;
+            pEven -= tem[index - 1];
+            pEven = pEven / 10;
+            index++;
+        } else break;
+    }
+    while (1);
+    // chèn số 0 vào mảng nếu số 0 đứng đầu
+    while (index <= aEven[0].length) {
+        tem[index - 1] = 0;
+        index++;
+    }
+    //đảo ngược thứ tự số trong mảng
+    for (let i = 0; i < tem.length; i++) {
+        for (let j = 1; j < tem.length - i; j++) {
+            pChange = tem[j - 1];
+            tem[j - 1] = tem[j];
+            tem[j] = pChange;
+        }
+    }
+    //chèn dấu - vào giữa các số chẵn
+    saveArray += tem[0];
+    for (let i = 1; i < tem.length; i++) {
+        if (tem[i] % 2 == 0 && tem[i - 1] % 2 == 0) {
+            saveArray += "-";
+            saveArray += tem[i];
+        } else saveArray += tem[i];
+    }
+    console.log(saveArray);
+
+</script>
+</body>
+</html>

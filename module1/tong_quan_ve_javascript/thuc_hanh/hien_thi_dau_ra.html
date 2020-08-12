@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Hiển thị đầu ra</title>
+</head>
+<body>
+    <h4>Bài tập 1: Sử dụng hàm alert()</h4>
+    <button type="button" onclick="showMessage1();">Click me</button>
+
+    <h4>Bài tập 2: Hiển thị kết quả sử dụng thẻ HTML</h4>
+    <button type="button" onclick="showMe();">Click me</button>
+    <div id="messageID"></div>
+
+    <h4>Bài tập 3: Sử dụng hàng document.write()</h4>
+    <button type="button" onclick="showMessage2();">Click me</button>
+    <h4>Bài tập 4:Hiển thị kết quả sử dụng hàm console.log()</h4>
+    <button type="button" onclick="showMe2();">Click me</button>
+    <script>
+        function showMessage1(){
+            alert('Xin chào');
+        }
+        function showMessage2() {
+            document.write('Hello')
+        }
+        function showMe() {
+            document.getElementById('messageID').innerHTML = 'Xin chào';
+        }
+        function showMe2() {
+            console.log('Xin chào');
+        }
+    </script>
+</body>
+</html>

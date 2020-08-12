@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Phát triển chương trình sử dụng Remote để điều khiển Tivi</title>
+</head>
+<body>
+<script>
+    class Remote {
+        constructor(code) {
+            this.code = code;
+        }
+
+        changeVolume(volume, tv) {
+                if (tv.getVolume() > 0) {
+                if (volume > 0) {
+                    return tv.volume() + volume;
+                } else return tv.volume() - volume;
+            } else if (tv.getVolume() == 0) {
+                return 0;
+            }
+        }
+
+        onOff(status, tv){
+            if (status == 'off'){
+                alert("Đã tắt TV");
+                tv.getStatus() = 'off';
+            }else if (status == 'on'){
+                alert("Đã bật TV");
+                tv.getStatus() = 'on';
+            }
+        }
+
+        changeChanel(chanel) {
+            alert("Đã chuyển đến kênh" + chanel)
+            return chanel;
+        }
+    }
+
+    class Tivi {
+        constructor(status, volume) {
+            this.volume = volume;
+            this.status = status;
+        }
+
+        getStatus(){
+            return this.status;
+        }
+
+        getChanel(remote) {
+            return remote.changeChanel();
+        }
+
+        getVolume() {
+            return this.volume();
+        }
+
+        tvChangeChanel(chanel) {
+            alert("Đã chuyển đến kênh" + chanel)
+            return chanel;
+        }
+
+        tvChangeVolum(volume) {
+            if (this.getVolume() > 0) {
+                if (volume > 0) {
+                    return this.volume() + volume;
+                } else return this.volume() - volume;
+            } else if (this.getVolume() == 0) {
+                return 0;
+            }
+
+        }
+    }
+</script>
+</body>
+</html>

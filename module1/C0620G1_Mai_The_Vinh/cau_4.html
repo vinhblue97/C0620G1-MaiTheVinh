@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 4</title>
+</head>
+<body>
+<canvas width="300px" height="300px" id="myCanvas" style="border: 1px solid blue" ;></canvas>
+<script>
+    class Circle {
+        constructor(x, y, radius, color) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.color = color;
+            this.cicrle;
+        }
+
+        render(canvas) {
+            this.cicrle = canvas.getContext("2d");
+            this.cicrle.beginPath();
+            this.cicrle.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+            // this.circle.fill(canvas.color);
+            this.cicrle.stroke();
+            this.cicrle.closePath();
+        }
+    }
+
+    let circle1 = new Circle(100, 100, 100, "#000000");
+    let canvas = document.getElementById("myCanvas")
+    circle1.render(circle1);
+
+
+</script>
+</body>
+</html>
