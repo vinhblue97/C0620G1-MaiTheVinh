@@ -2,7 +2,7 @@ package dsa_list.exercise.array_list_by_java_util_arraylist;
 
 import java.util.Arrays;
 
-public class MyList<E> {
+class MyList<E> {
     private Object[] elements;
 
     public MyList() {

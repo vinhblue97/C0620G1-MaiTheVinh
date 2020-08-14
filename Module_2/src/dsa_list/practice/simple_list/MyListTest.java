@@ -1,6 +1,6 @@
 package dsa_list.practice.simple_list;
 
-public class MyListTest {
+class MyListTest {
     public static void main(String[] args){
         MyList<Integer> listInterger = new MyList<Integer>();
         listInterger.add(1);

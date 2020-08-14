@@ -2,7 +2,7 @@ package dsa_list.practice.simple_list;
 
 import java.util.Arrays;
 
-public class MyList<E> {
+class MyList<E> {
     private int size = 0;
     private Object[] elements;
 
