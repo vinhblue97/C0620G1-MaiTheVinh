@@ -7,11 +7,12 @@ public class FizzBuzz {
         if (isLowerThanZero || isGreaterThan100) {
             return "";
         } else {
-            if (isFizz(number)) {
+            if (number % 3 == 0) {
                 return "Fizz";
-            } else if (isBuzz(number)) {
+            } else if (number % 5 == 0) {
                 return "Buzz";
-            } else if (isFizzBuzz(number)) {
+            }
+            if (number % 3 == 0 && number % 5 == 0) {
                 return "FizzBuzz";
             } else {
                 return readNumber(number);
@@ -19,86 +20,52 @@ public class FizzBuzz {
         }
     }
 
-    public static boolean isFizz(int number) {
-        return number % 3 == 0;
-    }
-
-    public static boolean isBuzz(int number) {
-        return number % 5 == 0;
-    }
-
-    public static boolean isFizzBuzz(int number) {
-        return isFizz(number) && isBuzz(number);
-    }
-
     public static String readNumber(int number) {
         int unitNum = number % 10;
         int dozensNum = (number - unitNum) / 10;
         String stringUnitNum = "";
         String stringDozensNum = "";
-        stringUnitNum = getUnitNumber(unitNum,stringUnitNum);
-        stringDozensNum = getDozenNumber(dozensNum, stringDozensNum);
+        stringUnitNum = getNumber(unitNum, stringUnitNum);
+        stringDozensNum = getNumber(dozensNum, stringDozensNum);
         return stringDozensNum + " " + stringUnitNum;
     }
 
-    private static String getUnitNumber(int unitNum, String stringUnitNum) {
-        switch (unitNum) {
+    private static String getNumber(int Num, String stringNum) {
+        switch (Num) {
+            case 0:
+                stringNum = "khong";
+                break;
             case 1:
-                stringUnitNum = "mot";
+                stringNum = "mot";
                 break;
             case 2:
-                stringUnitNum = "hai";
+                stringNum = "hai";
                 break;
             case 3:
-                stringUnitNum = "ba";
+                stringNum = "ba";
                 break;
             case 4:
-                stringUnitNum = "bon";
-                break;
-            case 6:
-                stringUnitNum = "sau";
-                break;
-            case 7:
-                stringUnitNum = "bay";
-                break;
-            case 8:
-                stringUnitNum = "tam";
-                break;
-            case 9:
-                stringUnitNum = "chin";
-                break;
-        }
-        return stringUnitNum;
-    }
-
-    private static String getDozenNumber(int dozensNum, String stringDozensNum) {
-        switch (dozensNum) {
-            case 2:
-                stringDozensNum = "hai";
-                break;
-            case 3:
-                stringDozensNum = "ba";
-                break;
-            case 4:
-                stringDozensNum = "bon";
+                stringNum = "bon";
                 break;
             case 5:
-                stringDozensNum = "nam";
+                stringNum = "nam";
                 break;
             case 6:
-                stringDozensNum = "sau";
+                stringNum = "sau";
                 break;
             case 7:
-                stringDozensNum = "bay";
+                stringNum = "bay";
                 break;
             case 8:
-                stringDozensNum = "tam";
+                stringNum = "tam";
                 break;
             case 9:
-                stringDozensNum = "chin";
+                stringNum = "chin";
                 break;
         }
-        return stringDozensNum;
+        return stringNum;
     }
+
+
 }
 
