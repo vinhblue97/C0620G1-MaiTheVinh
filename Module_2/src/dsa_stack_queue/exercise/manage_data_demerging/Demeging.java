@@ -1,27 +1,54 @@
 package dsa_stack_queue.exercise.manage_data_demerging;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
-class Demeging<E> {
-    Queue<E> menQueue = new LinkedList<>();
-    Queue<E> womenQueue = new LinkedList<>();
+class Demeging {
+    Queue<Object> menQueue = new LinkedList<>();
+    Queue<Object> womenQueue = new LinkedList<>();
+    List<Human> humanList = new ArrayList<>();
 
-    public void manageDemeging(E human, String gender) {
+    public static class Human implements Comparable<Human> {
+        private String name;
+        private String gender;
+        private String birthDay;
 
-        if (gender == "man" || gender == "MAN") {
-            menQueue.add(human);
-        } else womenQueue.add(human);
+        public Human(String name, String gender, String birthDay) {
+            this.name = name;
+            this.gender = gender;
+            this.birthDay = birthDay;
+        }
+
+        public String toString() {
+            return "Name: " + this.name + "\n" +
+                    "Gender: " + this.gender + "\n" +
+                    "BirthDay: " + this.birthDay;
+        }
+
+        @Override
+        public int compareTo(Human human) {
+            return this.birthDay.compareTo(human.birthDay);
+        }
+    }
+
+    public void addData(String name, String gender, String birthDay) {
+        humanList.add(new Human(name, gender, birthDay));
+        humanList.sort(Comparator.comparing(p -> p.birthDay));
+    }
+
+    public void manageDemeging() {
+        for (Human human : humanList) {
+            if (human.gender == "male") {
+                menQueue.add(human);
+            } else {
+                womenQueue.add(human);
+            }
+        }
     }
 
     public void printQueue() {
-        for (E element : womenQueue) {
-            System.out.print(element + " ");
-        }
-        System.out.println("----------------");
-        for (E element : menQueue) {
-            System.out.println(element + " ");
-        }
-
+        menQueue.stream().map(s -> s.toString()).forEach(System.out::println);
+        System.out.println("");
+        System.out.println("-------------");
+        womenQueue.stream().map(s -> s.toString()).forEach(System.out::println);
     }
 }
