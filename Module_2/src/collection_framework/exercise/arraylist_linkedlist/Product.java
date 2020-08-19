@@ -51,6 +51,7 @@ class ProductManager {
         String name = scanner.nextLine();
         System.out.println("Enter the new " + id + " product's cost");
         double cost = scanner.nextDouble();
+        scanner.skip("\\R");
         productList.add(new Product(name, cost));
         id++;
     }
@@ -58,9 +59,10 @@ class ProductManager {
     public void editInforById() {
         System.out.print("Enter the product's id you want to edit information: ");
         int index = scanner.nextInt();
+        scanner.skip("\\R");
         System.out.println("");
         System.out.print("Enter the " + productList.get(index).getName() + "'s new name: ");
-        String newName = scanner.nextLine();
+        String newName = scanner.next();
         productList.get(index).setName(newName);
         System.out.println("");
         System.out.print("Enter the " + productList.get(index).getName() + "'s new cost: ");
@@ -71,6 +73,7 @@ class ProductManager {
     public void deleteProduct() {
         System.out.print("Enter the product's id you want to delete: ");
         int index = scanner.nextInt();
+        scanner.skip("\\R");
         String checkConfirm = "";
         do {
             System.out.println("Are you sure to delete " + productList.get(index).getName() + " from product list?(Y/N)");

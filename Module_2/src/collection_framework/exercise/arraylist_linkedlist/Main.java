@@ -8,6 +8,7 @@ class Main {
         manager.displayProductList();
         manager.deleteProduct();
         manager.displayProductList();
+        manager.editInforById();
         manager.findProduct();
         manager.sortProduct();
         manager.displayProductList();
