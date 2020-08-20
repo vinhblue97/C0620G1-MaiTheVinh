@@ -54,17 +54,22 @@ class BST<E extends Comparable<E>> extends AbstractTree implements Tree<E> {
         delete(root, e);
     }
 
-    public void delete(TreeNode<E> node, E e) {
-        if (node == null) return;
-        if (node.value == e) {
-            if (node == null) return;
-            delete(node.left,e);
-            node = null;
+    public TreeNode<E> delete(TreeNode<E> node, E e) {
+        if (node == null) return node;
+        if (e.compareTo(node.value) < 0) {
+             node.left = delete(node.left, e);
+        } else if (e.compareTo(node.value) > 0) {
+             node.right = delete(node.right, e);
+        } else {
+            if (node.left == null) {
+                return node.right;
+            } else if (node.right == null) {
+                return node.left;
+            }
+            node.value = minValue(node.right);
+            node.right = delete(node.right, node.value);
         }
-        delete(node.left, e);
-        System.out.print(node.value + " ");
-        delete(node.right, e);
-
+        return node;
     }
 
     @Override
@@ -77,5 +82,18 @@ class BST<E extends Comparable<E>> extends AbstractTree implements Tree<E> {
         inorder(root.left);
         System.out.print(root.value + " ");
         inorder(root.right);
+    }
+
+    public void minValues() {
+        System.out.println(minValue(root));
+    }
+
+    public E minValue(TreeNode<E> node) {
+        E min = node.value;
+        while (node.left != null) {
+            min = node.left.value;
+            node = node.left;
+        }
+        return min;
     }
 }

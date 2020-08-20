@@ -1,6 +1,6 @@
 package collection_framework.exercise.delete_bst;
 
-class TreeNode<E> {
+public class TreeNode<E> {
     E value;
     TreeNode<E> left;
     TreeNode<E> right;
