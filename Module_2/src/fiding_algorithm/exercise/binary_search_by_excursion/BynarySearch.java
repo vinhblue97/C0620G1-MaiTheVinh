@@ -1,41 +1,21 @@
 package fiding_algorithm.exercise.binary_search_by_excursion;
 
-import java.util.Map;
-import java.util.TreeMap;
+class BynarySearch {
 
-class BynarySearch{
-    Map<Integer, Student> studentList = new TreeMap<>();
-    static int index = 0;
-
-    private class Student{
-
-        private String name;
-        private int age;
-
-        public Student(String name, int age) {
-            this.name = name;
-            this.age = age;
+    public int binarySearch(int[] arr, int high, int low, int value) {
+        if (low>high){
+            return -1;
         }
-
-        public int getAge() {
-            return age;
+        int mid = (high+ low)/2;
+        if (value==arr[mid]){
+            return mid;
         }
-
-        @Override
-        public String toString() {
-            return "Name: " + this.name + "\n" +
-                    "Age: " + this.age;
+        else if (value<arr[mid]){
+             return binarySearch(arr, mid-1, low, value);
         }
-            }
-
-    public void addStudent(String name, int age) {
-        Student student = new Student(name, age);
-        studentList.put(++index, student);
+        else {
+             return binarySearch(arr, high, mid+1, value);
+        }
     }
-
-    public void binarySearch(Student student) {
-
-    }
-
 }
 
