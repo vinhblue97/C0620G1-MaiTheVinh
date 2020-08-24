@@ -1,12 +1,13 @@
 package models;
 
 public class Villa extends Services {
-    private static int id = 1;
+    private static int numVilla = 0;
+    private int villaID;
     private double poolArea;
     private int numFloor;
 
-    public static int getId() {
-        return id;
+    public int getVillaID() {
+        return villaID;
     }
 
     public double getPoolArea() {
@@ -21,7 +22,7 @@ public class Villa extends Services {
         super(serviceName, usesArea, rentCost, maxPeople, rentHour, rentDay, rentMonth, rentYear);
         this.poolArea = poolArea;
         this.numFloor = numFloor;
-        id++;
+        this.villaID = ++numVilla;
     }
 
     @Override
