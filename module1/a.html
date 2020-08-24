@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Câu 4</title>
+    <title>Test</title>
 </head>
 <body>
-<div align="center">Hi i'm Vinh</div>
+<script>
+
+    function findNum(a) {
+        let temp = a.slice(); //copy mảng a sang mảng temp
+        temp.sort(); // sắp xếp mảng temp
+        let count = 0;
+        for (let index = 0; index < a.length - 1; index++) {
+            if (a[index] === a[temp.length - 1]) {
+                count++;
+                if (count == 2) { // số lớn nhất lặp lần thứ 2 thì in ra vị trí rồi out luôn khỏi vòng lặp
+                    alert("Giá trị lớn thứ 2 trong mảng là: " + index);
+                    break;
+                }
+            }
+        }
+    }
+
+    let a = [1, 2, 3, 9, 6, 7, 9, 8, 7, 9];
+    findNum(a);
+</script>
 </body>
 </html>
