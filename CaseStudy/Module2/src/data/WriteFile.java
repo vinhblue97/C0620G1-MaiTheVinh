@@ -18,35 +18,35 @@ public class WriteFile {
     private static final String NEW_LINE_SEPARATOR = "\n";
 
     public void writeVilla (LinkedList<Villa> villaList) throws IOException {
-        FileWriter os = null;
+        FileWriter is = null;
         try {
-            os = new FileWriter(VILLA_FILE);
-            os.append(FILE_VILLA_HEADER );
-            os.append(NEW_LINE_SEPARATOR);
+            is = new FileWriter(VILLA_FILE);
+            is.append(FILE_VILLA_HEADER );
+            is.append(NEW_LINE_SEPARATOR);
             for (Villa e : villaList) {
-                os.append(e.getVillaID()+"");
-                os.append(COMMA_DELIMITER);
-                os.append(e.serviceName);
-                os.append(COMMA_DELIMITER);
-                os.append(e.usesArea + "");
-                os.append(COMMA_DELIMITER);
-                os.append(e.rentCost + "");
-                os.append(COMMA_DELIMITER);
-                os.append(e.maxPeople + "");
-                os.append(COMMA_DELIMITER);
-                os.append((e.rentHour + e.rentDay * 24 + e.rentMonth * 24 * 30 + e.rentYear * 24 * 365)+"");
-                os.append(COMMA_DELIMITER);
-                os.append(e.getPoolArea() + "");
-                os.append(COMMA_DELIMITER);
-                os.append(e.getNumFloor() + "");
-                os.append(NEW_LINE_SEPARATOR);
+                is.append(e.getVillaID()+"");
+                is.append(COMMA_DELIMITER);
+                is.append(e.serviceName);
+                is.append(COMMA_DELIMITER);
+                is.append(e.usesArea + "");
+                is.append(COMMA_DELIMITER);
+                is.append(e.rentCost + "");
+                is.append(COMMA_DELIMITER);
+                is.append(e.maxPeople + "");
+                is.append(COMMA_DELIMITER);
+                is.append((e.rentHour + e.rentDay * 24 + e.rentMonth * 24 * 30 + e.rentYear * 24 * 365)+"");
+                is.append(COMMA_DELIMITER);
+                is.append(e.getPoolArea() + "");
+                is.append(COMMA_DELIMITER);
+                is.append(e.getNumFloor() + "");
+                is.append(NEW_LINE_SEPARATOR);
             }
             System.out.println("Write file Villa.csv successfully");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            assert os != null;
-            os.close();
+            assert is != null;
+            is.close();
         }
     }
 

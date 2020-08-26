@@ -18,8 +18,9 @@ class CopyFile {
             os = new FileOutputStream(dest);
             byte[] buffer = new byte[1024];
             int length = 0;
-            while ((length = is.read(buffer)) > 0) {
+            while ((length = is.read(buffer))!= -1) {
                 os.write(buffer, 0, length);
+                System.out.println(os);
             }
         } catch (FileAlreadyExistsException e) {
             System.err.println("Dest file has alreally existed");

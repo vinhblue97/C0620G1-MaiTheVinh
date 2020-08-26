@@ -1,18 +1,20 @@
 package models;
 
 public class House extends Services {
-    private static int numHouse = 0;
-    private int houseID;
+    public static int numHouse = 0;
+    private int numHouseTemp;
+    private  String houseId;
     private int numFloor;
 
-    public House(String serviceName, double usesArea, double rentCost, int maxPeople, int rentHour, int rentDay, int rentMonth, int rentYear, int numFloor) {
+    public House(String houseId, String serviceName, double usesArea, double rentCost, int maxPeople, int rentHour, int rentDay, int rentMonth, int rentYear, int numFloor) {
         super(serviceName, usesArea, rentCost, maxPeople, rentHour, rentDay, rentMonth, rentYear);
         this.numFloor = numFloor;
-        this.houseID = ++numHouse;
+        this.numHouseTemp = ++numHouse;
+        this.houseId = houseId;
     }
 
-    public int getHouseID() {
-        return houseID;
+    public int getNumHouseTemp() {
+        return numHouseTemp;
     }
 
     public int getNumFloor() {
@@ -20,13 +22,14 @@ public class House extends Services {
     }
 
     @Override
-        public String showInfor(){
-            return "Name: "+serviceName+"\n" +
-                    "Area"+ usesArea+"\n" +
-                    "Renting cost: "+rentCost+"\n" +
-                    "Maximun People: "+maxPeople+"\n" +
-                    "Type of Renting: "+ rentHour+"(h) "+rentDay+"(days) "+rentMonth+"(months) "+rentYear+"(years)\n" +
-                    "Amount of Floor: "+numFloor;
-        }
+    public String showInfor() {
+        return "House ID: " + numHouseTemp + "\n" +
+                "Name: " + serviceName + "\n" +
+                "Area: " + usesArea + "\n" +
+                "Renting cost: " + rentCost + "\n" +
+                "Maximun People: " + maxPeople + "\n" +
+                "Type of Renting: " + rentHour + "(h) " + rentDay + "(days) " + rentMonth + "(months) " + rentYear + "(years)\n" +
+                "Amount of Floor: " + numFloor;
     }
+}
 

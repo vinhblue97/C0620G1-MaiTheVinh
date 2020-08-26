@@ -1,8 +1,6 @@
 package binary_file_serialization.exercise.manage_product;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.LinkedList;
 
 class ProductManager {
@@ -61,6 +59,22 @@ class ProductManager {
         }
         finally {
             os.close();
+        }
+    }
+
+    public void readFile(File sourceFile){
+        FileInputStream is = null;
+        try{
+            is = new FileInputStream(sourceFile);
+            byte[] buffer = new byte[1024];
+            int length = 0;
+            while ((length = is.read(buffer))!= -1) {
+                System.out.println();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
