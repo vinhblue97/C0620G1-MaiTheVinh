@@ -4,22 +4,32 @@ import models.House;
 import models.Room;
 import models.Villa;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.EOFException;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class DisplayService {
+    LinkedList<Villa> villaList;
+    LinkedList<House> houseList;
+    LinkedList<Room> roomList;
     private boolean check = true;
+
     public boolean isCheck() {
         return check;
     }
 
     Scanner scanner = new Scanner(System.in);
 
-    public void displayService(LinkedList<Villa> villaList, LinkedList<House> houseList, LinkedList<Room> roomList) {
+    public DisplayService(LinkedList<Villa> villaList, LinkedList<House> houseList, LinkedList<Room> roomList){
+        this.villaList = villaList;
+        this.houseList = houseList;
+        this.roomList = roomList;
+    }
+
+    public void displayService() throws IOException {
         int choise = 0;
         showLoop:
         do {
@@ -35,13 +45,13 @@ public class DisplayService {
             choise = scanner.nextInt();
             switch (choise) {
                 case 1:
-                    showAllVilla(villaList);
+                    showAllVilla();
                     break;
                 case 2:
-                    showAllHouse(houseList);
+                    showAllHouse();
                     break;
                 case 3:
-                    showAllRoom(roomList);
+                    showAllRoom();
                     break;
                 case 4:
                 case 5:
@@ -57,98 +67,81 @@ public class DisplayService {
         } while (true);
     }
 
-    public void showAllVilla(LinkedList<Villa> villaList) {
-        System.out.println("------------------VILLA LIST------------------");
+    public void showAllVilla() throws IOException {
+        String VILLA_HOUSE = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Villa.csv";
+        FileInputStream input = new FileInputStream(VILLA_HOUSE);
+        ObjectInputStream objectInputStream = null;
         try {
-            String VILLA_FILE = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Villa.csv";
-            String VILLA_HEADER = "Id,Name,Area,Renting cost,Maximun People,Type of Renting (hours),Pool's Area,Amount of Floor";
-            BufferedReader br = new BufferedReader(new FileReader(VILLA_FILE));
-            String line = "";
-            while ((line = br.readLine()) != null) {
-                String temp = "";
-                if (!VILLA_HEADER.equals(line)) {
-                    int index = 0;
-                    while (line.charAt(index) != ',') {
-                        temp += line.charAt(index);
-                        index++;
-                    }
-                    for (Villa villa : villaList) {
-                        if (villa.getVillaID() == Integer.parseInt(temp)) {
-                            System.out.println(villa.showInfor());
-                            System.out.println("");
-                        }
-                    }
-                }
+            objectInputStream = new ObjectInputStream(input);
+            villaList = (LinkedList<Villa>) objectInputStream.readObject();
+            System.out.println("------------------VILLA LIST------------------");
+            for (Villa villa : villaList) {
+                System.out.println(villa.showInfor());
+                System.out.println("");
             }
-        } catch (FileNotFoundException e) {
+            System.out.println("----------------------------------------------");
+        }catch (EOFException | NullPointerException e ){
+            System.err.println("File Villa.csv is empty, can not read file");
+            displayService();
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
         }
-        System.out.println("----------------------------------------------");
+        finally {
+            assert objectInputStream != null;
+            objectInputStream.close();
+        }
     }
 
-    public void showAllHouse(LinkedList<House> houseList) {
-        System.out.println("------------------HOUSE LIST------------------");
+    public void showAllHouse() throws IOException {
+        String HOUSE_FILE = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\House.csv";
+        FileInputStream input = new FileInputStream(HOUSE_FILE);
+        ObjectInputStream objectInputStream = null;
+
         try {
-            String HOUSE_FILE = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\House.csv";
-            String HOUSE_HEADER = "Id,Name,Area,Renting cost,Maximun People,Type of Renting (hours),Amount of Floor";
-            BufferedReader br = new BufferedReader(new FileReader(HOUSE_FILE));
-            String line = "";
-            while ((line = br.readLine()) != null) {
-                String temp = "";
-                if (!HOUSE_HEADER.equals(line)) {
-                    int index = 0;
-                    while (line.charAt(index) != ',') {
-                        temp += line.charAt(index);
-                        index++;
-                    }
-                    for (House house : houseList) {
-                        if (house.getHouseID() == Integer.parseInt(temp)) {
-                            System.out.println(house.showInfor());
-                            System.out.println("");
-                        }
-                    }
-                }
+            objectInputStream = new ObjectInputStream(input);
+            houseList = (LinkedList<House>) objectInputStream.readObject();
+            System.out.println("------------------HOUSE LIST------------------");
+            for (House house : houseList) {
+                System.out.println(house.showInfor());
+                System.out.println("");
             }
-        } catch (
-                FileNotFoundException e) {
+            System.out.println("----------------------------------------------");
+        }catch (EOFException | NullPointerException e ){
+            System.err.println("File House.csv is empty, can not read file");
+            displayService();
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
         }
-        System.out.println("----------------------------------------------");
+        finally {
+            assert objectInputStream != null;
+            objectInputStream.close();
+        }
     }
 
-    public void showAllRoom(LinkedList<Room> roomList) {
-        System.out.println("------------------ROOM LIST------------------");
+    public void showAllRoom() throws IOException {
+        String ROOM_FILE = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Room.csv";
+
+        FileInputStream input = new FileInputStream(ROOM_FILE);
+        ObjectInputStream objectInputStream = null;
+
         try {
-            String ROOM_FILE = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Room.csv";
-            String ROOM_HEADER = "Id,Name,Area,Renting cost,Maximun People,Type of Renting (hours)";
-            BufferedReader br = new BufferedReader(new FileReader(ROOM_FILE));
-            String line = "";
-            while ((line = br.readLine()) != null) {
-                String temp = "";
-                if (!ROOM_HEADER.equals(line)) {
-                    int index = 0;
-                    while (line.charAt(index) != ',') {
-                        temp += line.charAt(index);
-                        index++;
-                    }
-                    for (Room room : roomList) {
-                        if (room.getRoomID() == Integer.parseInt(temp)) {
-                            System.out.println(room.showInfor());
-                            System.out.println("");
-                        }
-                    }
-                }
+            objectInputStream = new ObjectInputStream(input);
+            roomList = (LinkedList<Room>) objectInputStream.readObject();
+            System.out.println("------------------HOUSE LIST------------------");
+            for (Room room : roomList) {
+                System.out.println(room.showInfor());
+                System.out.println("");
             }
-        } catch (
-                FileNotFoundException e) {
+            System.out.println("----------------------------------------------");
+        }catch (EOFException | NullPointerException e ){
+            System.err.println("File Room.csv is empty, can not read file");
+            displayService();
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
         }
-        System.out.println("----------------------------------------------");
+        finally {
+            assert objectInputStream != null;
+            objectInputStream.close();
+        }
     }
 }

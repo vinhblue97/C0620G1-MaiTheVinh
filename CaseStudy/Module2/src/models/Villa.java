@@ -7,6 +7,10 @@ public class Villa extends Services {
     private double poolArea;
     private int numFloor;
 
+    public String getVillaId() {
+        return villaId;
+    }
+
     public int getNumVilaTemp() {
         return numVilaTemp;
     }

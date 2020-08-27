@@ -1,0 +1,20 @@
+Id: 0wqe
+Name: Table
+Manufacturer: Vinahouse
+Cost: 100000.0
+
+Id: 1dad
+Name: Chair
+Manufacturer: haha
+Cost: 50000.0
+
+Id: 2zxc
+Name: Mouse
+Manufacturer: jerry
+Cost: 800000.0
+
+Id: 3hggghj
+Name: CPU
+Manufacturer: PC
+Cost: 1.0E7
+

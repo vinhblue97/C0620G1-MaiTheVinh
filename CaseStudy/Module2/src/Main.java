@@ -1,10 +1,8 @@
 import controllers.MainController;
 
-import java.io.IOException;
-
 class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         MainController controller = new MainController();
-        controller.displayMainMenu();
+        controller.update();
     }
 }

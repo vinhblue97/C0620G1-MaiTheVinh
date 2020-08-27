@@ -20,6 +20,10 @@ public class Room extends Services {
         this.roomId = roomId;
     }
 
+    public String getRoomId() {
+        return roomId;
+    }
+
     @Override
     public String showInfor() {
         return "Room ID:" + numRoomTemp + "\n" +

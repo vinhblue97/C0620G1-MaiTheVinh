@@ -13,6 +13,10 @@ public class House extends Services {
         this.houseId = houseId;
     }
 
+    public String getHouseId() {
+        return houseId;
+    }
+
     public int getNumHouseTemp() {
         return numHouseTemp;
     }
