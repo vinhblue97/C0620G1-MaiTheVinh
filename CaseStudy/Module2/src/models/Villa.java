@@ -33,7 +33,7 @@ public class Villa extends Services {
 
     @Override
     public String showInfor() {
-        return "Villa ID: SVVL-" + numVilaTemp + "\n" +
+        return "Villa ID: SVVL-" + villaId + "\n" +
                 "Name: " + serviceName + "\n" +
                 "Area: " + usesArea + "\n" +
                 "Renting cost: " + rentCost + "\n" +

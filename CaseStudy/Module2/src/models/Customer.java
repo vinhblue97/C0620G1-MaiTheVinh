@@ -1,10 +1,8 @@
-package customer;
-
-import models.Services;
+package models;
 
 import java.io.Serializable;
 
-public class Customer implements Comparable, Serializable {
+public class Customer implements Serializable, Comparable {
     private String customerName;
     private String birthDay;
     private String gender;
@@ -31,8 +29,12 @@ public class Customer implements Comparable, Serializable {
         this.idCard = idCard;
     }
 
+    public String getBirthDay() {
+        return birthDay;
+    }
+
     public String showInfor() {
-        return "Customer's name: " + this.customerType + "\n" +
+        return "Customer's name: " + this.customerName + "\n" +
                 "ID Card: " + this.idCard + "\n" +
                 "BirthDay: " + this.birthDay + "\n" +
                 "Gender: " + this.gender + "\n" +
@@ -43,13 +45,8 @@ public class Customer implements Comparable, Serializable {
                 "Address: " + this.address;
     }
 
-    public int compareTo(Customer otherCustomer) {
-        return this.customerName.compareTo(otherCustomer.customerName);
-    }
-
     @Override
     public int compareTo(Object o) {
         return 0;
     }
 }
-

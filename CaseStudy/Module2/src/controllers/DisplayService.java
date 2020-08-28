@@ -9,13 +9,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class DisplayService {
-    LinkedList<Villa> villaList;
-    LinkedList<House> houseList;
-    LinkedList<Room> roomList;
-    private boolean check = true;
+    List<Villa> villaList;
+    List<House> houseList;
+    List<Room> roomList;
+    private boolean check = true;   // variable use to Exit (false - exit program)
+    private boolean checkBook;
 
     public boolean isCheck() {
         return check;
@@ -23,17 +25,21 @@ public class DisplayService {
 
     Scanner scanner = new Scanner(System.in);
 
-    public DisplayService(LinkedList<Villa> villaList, LinkedList<House> houseList, LinkedList<Room> roomList){
+    public DisplayService(List<Villa> villaList, List<House> houseList, List<Room> roomList, boolean checkBook) {
         this.villaList = villaList;
         this.houseList = houseList;
         this.roomList = roomList;
+        this.checkBook = checkBook;
     }
 
     public void displayService() throws IOException {
-        int choise = 0;
+        int choise;
         showLoop:
         do {
-            check = true;
+            if (!check) {
+                check = true;
+                break showLoop;
+            }
             System.out.println("1. Show all Villa\n" +
                     "2. Show all  House\n" +
                     "3. Show All Room\n" +
@@ -56,39 +62,41 @@ public class DisplayService {
                 case 4:
                 case 5:
                 case 6:
-
                     break;
                 case 7:
-                    break showLoop;
+                    return;
                 case 8:
                     this.check = false;
                     break showLoop;
             }
-        } while (true);
+        } while (check);
     }
 
     public void showAllVilla() throws IOException {
-        String VILLA_HOUSE = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Villa.csv";
-        FileInputStream input = new FileInputStream(VILLA_HOUSE);
+        String VILLA_FILE = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Villa.csv";
+        FileInputStream input = new FileInputStream(VILLA_FILE);
         ObjectInputStream objectInputStream = null;
         try {
             objectInputStream = new ObjectInputStream(input);
-            villaList = (LinkedList<Villa>) objectInputStream.readObject();
+            villaList = (List<Villa>) objectInputStream.readObject();
             System.out.println("------------------VILLA LIST------------------");
             for (Villa villa : villaList) {
                 System.out.println(villa.showInfor());
                 System.out.println("");
             }
             System.out.println("----------------------------------------------");
-        }catch (EOFException | NullPointerException e ){
+        } catch (EOFException | NullPointerException e) {
             System.err.println("File Villa.csv is empty, can not read file");
-            displayService();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             assert objectInputStream != null;
             objectInputStream.close();
+            if (!checkBook) {
+                check = false;
+            } else {
+                displayService();
+            }
         }
     }
 
@@ -106,15 +114,18 @@ public class DisplayService {
                 System.out.println("");
             }
             System.out.println("----------------------------------------------");
-        }catch (EOFException | NullPointerException e ){
+        } catch (EOFException | NullPointerException e) {
             System.err.println("File House.csv is empty, can not read file");
-            displayService();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             assert objectInputStream != null;
             objectInputStream.close();
+            if (!checkBook) {
+                check = false;
+            } else {
+                displayService();
+            }
         }
     }
 
@@ -133,15 +144,18 @@ public class DisplayService {
                 System.out.println("");
             }
             System.out.println("----------------------------------------------");
-        }catch (EOFException | NullPointerException e ){
+        } catch (EOFException | NullPointerException e) {
             System.err.println("File Room.csv is empty, can not read file");
-            displayService();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             assert objectInputStream != null;
             objectInputStream.close();
+            if (!checkBook) {
+                check = false;
+            } else {
+                displayService();
+            }
         }
     }
 }

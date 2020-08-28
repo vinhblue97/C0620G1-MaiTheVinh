@@ -1,10 +1,12 @@
 package controllers;
 
-import customer.Customer;
+import models.Customer;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,9 +14,9 @@ import java.util.zip.DataFormatException;
 
 public class NewCustomer<E extends Comparable> {
     transient Scanner scanner = new Scanner(System.in);
-    LinkedList<Customer> customersList;
+    List<Customer> customersList;
 
-    public NewCustomer(LinkedList<Customer> customersList) {
+    public NewCustomer(List<Customer> customersList) {
         this.customersList = customersList;
     }
 
@@ -22,7 +24,7 @@ public class NewCustomer<E extends Comparable> {
         String name = setName();
         System.out.println("Enter the birthDay (dd/MM/yyyy)");
         String birthDay = setBirthDay();
-        System.out.println("Enter the gender (Unknow, Male, Female");
+        System.out.println("Enter the gender (Unknow, Male, Female)");
         String gender = setGender();
         System.out.println("Enter the Id card");
         String idCard = setIdCard();
@@ -117,18 +119,19 @@ public class NewCustomer<E extends Comparable> {
         Matcher matcher;
         String birthDay = null;
         try {
-            String birthDayRegex = "^[0-9]{2}\\/[0-9]{2}\\/[1|2][0-9]$";
+            String birthDayRegex = "^[0-9]{2}\\/[0-9]{2}\\/([1][9][0-9]{2})|([2][0-9]{3})$";
             birthDay = scanner.nextLine();
             pattern = Pattern.compile(birthDayRegex);
             matcher = pattern.matcher(birthDay);
             if (!matcher.matches() && !isRightDate(birthDay)) {
+                System.out.println(isRightDate(birthDay));
                 throw new DataFormatException();
             }
-            String year = birthDay.substring(birthDay.length() - 4, birthDay.length());
+            String age = birthDay.substring(birthDay.length() - 4, birthDay.length());
             Date now = new Date();
             String currenYear = now + "";
             currenYear = currenYear.substring(currenYear.length() - 4, currenYear.length());
-            boolean isRightYear = (Integer.parseInt(currenYear) - Integer.parseInt(year) < 18) || (Integer.parseInt(year) <= 1900);
+            boolean isRightYear = (Integer.parseInt(currenYear) - Integer.parseInt(age) < 18) || (Integer.parseInt(age) <= 1900);
             if (isRightYear) {
                 throw new Exception();
             }
@@ -214,8 +217,9 @@ public class NewCustomer<E extends Comparable> {
                         return false;
                     } else return true;
                 }
+            default:
+                return false;
         }
-        return true;
     }
 
     public boolean isLeapYear(int year) {

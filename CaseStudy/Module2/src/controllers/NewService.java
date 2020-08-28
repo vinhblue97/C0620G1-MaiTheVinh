@@ -7,18 +7,18 @@ import models.Villa;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class NewService {
     private boolean check = true;
-    Scanner scanner = new Scanner(System.in);
+    transient Scanner scanner = new Scanner(System.in);
 
     public boolean isCheck() {
         return check;
     }
 
-    public void addNewService(LinkedList<Villa> villaList, LinkedList<House> houseList, LinkedList<Room> roomList) throws IOException {
+    public void addNewService(List<Villa> villaList, List<House> houseList, List<Room> roomList) throws IOException {
         int choise = 0;
         addLoop:
         do {
@@ -48,11 +48,10 @@ public class NewService {
         } while (true);
     }
 
-    public void addVilla(LinkedList<Villa> villaList) throws IOException {
-        int numVilla = 1;
+    public void addVilla(List<Villa> villaList) throws IOException {
+        int numVilla = villaList.size()+1;
         WriteService write = new WriteService();
-        System.out.println("Enter the House's ID");
-        String id = setId(numVilla);
+        String villaId = setId(numVilla);
         System.out.println("Enter the Villa's Name");
         scanner.nextLine();
         String name = scanner.nextLine();
@@ -64,17 +63,15 @@ public class NewService {
         int maxPeople = setMaxPeople();
         System.out.println("Enter the Villa's amount of floor");
         int numFloor = setFloor();
-        Villa temp = new Villa("", name, area, rentCost, maxPeople, numFloor, 0, 1, 0, 15.0, 3);
+        Villa temp = new Villa(villaId, name, area, rentCost, maxPeople, numFloor, 0, 1, 0, 15.0, 3);
         villaList.add(temp);
-        numVilla++;
         write.writeVilla(villaList);
     }
 
-    public void addHouse(LinkedList<House> houseList) throws IOException {
-        int numHouse = 1;
+    public void addHouse(List<House> houseList) throws IOException {
+        int numHouse = houseList.size()+1;
         WriteService write = new WriteService();
-        System.out.println("Enter the House's ID");
-        String id = setId(numHouse);
+        String houseId = setId(numHouse);
         System.out.println("Enter the House's Name");
         scanner.nextLine();
         String name = scanner.nextLine();
@@ -84,10 +81,27 @@ public class NewService {
         double rentCost = setRentCost();
         System.out.println("Enter the House's maximum people");
         int maxPeople = setMaxPeople();
-        House temp = new House(id, name, area, rentCost, maxPeople, 0, 0, 1, 0, 3);
-        numHouse++;
+        House temp = new House(houseId, name, area, rentCost, maxPeople, 0, 0, 1, 0, 3);
         houseList.add(temp);
         write.writeHouse(houseList);
+    }
+
+    public void addRoom(List<Room> roomList) throws IOException {
+        int numRoom = roomList.size()+1;
+        WriteService write = new WriteService();
+        String roomId = setId(numRoom);
+        System.out.println("Enter the Room's Name");
+        scanner.nextLine();
+        String name = scanner.nextLine();
+        System.out.println("Enter the Room's Area");
+        double area = setArea();
+        System.out.println("Enter the Room's cost");
+        double rentCost = setRentCost();
+        System.out.println("Enter the Room's maximum people");
+        int maxPeople = setMaxPeople();
+        Room temp = new Room(roomId, name, area, rentCost, maxPeople, 0, 0, 1, 0);
+        roomList.add(temp);
+        write.writeRoom(roomList);
     }
 
     public String setId(int num){
@@ -98,26 +112,6 @@ public class NewService {
         }else if (num<1000){
             return "0"+num;
         } else return num+"";
-    }
-
-    public void addRoom(LinkedList<Room> roomList) throws IOException {
-        WriteService write = new WriteService();
-        System.out.println("Enter the Room's Name");
-        scanner.nextLine();
-        String name = scanner.nextLine();
-        System.out.println("Enter the Room's Area");
-        double area = setArea();
-        System.out.println("Enter the Room's cost");
-        double rentCost = setRentCost();
-        System.out.println("Enter the Room's maximum people");
-        int maxPeople = setMaxPeople();
-        Room temp = new Room("", name, area, rentCost, maxPeople, 0, 0, 1, 0);
-        roomList.add(temp);
-        write.writeRoom(roomList);
-    }
-
-    public String setId(){
-
     }
 
     public double setArea() {

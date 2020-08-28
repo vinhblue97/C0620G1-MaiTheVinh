@@ -1,20 +1,17 @@
 package controllers;
 
-import customer.Customer;
-import models.House;
-import models.Room;
-import models.Villa;
+import models.*;
 
 import java.io.*;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 
 public class MainController {
     boolean check = true;
-    LinkedList<Villa> villaList = new LinkedList<>();
-    LinkedList<House> houseList = new LinkedList<>();
-    LinkedList<Room> roomList = new LinkedList<>();
-    LinkedList<Customer> customersList = new LinkedList<>();
+    Map<Customer, Services> bookingList = new TreeMap<>();
+    List<Villa> villaList = new ArrayList<>();
+    List<House> houseList = new ArrayList<>();
+    List<Room> roomList = new ArrayList<>();
+    List<Customer> customersList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
     public void displayMainMenu() throws Exception {
@@ -44,12 +41,12 @@ public class MainController {
                         assert newService != null;
                         check = newService.isCheck();
                         displayMainMenu();
-                        break;
+                        break mainLoop;
                     }
                 case 2:
                     DisplayService display = null;
                     try {
-                        display = new DisplayService(villaList, houseList, roomList);
+                        display = new DisplayService(villaList, houseList, roomList, true);
                         display.displayService();
                     } catch (NullPointerException e) {
 
@@ -57,7 +54,7 @@ public class MainController {
                         assert display != null;
                         check = display.isCheck();
                         displayMainMenu();
-                        break;
+                        break mainLoop;
                     }
                 case 3:
                     NewCustomer<Customer> newCustomer;
@@ -67,21 +64,27 @@ public class MainController {
                     } catch (WriteAbortedException | NotSerializableException ignored) {
 
                     } finally {
-                        check = false;
                         displayMainMenu();
-                        break;
+                        break mainLoop;
                     }
                 case 4:
                     DisplayCustomerInformation customerInformation = null;
-                    try{
+                    try {
                         customerInformation = new DisplayCustomerInformation(customersList);
                         customerInformation.showCustomerInfor();
-                    }finally {
-                        check = false;
+                    } finally {
                         displayMainMenu();
-                        break;
+                        break mainLoop;
                     }
                 case 5:
+                    AddNewBook addNewBook;
+                    try {
+                        addNewBook = new AddNewBook(bookingList, customersList, villaList, houseList, roomList);
+                        addNewBook.addNewBook();
+                    } finally {
+                        displayMainMenu();
+                        break mainLoop;
+                    }
                 case 6:
                 case 7:
                     break mainLoop;
@@ -99,7 +102,7 @@ public class MainController {
         try {
             FileInputStream inputVilla = new FileInputStream(villaPath);
             readVilla = new ObjectInputStream(inputVilla);
-            villaList = (LinkedList<Villa>) readVilla.readObject();
+            villaList = (ArrayList<Villa>) readVilla.readObject();
             readVilla.close();
         } catch (FileNotFoundException e) {
             FileOutputStream villa = new FileOutputStream(villaPath);
@@ -117,7 +120,7 @@ public class MainController {
         try {
             FileInputStream inputHouse = new FileInputStream(housePath);
             readHouse = new ObjectInputStream(inputHouse);
-            houseList = (LinkedList<House>) readHouse.readObject();
+            houseList = (ArrayList<House>) readHouse.readObject();
         } catch (FileNotFoundException e) {
             FileOutputStream house = new FileOutputStream(housePath);
         } catch (EOFException e) {
@@ -134,10 +137,28 @@ public class MainController {
         try {
             FileInputStream inputRoom = new FileInputStream(roomPath);
             readRoom = new ObjectInputStream(inputRoom);
-            roomList = (LinkedList<Room>) readRoom.readObject();
+            roomList = (ArrayList<Room>) readRoom.readObject();
             readRoom.close();
         } catch (FileNotFoundException e) {
             FileOutputStream room = new FileOutputStream(roomPath);
+        } catch (EOFException e) {
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            updateBookingFile();
+        }
+    }
+
+    public void updateBookingFile() throws Exception {
+        String bookingFile = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Booking.csv";
+        ObjectInputStream readBooking = null;
+        try {
+            FileInputStream inputRoom = new FileInputStream(bookingFile);
+            readBooking = new ObjectInputStream(inputRoom);
+            bookingList = (TreeMap<Customer, Services>) readBooking.readObject();
+            readBooking.close();
+        } catch (FileNotFoundException e) {
+            FileOutputStream booking = new FileOutputStream(bookingFile);
         } catch (EOFException e) {
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
@@ -148,17 +169,20 @@ public class MainController {
 
     public void updateCustomerFile() throws Exception {
         String customerPath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Customer.csv";
-        ObjectInputStream readCustomer = null;
+        ObjectInputStream readCustomer;
         try {
             FileInputStream inputCustomer = new FileInputStream(customerPath);
             readCustomer = new ObjectInputStream(inputCustomer);
-            customersList = (LinkedList<Customer>) readCustomer.readObject();
+            customersList = (List<Customer>) readCustomer.readObject();
         } catch (FileNotFoundException e) {
             FileOutputStream customer = new FileOutputStream(customerPath);
         } catch (EOFException e) {
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         } finally {
+            Test test = new Test(villaList);
+            test.setTreeSet();
+            test.printTreeSet();
             displayMainMenu();
         }
     }

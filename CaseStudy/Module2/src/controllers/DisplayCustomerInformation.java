@@ -1,16 +1,18 @@
 package controllers;
 
-import customer.Customer;
+import models.Customer;
 
 import java.io.*;
 import java.util.Comparator;
-import java.util.LinkedList;
+import java.util.List;
 
 public class DisplayCustomerInformation {
-    LinkedList<Customer> customersList;
-    public DisplayCustomerInformation(LinkedList<Customer> customerList){
+    List<Customer> customersList;
+
+    public DisplayCustomerInformation(List<Customer> customerList) {
         this.customersList = customerList;
     }
+
     public void showCustomerInfor() throws IOException {
         String filePath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Customer.csv";
         FileInputStream inputStream = null;
@@ -19,9 +21,11 @@ public class DisplayCustomerInformation {
             inputStream = new FileInputStream(filePath);
             objectOutputStream = new ObjectInputStream(inputStream);
             System.out.println("--------------------------CUSTOMER LIST--------------------------");
-            customersList = (LinkedList<Customer>) objectOutputStream.readObject();
+            customersList = (List<Customer>) objectOutputStream.readObject();
             customersList.sort(Comparator.comparing(p->p.getCustomerName()));
             for (Customer customer : customersList) {
+                int index = 1;
+                System.out.println(index++);
                 System.out.println(customer.showInfor());
                 System.out.println("");
             }
