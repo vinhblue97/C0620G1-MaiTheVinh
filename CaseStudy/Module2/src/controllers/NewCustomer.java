@@ -1,10 +1,9 @@
 package controllers;
 
+import commons.FileUtils;
 import models.Customer;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -13,14 +12,10 @@ import java.util.regex.Pattern;
 import java.util.zip.DataFormatException;
 
 public class NewCustomer<E extends Comparable> {
-    transient Scanner scanner = new Scanner(System.in);
-    List<Customer> customersList;
+    static Scanner scanner = new Scanner(System.in);
 
-    public NewCustomer(List<Customer> customersList) {
-        this.customersList = customersList;
-    }
-
-    public void addNewCustomer() throws IOException {
+    public static void addNewCustomer(List<Customer> customerList) throws IOException {
+        String customerPath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Customer.csv";
         String name = setName();
         System.out.println("Enter the birthDay (dd/MM/yyyy)");
         String birthDay = setBirthDay();
@@ -36,11 +31,12 @@ public class NewCustomer<E extends Comparable> {
         System.out.println("Enter the address");
         String address = "15asd";
         Customer newCustomer = new Customer(name, birthDay, gender, idCard, phoneNumber, email, customerType, address);
-        customersList.add(newCustomer);
-        writeCSV();
+        customerList.add(newCustomer);
+        FileUtils<List<Customer>> fileUtils = new FileUtils<>();
+        fileUtils.writeFileCVS(customerPath, customerList);
     }
 
-    public String setName() {
+    public static String setName() {
         Pattern pattern;
         Matcher matcher;
         String name = null;
@@ -60,7 +56,7 @@ public class NewCustomer<E extends Comparable> {
         return name;
     }
 
-    public String setEmail() {
+    public static String setEmail() {
         Pattern pattern;
         Matcher matcher;
         String email = null;
@@ -80,7 +76,7 @@ public class NewCustomer<E extends Comparable> {
         return email;
     }
 
-    public String setGender() {
+    public static String setGender() {
         String gender = null;
         do {
             gender = scanner.nextLine();
@@ -95,7 +91,7 @@ public class NewCustomer<E extends Comparable> {
         return gender;
     }
 
-    public String setIdCard() {
+    public static String setIdCard() {
         Pattern pattern;
         Matcher matcher;
         String idCard = null;
@@ -114,7 +110,7 @@ public class NewCustomer<E extends Comparable> {
         return idCard;
     }
 
-    public String setBirthDay() {
+    public static String setBirthDay() {
         Pattern pattern;
         Matcher matcher;
         String birthDay = null;
@@ -145,7 +141,7 @@ public class NewCustomer<E extends Comparable> {
         return birthDay;
     }
 
-    public boolean isRightDate(String date) {
+    public static boolean isRightDate(String date) {
         int day = Integer.parseInt(date.substring(0, 2));
         int month = Integer.parseInt(date.substring(3, 5));
         int year = Integer.parseInt(date.substring(date.length() - 4, date.length()));
@@ -222,25 +218,7 @@ public class NewCustomer<E extends Comparable> {
         }
     }
 
-    public boolean isLeapYear(int year) {
+    public static boolean isLeapYear(int year) {
         return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
-    }
-
-    public void writeCSV() throws IOException {
-        String filePath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Customer.csv";
-        FileOutputStream outputStream = null;
-        ObjectOutputStream objectOutputStream = null;
-        try {
-            outputStream = new FileOutputStream(filePath);
-            objectOutputStream = new ObjectOutputStream(outputStream);
-
-            objectOutputStream.writeObject(customersList);
-            System.out.println("Write file successfully");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            outputStream.close();
-            objectOutputStream.close();
-        }
     }
 }

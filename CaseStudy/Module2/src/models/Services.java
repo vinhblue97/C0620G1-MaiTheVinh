@@ -12,6 +12,10 @@ public abstract class Services implements Serializable {
     public int rentMonth;
     public int rentYear;
 
+    public String getServiceName() {
+        return serviceName;
+    }
+
     public Services(String serviceName, double usesArea, double rentCost, int maxPeople, int rentHour, int rentDay, int rentMonth, int rentYear) {
         this.serviceName = serviceName;
         this.usesArea = usesArea;

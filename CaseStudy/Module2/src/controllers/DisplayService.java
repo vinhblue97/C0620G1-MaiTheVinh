@@ -2,44 +2,32 @@ package controllers;
 
 import models.House;
 import models.Room;
+import models.Services;
 import models.Villa;
 
-import java.io.EOFException;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class DisplayService {
-    List<Villa> villaList;
-    List<House> houseList;
-    List<Room> roomList;
-    private boolean check = true;   // variable use to Exit (false - exit program)
-    private boolean checkBook;
+    private static Map<String, Services> villaMap = new TreeMap<>();
+    private static Map<String, Services> houseMap = new TreeMap<>();
+    private static Map<String, Services> roomMap = new TreeMap<>();
 
-    public boolean isCheck() {
+    private static boolean check = true;   // variable use to Exit (false - exit program)
+
+    public static boolean isCheck() {
         return check;
     }
 
-    Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
-    public DisplayService(List<Villa> villaList, List<House> houseList, List<Room> roomList, boolean checkBook) {
-        this.villaList = villaList;
-        this.houseList = houseList;
-        this.roomList = roomList;
-        this.checkBook = checkBook;
-    }
-
-    public void displayService() throws IOException {
+    public static void displayService(List<Villa> villaList, List<House> houseList, List<Room> roomList) throws IOException {
         int choise;
         showLoop:
         do {
-            if (!check) {
-                check = true;
-                break showLoop;
-            }
             System.out.println("1. Show all Villa\n" +
                     "2. Show all  House\n" +
                     "3. Show All Room\n" +
@@ -51,111 +39,76 @@ public class DisplayService {
             choise = scanner.nextInt();
             switch (choise) {
                 case 1:
-                    showAllVilla();
+                    showAllVilla(villaList);
                     break;
                 case 2:
-                    showAllHouse();
+                    showAllHouse(houseList);
                     break;
                 case 3:
-                    showAllRoom();
+                    showAllRoom(roomList);
                     break;
                 case 4:
+                    showAllVillaNotDuplicate(villaList);
+                    break;
                 case 5:
+                    showAllHouseNotDuplicate(houseList);
+                    break;
                 case 6:
+                    showAllRoomNotDuplicate(roomList);
                     break;
                 case 7:
-                    return;
-                case 8:
-                    this.check = false;
                     break showLoop;
+                case 8:
+                    check = false;
             }
         } while (check);
     }
 
-    public void showAllVilla() throws IOException {
-        String VILLA_FILE = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Villa.csv";
-        FileInputStream input = new FileInputStream(VILLA_FILE);
-        ObjectInputStream objectInputStream = null;
-        try {
-            objectInputStream = new ObjectInputStream(input);
-            villaList = (List<Villa>) objectInputStream.readObject();
-            System.out.println("------------------VILLA LIST------------------");
-            for (Villa villa : villaList) {
-                System.out.println(villa.showInfor());
-                System.out.println("");
-            }
-            System.out.println("----------------------------------------------");
-        } catch (EOFException | NullPointerException e) {
-            System.err.println("File Villa.csv is empty, can not read file");
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        } finally {
-            assert objectInputStream != null;
-            objectInputStream.close();
-            if (!checkBook) {
-                check = false;
-            } else {
-                displayService();
-            }
+    public static void showAllVilla(List<Villa> villaList) throws IOException {
+        for (Villa villa : villaList) {
+            System.out.println(villa.showInfor());
+            System.out.println("");
         }
     }
 
-    public void showAllHouse() throws IOException {
-        String HOUSE_FILE = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\House.csv";
-        FileInputStream input = new FileInputStream(HOUSE_FILE);
-        ObjectInputStream objectInputStream = null;
-
-        try {
-            objectInputStream = new ObjectInputStream(input);
-            houseList = (LinkedList<House>) objectInputStream.readObject();
-            System.out.println("------------------HOUSE LIST------------------");
-            for (House house : houseList) {
-                System.out.println(house.showInfor());
-                System.out.println("");
-            }
-            System.out.println("----------------------------------------------");
-        } catch (EOFException | NullPointerException e) {
-            System.err.println("File House.csv is empty, can not read file");
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        } finally {
-            assert objectInputStream != null;
-            objectInputStream.close();
-            if (!checkBook) {
-                check = false;
-            } else {
-                displayService();
-            }
+    public static void showAllHouse(List<House> houseList) throws IOException {
+        for (House house : houseList) {
+            System.out.println(house.showInfor());
+            System.out.println("");
         }
     }
 
-    public void showAllRoom() throws IOException {
-        String ROOM_FILE = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Room.csv";
+    public static void showAllRoom(List<Room> roomList) {
+        for (Room room : roomList) {
+            System.out.println(room.showInfor());
+            System.out.println("");
+        }
+    }
 
-        FileInputStream input = new FileInputStream(ROOM_FILE);
-        ObjectInputStream objectInputStream = null;
+    public static void showAllVillaNotDuplicate(List<Villa> villaList) {
+        for (Villa villa : villaList) {
+            villaMap.put(villa.getServiceName(), villa);
+        }
+        for (String name : villaMap.keySet()) {
+            System.out.println(villaMap.get(name).showInfor());
+        }
+    }
 
-        try {
-            objectInputStream = new ObjectInputStream(input);
-            roomList = (LinkedList<Room>) objectInputStream.readObject();
-            System.out.println("------------------HOUSE LIST------------------");
-            for (Room room : roomList) {
-                System.out.println(room.showInfor());
-                System.out.println("");
-            }
-            System.out.println("----------------------------------------------");
-        } catch (EOFException | NullPointerException e) {
-            System.err.println("File Room.csv is empty, can not read file");
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        } finally {
-            assert objectInputStream != null;
-            objectInputStream.close();
-            if (!checkBook) {
-                check = false;
-            } else {
-                displayService();
-            }
+    public static void showAllHouseNotDuplicate(List<House> houseList) {
+        for (House house : houseList) {
+            houseMap.put(house.getServiceName(), house);
+        }
+        for (String name : houseMap.keySet()) {
+            System.out.println(houseMap.get(name).showInfor());
+        }
+    }
+
+    public static void showAllRoomNotDuplicate(List<Room> roomList) {
+        for (Room room : roomList) {
+            roomMap.put(room.getServiceName(), room);
+        }
+        for (String name : roomMap.keySet()) {
+            System.out.println(roomMap.get(name).showInfor());
         }
     }
 }

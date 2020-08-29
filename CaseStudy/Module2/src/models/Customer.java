@@ -33,6 +33,14 @@ public class Customer implements Serializable, Comparable {
         return birthDay;
     }
 
+    public void setUsedService(Services usedService) {
+        this.usedService = usedService;
+    }
+
+    public Services getUsedService() {
+        return usedService;
+    }
+
     public String showInfor() {
         return "Customer's name: " + this.customerName + "\n" +
                 "ID Card: " + this.idCard + "\n" +
@@ -42,7 +50,8 @@ public class Customer implements Serializable, Comparable {
                 "PhoneNumber: " + this.phoneNumber + "\n" +
                 "Email: " + this.email + "\n" +
                 "Customer's type: " + this.customerType + "\n" +
-                "Address: " + this.address;
+                "Address: " + this.address+"\n" ;
+
     }
 
     @Override
