@@ -3,7 +3,6 @@ package controllers;
 import commons.FileUtils;
 import models.Customer;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +18,7 @@ public class NewCustomer<E extends Comparable> {
         this.customerList = customerList;
     }
 
-    public void addNewCustomer() throws IOException, NullPointerException {
+    public void addNewCustomer() throws NullPointerException {
         String customerPath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Customer.csv";
         String name = setName();
         System.out.println("Enter the birthDay (dd/MM/yyyy)");

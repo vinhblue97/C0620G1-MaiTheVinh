@@ -53,7 +53,7 @@ public class EmployeeManager {
         }
     }
 
-    public void readEmployeeFile() throws IOException {
+    public void readEmployeeFile(){
         String employeePath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Employee.csv";
         FileUtils<Map<String, Employee>> fileUtils = new FileUtils<>();
             readMap = fileUtils.readFileCSV(employeePath);

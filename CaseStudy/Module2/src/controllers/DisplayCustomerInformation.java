@@ -19,7 +19,7 @@ public class DisplayCustomerInformation {
     public void showCustomerInfor(){
         try {
             for (Customer customer : customersList) {
-                System.out.println(customer.showInfor());
+                System.out.println(customer.getNum()+"\n"+customer.showInfor());
                 System.out.println("");
             }
         } catch (NullPointerException e) {

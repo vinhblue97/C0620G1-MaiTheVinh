@@ -48,9 +48,9 @@ public class AddNewBook {
                 writeBookingFile(index, 3, room, bookingList, customersList, villaList, houseList, roomList);
                 break;
             case 4:
-                checkRead = false;
                 break;
         }
+        checkRead = false;
     }
 
     public void writeBookingFile(int index, int choiseService, int choise, Map<Integer, Customer> bookingList, List<Customer> customersList, List<Villa> villaList, List<House> houseList, List<Room> roomList) throws IOException {
@@ -77,10 +77,7 @@ public class AddNewBook {
         fileUtils.writeFileCVS(bookingFile, bookingList);
     }
 
-    public void readFileBooking(Map<Integer, Customer> bookingList) throws IOException {
-//        String bookingFile = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Booking.csv";
-//        FileUtils<Map<Integer, Customer>> fileUtils = new FileUtils<>();
-//        bookingList = fileUtils.readFileCSV(bookingFile);
+    public void readFileBooking(Map<Integer, Customer> bookingList){
         System.out.println("----------------------BOOKING LIST-------------------------");
         for (Integer index : bookingList.keySet()) {
             System.out.println("Customer: " + index);

@@ -3,6 +3,8 @@ package models;
 import java.io.Serializable;
 
 public class Customer implements Serializable, Comparable {
+    private static int numCustomer = 0;
+    private int num;
     private String customerName;
     private String birthDay;
     private String gender;
@@ -12,6 +14,14 @@ public class Customer implements Serializable, Comparable {
     private String customerType;
     private String address;
     private Services usedService;
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
 
     public String getCustomerName() {
         return customerName;
@@ -27,10 +37,7 @@ public class Customer implements Serializable, Comparable {
         this.customerType = customerType;
         this.address = address;
         this.idCard = idCard;
-    }
-
-    public String getBirthDay() {
-        return birthDay;
+        setNum(++numCustomer);
     }
 
     public void setUsedService(Services usedService) {
@@ -50,7 +57,7 @@ public class Customer implements Serializable, Comparable {
                 "PhoneNumber: " + this.phoneNumber + "\n" +
                 "Email: " + this.email + "\n" +
                 "Customer's type: " + this.customerType + "\n" +
-                "Address: " + this.address+"\n" ;
+                "Address: " + this.address + "\n";
 
     }
 

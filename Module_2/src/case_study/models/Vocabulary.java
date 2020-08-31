@@ -1,20 +1,22 @@
 package case_study.models;
 
-public class Vocabulary {
+import java.io.Serializable;
+
+public class Vocabulary implements Serializable {
     private static long numVocabulary = 0;
     private String vocabulary;
     private String pronounciation;
-    private String noun;
-    private String verb;
-    private String adjective;
-    private String adverb;
+    private String noun = "";
+    private String verb = "";
+    private String adjective = "";
+    private String adverb = "";
 
     public String getNoun() {
-        return "Noun:" +noun;
+        return noun;
     }
 
     public void setNoun(String noun) {
-        this.noun = noun;
+        this.noun += '\n' + noun;
     }
 
     public String getVerb() {
@@ -22,7 +24,7 @@ public class Vocabulary {
     }
 
     public void setVerb(String verb) {
-        this.verb = verb;
+        this.verb += '\n' +verb;
     }
 
     public String getAdjective() {
@@ -30,7 +32,7 @@ public class Vocabulary {
     }
 
     public void setAdjective(String adjective) {
-        this.adjective = adjective;
+        this.adjective += '\n' + adjective;
     }
 
     public String getAdverb() {
@@ -38,7 +40,7 @@ public class Vocabulary {
     }
 
     public void setAdverb(String adverb) {
-        this.adverb = adverb;
+        this.adverb += '\n' +adverb;
     }
 
     public Vocabulary(String vocabulary, String pronounciation) {
@@ -53,7 +55,26 @@ public class Vocabulary {
     }
 
     public String showVocabulary() {
-        return numVocabulary + ". " + vocabulary + "" +pronounciation+": \n" +
-                "";
+        return definitions();
+    }
+
+    public String definitions() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("-----------------RESULT-----------------\n");
+        stringBuilder.append(getVocabulary()).append(" ").append(pronounciation);
+        if (noun != "") {
+            stringBuilder.append("\n").append("Noun: ").append(noun);
+        }
+        if (verb != "") {
+            stringBuilder.append("\n").append("Verb: ").append(verb);
+        }
+        if (adjective != "") {
+            stringBuilder.append("\n").append("Adjective: ").append(adjective);
+        }
+        if (adverb != "") {
+            stringBuilder.append("\n").append("Adverb: ").append(adverb);
+        }
+        stringBuilder.append("\n-----------------------------------------");
+        return stringBuilder.toString();
     }
 }
