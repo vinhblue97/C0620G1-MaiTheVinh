@@ -12,9 +12,14 @@ import java.util.regex.Pattern;
 import java.util.zip.DataFormatException;
 
 public class NewCustomer<E extends Comparable> {
+    List<Customer> customerList;
     static Scanner scanner = new Scanner(System.in);
 
-    public static void addNewCustomer(List<Customer> customerList) throws IOException {
+    public NewCustomer(List<Customer> customerList) {
+        this.customerList = customerList;
+    }
+
+    public void addNewCustomer() throws IOException, NullPointerException {
         String customerPath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Customer.csv";
         String name = setName();
         System.out.println("Enter the birthDay (dd/MM/yyyy)");
@@ -36,7 +41,7 @@ public class NewCustomer<E extends Comparable> {
         fileUtils.writeFileCVS(customerPath, customerList);
     }
 
-    public static String setName() {
+    public String setName() {
         Pattern pattern;
         Matcher matcher;
         String name = null;
@@ -56,7 +61,7 @@ public class NewCustomer<E extends Comparable> {
         return name;
     }
 
-    public static String setEmail() {
+    public String setEmail() {
         Pattern pattern;
         Matcher matcher;
         String email = null;
@@ -76,7 +81,7 @@ public class NewCustomer<E extends Comparable> {
         return email;
     }
 
-    public static String setGender() {
+    public String setGender() {
         String gender = null;
         do {
             gender = scanner.nextLine();
@@ -91,7 +96,7 @@ public class NewCustomer<E extends Comparable> {
         return gender;
     }
 
-    public static String setIdCard() {
+    public String setIdCard() {
         Pattern pattern;
         Matcher matcher;
         String idCard = null;
@@ -110,7 +115,7 @@ public class NewCustomer<E extends Comparable> {
         return idCard;
     }
 
-    public static String setBirthDay() {
+    public String setBirthDay() {
         Pattern pattern;
         Matcher matcher;
         String birthDay = null;
@@ -141,7 +146,7 @@ public class NewCustomer<E extends Comparable> {
         return birthDay;
     }
 
-    public static boolean isRightDate(String date) {
+    public boolean isRightDate(String date) {
         int day = Integer.parseInt(date.substring(0, 2));
         int month = Integer.parseInt(date.substring(3, 5));
         int year = Integer.parseInt(date.substring(date.length() - 4, date.length()));
@@ -218,7 +223,7 @@ public class NewCustomer<E extends Comparable> {
         }
     }
 
-    public static boolean isLeapYear(int year) {
+    public boolean isLeapYear(int year) {
         return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
     }
 }

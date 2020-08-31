@@ -4,17 +4,27 @@ import models.Customer;
 import models.House;
 import models.Room;
 import models.Villa;
-import views.EmployeeManager;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class MainController {
     static boolean check = true;
     static Scanner scanner = new Scanner(System.in);
+    public List<Villa> villaList;
+    public List<House> houseList;
+    public List<Room> roomList;
+    public Map<Integer, Customer> bookingList;
+    public List<Customer> customersList;
 
-    public static void displayMainMenu(List<Villa> villaList, List<House> houseList, List<Room> roomList, Map<Integer, Customer> bookingList, List<Customer> customersList) throws Exception {
+    public MainController(List<Villa> villaList, List<House> houseList, List<Room> roomList, Map<Integer, Customer> bookingList, List<Customer> customersList) {
+        this.villaList = villaList;
+        this.houseList = houseList;
+        this.roomList = roomList;
+        this.bookingList = bookingList;
+        this.customersList = customersList;
+    }
+
+    public void displayMainMenu() throws Exception {
         int choiseMenu;
         mainLoop:
         do {
@@ -31,24 +41,32 @@ public class MainController {
             choiseMenu = scanner.nextInt();
             switch (choiseMenu) {
                 case 1:
-                    NewService.addNewService(villaList, houseList, roomList);
-                    check = NewService.isCheck();
+                    NewService newService = new NewService(villaList, houseList, roomList);
+                    newService.addNewService();
+                    check = newService.isCheck();
+                    System.out.println(villaList);
                     break;
                 case 2:
-                    DisplayService.displayService(villaList, houseList, roomList);
-                    check = DisplayService.isCheck();
+                    System.out.println(villaList);
+                    DisplayService displayService = new DisplayService(villaList, houseList, roomList);
+                    displayService.displayService();
+                    check = displayService.isCheck();
                     break;
                 case 3:
-                    NewCustomer.addNewCustomer(customersList);
+                    NewCustomer newCustomer = new NewCustomer(customersList);
+                    newCustomer.addNewCustomer();
                     break;
                 case 4:
-                    DisplayCustomerInformation.showCustomerInfor(customersList);
+                    DisplayCustomerInformation displayCustomerInformation = new DisplayCustomerInformation(customersList);
+                    displayCustomerInformation.showCustomerInfor();
                     break;
                 case 5:
-                    AddNewBook.addNewBook(villaList, houseList, roomList, bookingList, customersList);
+                    AddNewBook addNewBook = new AddNewBook();
+                    addNewBook.addNewBook(villaList, houseList, roomList, bookingList, customersList);
                     break;
                 case 6:
-                    EmployeeManager.readEmployeeFile();
+                    EmployeeManager employeeManager = new EmployeeManager();
+                    employeeManager.readEmployeeFile();
                     break;
                 case 7:
                     break mainLoop;

@@ -11,14 +11,23 @@ import java.util.List;
 import java.util.Scanner;
 
 public class NewService {
-    private static boolean check;
-    static Scanner scanner = new Scanner(System.in);
+    private boolean check;
+    transient Scanner scanner = new Scanner(System.in);
+    public List<Villa> villaList;
+    public List<House> houseList;
+    public List<Room> roomList;
 
-    public static boolean isCheck() {
+    public boolean isCheck() {
         return check;
     }
 
-    public static void addNewService(List<Villa> villaList, List<House> houseList, List<Room> roomList) throws IOException {
+    public NewService(List<Villa> villaList, List<House> houseList, List<Room> roomList){
+        this.villaList = villaList;
+        this.houseList = houseList;
+        this.roomList = roomList;
+    }
+
+    public void addNewService() throws IOException {
         int choise = 0;
         addLoop:
         do {
@@ -31,13 +40,13 @@ public class NewService {
             choise = scanner.nextInt();
             switch (choise) {
                 case 1:
-                    addVilla(villaList);
+                    addVilla();
                     break;
                 case 2:
-                    addHouse(houseList);
+                    addHouse();
                     break;
                 case 3:
-                    addRoom(roomList);
+                    addRoom();
                     break;
                 case 4:
                     break addLoop;
@@ -48,7 +57,7 @@ public class NewService {
         } while (true);
     }
 
-    public static void addVilla(List<Villa> villaList) throws IOException {
+    public void addVilla() throws IOException {
         String villaPath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Villa.csv";
         int numVilla = villaList.size()+1;
         String villaId = setId(numVilla);
@@ -69,7 +78,7 @@ public class NewService {
         fileUtils.writeFileCVS(villaPath, villaList);
     }
 
-    public static void addHouse(List<House> houseList) throws IOException {
+    public void addHouse() throws IOException {
         String housePath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\House.csv";
         int numHouse = houseList.size()+1;
         String houseId = setId(numHouse);
@@ -88,7 +97,7 @@ public class NewService {
         fileUtils.writeFileCVS(housePath, houseList);
     }
 
-    public static void addRoom(List<Room> roomList) throws IOException {
+    public void addRoom() throws IOException {
         String roomPath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Room.csv";
         int numRoom = roomList.size()+1;
         String roomId = setId(numRoom);
@@ -107,7 +116,7 @@ public class NewService {
         fileUtils.writeFileCVS(roomPath, roomList);
     }
 
-    public static String setId(int num){
+    public String setId(int num){
         if (num<10){
             return "000"+num;
         }else if(num<100){
@@ -117,7 +126,7 @@ public class NewService {
         } else return num+"";
     }
 
-    public static double setArea() {
+    public double setArea() {
         double area = 0.0;
         try {
             area = Double.parseDouble(scanner.nextLine());
@@ -137,7 +146,7 @@ public class NewService {
         return area;
     }
 
-    public static double setRentCost() {
+    public double setRentCost() {
         double cost;
         do {
             cost = Double.parseDouble(scanner.nextLine());
@@ -148,7 +157,7 @@ public class NewService {
         return cost;
     }
 
-    public static int setMaxPeople() {
+    public int setMaxPeople() {
         int maxPeople;
         do {
             maxPeople = Integer.parseInt(scanner.nextLine());
@@ -159,7 +168,7 @@ public class NewService {
         return maxPeople;
     }
 
-    public static  int setFloor() {
+    public  int setFloor() {
         int numFloor;
         do {
             numFloor = Integer.parseInt(scanner.nextLine());

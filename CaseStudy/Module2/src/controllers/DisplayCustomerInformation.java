@@ -1,15 +1,30 @@
 package controllers;
 
-import commons.FileUtils;
 import models.Customer;
 
 import java.util.List;
 
 public class DisplayCustomerInformation {
+    List<Customer> customersList;
+    private boolean checkBook = false;
 
-    public static void showCustomerInfor(List<Customer> customersList) {
-        String filePath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Customer.csv";
-        FileUtils<List<Customer>> fileUtils = new FileUtils<>();
-        customersList = fileUtils.readFileCSV(filePath);
+    public boolean isCheckBook() {
+        return checkBook;
+    }
+
+    public DisplayCustomerInformation(List<Customer> customersList) {
+        this.customersList = customersList;
+    }
+
+    public void showCustomerInfor(){
+        try {
+            for (Customer customer : customersList) {
+                System.out.println(customer.showInfor());
+                System.out.println("");
+            }
+        } catch (NullPointerException e) {
+            this.checkBook = true;
+            System.err.println("File is empty");
+        }
     }
 }

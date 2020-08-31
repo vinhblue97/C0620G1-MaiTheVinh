@@ -5,26 +5,34 @@ import models.Room;
 import models.Services;
 import models.Villa;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
 public class DisplayService {
-    private static Map<String, Services> villaMap = new TreeMap<>();
-    private static Map<String, Services> houseMap = new TreeMap<>();
-    private static Map<String, Services> roomMap = new TreeMap<>();
+    private Map<String, Services> villaMap = new TreeMap<>();
+    private Map<String, Services> houseMap = new TreeMap<>();
+    private Map<String, Services> roomMap = new TreeMap<>();
+    public List<Villa> villaList;
+    public List<House> houseList;
+    public List<Room> roomList;
 
-    private static boolean check = true;   // variable use to Exit (false - exit program)
+    private boolean check = true;   // variable use to Exit (false - exit program)
 
-    public static boolean isCheck() {
+    public boolean isCheck() {
         return check;
     }
 
-    static Scanner scanner = new Scanner(System.in);
+    transient Scanner scanner = new Scanner(System.in);
 
-    public static void displayService(List<Villa> villaList, List<House> houseList, List<Room> roomList) throws IOException {
+    public DisplayService(List<Villa> villaList, List<House> houseList, List<Room> roomList) {
+        this.villaList = villaList;
+        this.houseList = houseList;
+        this.roomList = roomList;
+    }
+
+    public void displayService() {
         int choise;
         showLoop:
         do {
@@ -37,55 +45,59 @@ public class DisplayService {
                     "7. Back to menu\n" +
                     "8. Exit");
             choise = scanner.nextInt();
-            switch (choise) {
-                case 1:
-                    showAllVilla(villaList);
-                    break;
-                case 2:
-                    showAllHouse(houseList);
-                    break;
-                case 3:
-                    showAllRoom(roomList);
-                    break;
-                case 4:
-                    showAllVillaNotDuplicate(villaList);
-                    break;
-                case 5:
-                    showAllHouseNotDuplicate(houseList);
-                    break;
-                case 6:
-                    showAllRoomNotDuplicate(roomList);
-                    break;
-                case 7:
-                    break showLoop;
-                case 8:
-                    check = false;
+            try {
+                switch (choise) {
+                    case 1:
+                        showAllVilla();
+                        break;
+                    case 2:
+                        showAllHouse();
+                        break;
+                    case 3:
+                        showAllRoom();
+                        break;
+                    case 4:
+                        showAllVillaNotDuplicate();
+                        break;
+                    case 5:
+                        showAllHouseNotDuplicate();
+                        break;
+                    case 6:
+                        showAllRoomNotDuplicate();
+                        break;
+                    case 7:
+                        break showLoop;
+                    case 8:
+                        check = false;
+                }
+            } catch (NullPointerException e) {
+                System.err.println("File is empty");
             }
         } while (check);
     }
 
-    public static void showAllVilla(List<Villa> villaList) throws IOException {
+    public void showAllVilla() throws NullPointerException {
         for (Villa villa : villaList) {
             System.out.println(villa.showInfor());
             System.out.println("");
         }
     }
 
-    public static void showAllHouse(List<House> houseList) throws IOException {
+    public void showAllHouse() throws NullPointerException {
         for (House house : houseList) {
             System.out.println(house.showInfor());
             System.out.println("");
         }
     }
 
-    public static void showAllRoom(List<Room> roomList) {
+    public void showAllRoom() throws NullPointerException{
         for (Room room : roomList) {
             System.out.println(room.showInfor());
             System.out.println("");
         }
     }
 
-    public static void showAllVillaNotDuplicate(List<Villa> villaList) {
+    public void showAllVillaNotDuplicate() {
         for (Villa villa : villaList) {
             villaMap.put(villa.getServiceName(), villa);
         }
@@ -94,7 +106,7 @@ public class DisplayService {
         }
     }
 
-    public static void showAllHouseNotDuplicate(List<House> houseList) {
+    public void showAllHouseNotDuplicate() {
         for (House house : houseList) {
             houseMap.put(house.getServiceName(), house);
         }
@@ -103,7 +115,7 @@ public class DisplayService {
         }
     }
 
-    public static void showAllRoomNotDuplicate(List<Room> roomList) {
+    public void showAllRoomNotDuplicate() {
         for (Room room : roomList) {
             roomMap.put(room.getServiceName(), room);
         }

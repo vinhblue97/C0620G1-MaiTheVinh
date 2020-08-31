@@ -11,11 +11,15 @@ public class AddNewBook {
     static Scanner scanner = new Scanner(System.in);
     static Queue<Customer> cinemaQueue = new LinkedList<>();
 
-    public static void addNewBook(List<Villa> villaList, List<House> houseList, List<Room> roomList, Map<Integer, Customer> bookingList, List<Customer> customersList) throws IOException {
+    public void addNewBook(List<Villa> villaList, List<House> houseList, List<Room> roomList, Map<Integer, Customer> bookingList, List<Customer> customersList) throws IOException {
         if (!checkRead) {
             readFileBooking(bookingList);
         }
-        DisplayCustomerInformation.showCustomerInfor(customersList);
+        DisplayCustomerInformation displayCustomerInformation = new DisplayCustomerInformation(customersList);
+        displayCustomerInformation.showCustomerInfor();
+        if (displayCustomerInformation.isCheckBook()){
+            return;
+        }
         System.out.println("Choose the customer: ");
         int index = Integer.parseInt(scanner.nextLine());
         System.out.println("1.\tBooking Villa\n" +
@@ -23,21 +27,22 @@ public class AddNewBook {
                 "3.\tBooking Room\n" +
                 "4. Back to menu");
         int choise = Integer.parseInt(scanner.nextLine());
+        DisplayService displayService = new DisplayService(villaList, houseList, roomList);
         switch (choise) {
             case 1:
-                DisplayService.showAllVilla(villaList);
+                displayService.showAllVilla();
                 System.out.println("Choose the villa");
                 int villa = Integer.parseInt(scanner.nextLine());
                 writeBookingFile(index, 1, villa, bookingList, customersList, villaList, houseList, roomList);
                 break;
             case 2:
-                DisplayService.showAllHouse(houseList);
+                displayService.showAllHouse();
                 System.out.println("Choose the house");
                 int house = Integer.parseInt(scanner.nextLine());
                 writeBookingFile(index, 2, house, bookingList, customersList, villaList, houseList, roomList);
                 break;
             case 3:
-                DisplayService.showAllRoom(roomList);
+                displayService.showAllRoom();
                 System.out.println("Choose the villa");
                 int room = Integer.parseInt(scanner.nextLine());
                 writeBookingFile(index, 3, room, bookingList, customersList, villaList, houseList, roomList);
@@ -48,7 +53,7 @@ public class AddNewBook {
         }
     }
 
-    public static void writeBookingFile(int index, int choiseService, int choise, Map<Integer, Customer> bookingList, List<Customer> customersList, List<Villa> villaList, List<House> houseList, List<Room> roomList) throws IOException {
+    public void writeBookingFile(int index, int choiseService, int choise, Map<Integer, Customer> bookingList, List<Customer> customersList, List<Villa> villaList, List<House> houseList, List<Room> roomList) throws IOException {
         String bookingFile = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Booking.csv";
         Customer customer = customersList.get(index - 1);
         switch (choiseService) {
@@ -72,10 +77,10 @@ public class AddNewBook {
         fileUtils.writeFileCVS(bookingFile, bookingList);
     }
 
-    public static void readFileBooking(Map<Integer, Customer> bookingList) throws IOException {
-        String bookingFile = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Booking.csv";
-        FileUtils<Map<Integer, Customer>> fileUtils = new FileUtils<>();
-        bookingList = fileUtils.readFileCSV(bookingFile);
+    public void readFileBooking(Map<Integer, Customer> bookingList) throws IOException {
+//        String bookingFile = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Booking.csv";
+//        FileUtils<Map<Integer, Customer>> fileUtils = new FileUtils<>();
+//        bookingList = fileUtils.readFileCSV(bookingFile);
         System.out.println("----------------------BOOKING LIST-------------------------");
         for (Integer index : bookingList.keySet()) {
             System.out.println("Customer: " + index);
@@ -88,7 +93,7 @@ public class AddNewBook {
         checkRead = true;
     }
 
-    public static Queue<Customer> bookCinema(Queue<Customer> cinemaQueue, Customer customer) {
+    public Queue<Customer> bookCinema(Queue<Customer> cinemaQueue, Customer customer) {
         System.out.println("Do you want book cinema ticket? (Y/N)");
         String confirm = scanner.nextLine();
         do {
