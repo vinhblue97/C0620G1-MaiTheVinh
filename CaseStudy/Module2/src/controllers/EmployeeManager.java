@@ -1,13 +1,19 @@
 package controllers;
 
 import commons.FileUtils;
+import models.Cabinet;
 import models.Employee;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.Stack;
 import java.util.TreeMap;
 
 public class EmployeeManager {
+    transient Scanner scanner = new Scanner((System.in));
     static Map<String, Employee> employeeMap = new TreeMap<>();
     static Map<String, Employee> readMap = new TreeMap<>();
 
@@ -53,16 +59,26 @@ public class EmployeeManager {
         }
     }
 
-    public void readEmployeeFile(){
+    public void readEmployeeFile() {
+        Stack<Employee> employeeStack = new Stack<>();
         String employeePath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Employee.csv";
         FileUtils<Map<String, Employee>> fileUtils = new FileUtils<>();
-            readMap = fileUtils.readFileCSV(employeePath);
-            System.out.println("-------------------------EMPLOYEE LIST-------------------------");
-            for(String id:readMap.keySet()){
-                System.out.println("ID: "+id+"\n"+readMap.get(id).toString());
-                System.out.println("");
-            }
-            System.out.println("---------------------------------------------------------------");
-            System.out.println("Read Employee.csv successfully");
+        readMap = fileUtils.readFileCSV(employeePath);
+        System.out.println("-------------------------EMPLOYEE LIST-------------------------");
+        for (String id : readMap.keySet()) {
+            employeeStack.push(readMap.get(id));
+            System.out.println("ID: " + id + "\n" + readMap.get(id).toString());
+            System.out.println("");
+        }
+        System.out.println("---------------------------------------------------------------");
+        System.out.println("Read Employee.csv successfully");
+
+        System.out.println("Do you want to find employee? (Y/N");
+        String choise = scanner.nextLine();
+        if (choise.equals("Y") || choise.equals("y")) {
+            Cabinet cabinet = new Cabinet(employeeStack);
+            cabinet.find();
+        }
     }
+
 }

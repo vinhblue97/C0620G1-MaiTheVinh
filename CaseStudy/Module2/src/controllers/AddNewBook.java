@@ -26,28 +26,28 @@ public class AddNewBook {
                 "2.\tBooking House\n" +
                 "3.\tBooking Room\n" +
                 "4. Back to menu");
-        int choise = Integer.parseInt(scanner.nextLine());
+        String choise = scanner.nextLine();
         DisplayService displayService = new DisplayService(villaList, houseList, roomList);
         switch (choise) {
-            case 1:
+            case "1":
                 displayService.showAllVilla();
                 System.out.println("Choose the villa");
                 int villa = Integer.parseInt(scanner.nextLine());
                 writeBookingFile(index, 1, villa, bookingList, customersList, villaList, houseList, roomList);
                 break;
-            case 2:
+            case "2":
                 displayService.showAllHouse();
                 System.out.println("Choose the house");
                 int house = Integer.parseInt(scanner.nextLine());
                 writeBookingFile(index, 2, house, bookingList, customersList, villaList, houseList, roomList);
                 break;
-            case 3:
+            case "3":
                 displayService.showAllRoom();
                 System.out.println("Choose the villa");
                 int room = Integer.parseInt(scanner.nextLine());
                 writeBookingFile(index, 3, room, bookingList, customersList, villaList, houseList, roomList);
                 break;
-            case 4:
+            case "4":
                 break;
         }
         checkRead = false;

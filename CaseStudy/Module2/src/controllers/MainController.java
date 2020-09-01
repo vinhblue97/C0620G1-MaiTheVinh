@@ -25,7 +25,7 @@ public class MainController {
     }
 
     public void displayMainMenu() throws Exception {
-        int choiseMenu;
+        String choiseMenu;
         mainLoop:
         do {
             if (!check) {
@@ -38,37 +38,37 @@ public class MainController {
                     "5. Add New Booking\n" +
                     "6. Show Information of Employee\n" +
                     "7. Exit");
-            choiseMenu = scanner.nextInt();
+            choiseMenu = scanner.nextLine();
             switch (choiseMenu) {
-                case 1:
+                case "1":
                     NewService newService = new NewService(villaList, houseList, roomList);
                     newService.addNewService();
                     check = newService.isCheck();
                     System.out.println(villaList);
                     break;
-                case 2:
+                case "2":
                     System.out.println(villaList);
                     DisplayService displayService = new DisplayService(villaList, houseList, roomList);
                     displayService.displayService();
                     check = displayService.isCheck();
                     break;
-                case 3:
+                case "3":
                     NewCustomer newCustomer = new NewCustomer(customersList);
                     newCustomer.addNewCustomer();
                     break;
-                case 4:
+                case "4":
                     DisplayCustomerInformation displayCustomerInformation = new DisplayCustomerInformation(customersList);
                     displayCustomerInformation.showCustomerInfor();
                     break;
-                case 5:
+                case "5":
                     AddNewBook addNewBook = new AddNewBook();
                     addNewBook.addNewBook(villaList, houseList, roomList, bookingList, customersList);
                     break;
-                case 6:
+                case "6":
                     EmployeeManager employeeManager = new EmployeeManager();
                     employeeManager.readEmployeeFile();
                     break;
-                case 7:
+                case "7":
                     break mainLoop;
             }
         } while (true);

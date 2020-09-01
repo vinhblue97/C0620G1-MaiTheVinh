@@ -2,6 +2,7 @@ package controllers;
 
 import models.Customer;
 
+import java.util.Collections;
 import java.util.List;
 
 public class DisplayCustomerInformation {
@@ -16,10 +17,18 @@ public class DisplayCustomerInformation {
         this.customersList = customersList;
     }
 
-    public void showCustomerInfor(){
+    public void showCustomerInfor() {
         try {
+            Collections.sort(customersList, (customer1, customer2) -> {
+                int name = customer1.getCustomerName().compareTo(customer2.getCustomerName());
+                if (name == 0) {
+                    return 0;
+                } else {
+                    return name;
+                }
+            });
             for (Customer customer : customersList) {
-                System.out.println(customer.getNum()+"\n"+customer.showInfor());
+                System.out.println(customer.getNum() + "\n" + customer.showInfor());
                 System.out.println("");
             }
         } catch (NullPointerException e) {

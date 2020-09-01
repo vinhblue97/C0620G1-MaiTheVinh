@@ -28,7 +28,7 @@ public class NewService {
     }
 
     public void addNewService() throws IOException {
-        int choise = 0;
+        String choise;
         addLoop:
         do {
             check = true;
@@ -37,27 +37,27 @@ public class NewService {
                     "3. Add New Room\n" +
                     "4. Back to menu\n" +
                     "5. Exit\n");
-            choise = scanner.nextInt();
+            choise = scanner.nextLine();
             switch (choise) {
-                case 1:
+                case "1":
                     addVilla();
                     break;
-                case 2:
+                case "2":
                     addHouse();
                     break;
-                case 3:
+                case "3":
                     addRoom();
                     break;
-                case 4:
+                case "4":
                     break addLoop;
-                case 5:
+                case "5":
                     check = false;
                     break addLoop;
             }
         } while (true);
     }
 
-    public void addVilla() throws IOException {
+    public void addVilla(){
         String villaPath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Villa.csv";
         int numVilla = villaList.size()+1;
         String villaId = setId(numVilla);
@@ -78,7 +78,7 @@ public class NewService {
         fileUtils.writeFileCVS(villaPath, villaList);
     }
 
-    public void addHouse() throws IOException {
+    public void addHouse() {
         String housePath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\House.csv";
         int numHouse = houseList.size()+1;
         String houseId = setId(numHouse);
@@ -97,7 +97,7 @@ public class NewService {
         fileUtils.writeFileCVS(housePath, houseList);
     }
 
-    public void addRoom() throws IOException {
+    public void addRoom(){
         String roomPath = "E:\\C0620G1-MaiTheVinh\\CaseStudy\\Module2\\src\\data\\Room.csv";
         int numRoom = roomList.size()+1;
         String roomId = setId(numRoom);

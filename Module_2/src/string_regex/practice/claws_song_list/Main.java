@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 class Main {
     public static void main(String[] args) throws IOException {
-        URL url = new URL("https://www.nhaccuatui.com/bai-hat/nhac-tre-moi.html");
+        URL url = new URL("https://www.facebook.com/");
         Scanner scanner = new Scanner(new InputStreamReader(url.openStream()));
         scanner.useDelimiter("\\Z");
         String content = scanner.next();
@@ -18,10 +18,10 @@ class Main {
         // remove all new line
         content = content.replaceAll("\\n+", "");
         // regex
-        Pattern p = Pattern.compile("name_song\">(.*?)</a>");
+        Pattern p = Pattern.compile("<div class=\"_55lr\"> (.*?)</div>");
         Matcher m = p.matcher(content);
         while (m.find()) {
-            System.out.println(m.group(1));
+            System.out.println(m.group(0));
         }
     }
 }

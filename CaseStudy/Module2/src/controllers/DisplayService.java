@@ -33,7 +33,7 @@ public class DisplayService {
     }
 
     public void displayService() {
-        int choise;
+        String choise;
         showLoop:
         do {
             System.out.println("1. Show all Villa\n" +
@@ -44,30 +44,30 @@ public class DisplayService {
                     "6. Show All Name Name Not Duplicate\n" +
                     "7. Back to menu\n" +
                     "8. Exit");
-            choise = scanner.nextInt();
+            choise = scanner.nextLine();
             try {
                 switch (choise) {
-                    case 1:
+                    case "1":
                         showAllVilla();
                         break;
-                    case 2:
+                    case "2":
                         showAllHouse();
                         break;
-                    case 3:
+                    case "3":
                         showAllRoom();
                         break;
-                    case 4:
+                    case "4":
                         showAllVillaNotDuplicate();
                         break;
-                    case 5:
+                    case "5":
                         showAllHouseNotDuplicate();
                         break;
-                    case 6:
+                    case "6":
                         showAllRoomNotDuplicate();
                         break;
-                    case 7:
+                    case "7":
                         break showLoop;
-                    case 8:
+                    case "8":
                         check = false;
                 }
             } catch (NullPointerException e) {

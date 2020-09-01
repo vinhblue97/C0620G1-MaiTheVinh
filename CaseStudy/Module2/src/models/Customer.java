@@ -1,6 +1,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 public class Customer implements Serializable, Comparable {
     private static int numCustomer = 0;
@@ -14,6 +15,7 @@ public class Customer implements Serializable, Comparable {
     private String customerType;
     private String address;
     private Services usedService;
+    private int age;
 
     public int getNum() {
         return num;
@@ -38,6 +40,18 @@ public class Customer implements Serializable, Comparable {
         this.address = address;
         this.idCard = idCard;
         setNum(++numCustomer);
+    }
+
+    public void setAge() {
+        Calendar c = Calendar.getInstance();
+        int currentYear = c.get(Calendar.YEAR);
+        int year = Integer.parseInt(this.birthDay.substring(birthDay.length() - 4));
+        this.age = currentYear - year;
+    }
+
+    public int getAge() {
+        setAge();
+        return age;
     }
 
     public void setUsedService(Services usedService) {

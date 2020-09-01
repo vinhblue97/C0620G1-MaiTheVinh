@@ -1,19 +1,24 @@
 package case_study.controller;
 
+import case_study.models.Request;
 import case_study.models.Vocabulary;
 
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Dictionary {
 
     Map<String, Vocabulary> vocabularyMap;
+    Map<String, List<String>> requestList = new TreeMap<>();
+    List<String> actionList = new ArrayList<>();
+    List<String> ParamsList = new ArrayList<>();
+    List<String> keyWordList = new ArrayList<>();
 
     public Dictionary(Map<String, Vocabulary> vocabularyMap) {
         this.vocabularyMap = vocabularyMap;
     }
 
     public void mainMenu() {
+        Request request = new Request();
         boolean check = true;
         Scanner scanner = new Scanner(System.in);
         do {
@@ -25,28 +30,35 @@ public class Dictionary {
             int choise = Integer.parseInt(scanner.nextLine());
             switch (choise) {
                 case 1:
+                    request.setAction("look-up", actionList);
                     LookUp newVocabulary = new LookUp(vocabularyMap);
                     newVocabulary.menu();
                     check = newVocabulary.isCheck();
                     break;
                 case 2:
+                    request.setAction("drop", actionList);
                     System.out.println("Enter the drop word");
                     String dropWrod = scanner.nextLine();
                     Drop drop = new Drop(vocabularyMap, dropWrod);
                     drop.drop();
                     break;
                 case 3:
+                    request.setAction("export", actionList);
                     Export export = new Export(vocabularyMap);
                     export.export();
                     break;
                 case 4:
+                    request.setAction("look-for", actionList);
                     LookFor lookFor = new LookFor(vocabularyMap);
-                    lookFor.lookFor();
+                    lookFor.lookFor(keyWordList);
                     break;
                 case 5:
                     check = false;
                     break;
             }
+            requestList.put("action", actionList);
+            requestList.put("params", ParamsList);
+            requestList.put("keyWord", keyWordList);
 
         } while (check);
     }
