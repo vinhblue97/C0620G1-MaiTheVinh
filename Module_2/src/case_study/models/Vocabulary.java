@@ -1,80 +1,85 @@
 package case_study.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Vocabulary implements Serializable {
-    private static long numVocabulary = 0;
+    private List<String> meaningList = new ArrayList<>();
+    private List<String> nounList = new ArrayList<>();
+    private List<String> verbList = new ArrayList<>();
+    private List<String> adjList = new ArrayList<>();
+    private List<String> advList = new ArrayList<>();
+    public static long num = 1;
+
+    private String meaning;
+    private String type;
     private String vocabulary;
-    private String pronounciation;
     private String noun = "";
     private String verb = "";
     private String adjective = "";
     private String adverb = "";
 
-    public String getNoun() {
-        return noun;
-    }
-
     public void setNoun(String noun) {
-        this.noun += '\n' + noun;
-    }
-
-    public String getVerb() {
-        return verb;
+        this.noun += "\r\n" + "- " + noun;
+        nounList.add(noun);
     }
 
     public void setVerb(String verb) {
-        this.verb += '\n' +verb;
-    }
-
-    public String getAdjective() {
-        return adjective;
+        this.verb += "\r\n" + "- " + verb;
+        verbList.add(verb);
     }
 
     public void setAdjective(String adjective) {
-        this.adjective += '\n' + adjective;
-    }
-
-    public String getAdverb() {
-        return adverb;
+        this.adjective += "\r\n" + "- " + adjective;
+        adjList.add(adjective);
     }
 
     public void setAdverb(String adverb) {
-        this.adverb += '\n' +adverb;
+        this.adverb += '\n' + "- " + adverb;
+        advList.add(adverb);
     }
 
-    public Vocabulary(String vocabulary, String pronounciation) {
+    public List<String> getMeaningList() {
+        return meaningList;
+    }
+
+
+    public void setType(String type, String meaning) {
+        this.type = type;
+        this.meaning = meaning;
+        meaningList.add(meaning);
+        setMeaning();
+    }
+
+    public void setMeaning() {
+        switch (type) {
+            case "n":
+                setNoun(meaning);
+                break;
+            case "v":
+                setVerb(meaning);
+                break;
+            case "adj":
+                setAdjective(meaning);
+                break;
+            case "adv":
+                setAdverb(meaning);
+                break;
+        }
+    }
+
+    public Vocabulary(String vocabulary) {
         this.vocabulary = vocabulary;
-        this.pronounciation = pronounciation;
-        numVocabulary++;
-    }
-
-
-    public String getVocabulary() {
-        return vocabulary;
     }
 
     public String showVocabulary() {
-        return definitions();
+        Format format = new Format(vocabulary, noun, verb, adjective, adverb);
+        return format.showDefinition();
     }
 
-    public String definitions() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("-----------------RESULT-----------------\n");
-        stringBuilder.append(getVocabulary()).append(" ").append(pronounciation);
-        if (noun != "") {
-            stringBuilder.append("\n").append("Noun: ").append(noun);
-        }
-        if (verb != "") {
-            stringBuilder.append("\n").append("Verb: ").append(verb);
-        }
-        if (adjective != "") {
-            stringBuilder.append("\n").append("Adjective: ").append(adjective);
-        }
-        if (adverb != "") {
-            stringBuilder.append("\n").append("Adverb: ").append(adverb);
-        }
-        stringBuilder.append("\n-----------------------------------------");
-        return stringBuilder.toString();
+    public String saveDefinition() {
+        Format format = new Format(vocabulary, noun, verb, adjective, adverb);
+        return format.saveFile(nounList, verbList, adjList, advList);
     }
 }

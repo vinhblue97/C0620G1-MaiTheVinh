@@ -1,20 +1,10 @@
 package case_study.models;
 
-import java.util.List;
-
 public class Request {
+    private String input;
 
-    List<String> actionList;
-
-    public void setKeyWord(String keyWord, List<String> keyWordList) {
-        keyWordList.add(keyWord);
+    public Request(String input) {
+        this.input = input;
     }
 
-    public void setAction(String action,List<String> actionList) {
-        actionList.add(action);
-    }
-
-    public void setParams(){
-
-    }
 }
