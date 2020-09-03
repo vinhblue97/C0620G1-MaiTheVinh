@@ -9,12 +9,16 @@ public class Adding {
     private String vocabulary;
     private String type;
     private String meaning;
+    private String pronoun;
+    private String similar;
 
-    public Adding(Map<String, Vocabulary> vocabularyMap, String vocabulary, String type, String meaning) {
+    public Adding(Map<String, Vocabulary> vocabularyMap, String vocabulary, String pronoun, String similar, String type, String meaning) {
         this.vocabularyMap = vocabularyMap;
         this.vocabulary = vocabulary;
+        this.pronoun = pronoun;
         this.type = type;
         this.meaning = meaning;
+        this.similar = similar;
     }
 
     public Map<String, Vocabulary> checkVocab() {
@@ -48,13 +52,13 @@ public class Adding {
 
     public void addNewWord(){
         Vocabulary newWord = new Vocabulary(vocabulary);
-        newWord.setType(type, meaning);
+        newWord.setType(pronoun, similar, type, meaning);
         vocabularyMap.put(vocabulary,newWord);
     }
 
     public void insertWord(){
         Vocabulary word = vocabularyMap.get(vocabulary);
-        word.setType(type, meaning);
+        word.setType(pronoun, similar, type, meaning);
     }
 
     public void existWord(){

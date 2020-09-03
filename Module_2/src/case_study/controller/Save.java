@@ -18,9 +18,8 @@ public class Save {
     public void saveDictionary() throws IOException {
         String filePath = "E:\\C0620G1-MaiTheVinh\\Module_2\\src\\case_study\\data\\FileExport.txt";
         StringBuilder outPut = new StringBuilder();
-        Vocabulary.num = 1;
         for(String vocabulary:vocabularyMap.keySet()){
-            outPut.append(vocabularyMap.get(vocabulary).saveDefinition());
+            outPut.append(vocabularyMap.get(vocabulary).showDefinition());
         }
         FileWriter fileWriter = new FileWriter(filePath);
         fileWriter.append(outPut.toString());

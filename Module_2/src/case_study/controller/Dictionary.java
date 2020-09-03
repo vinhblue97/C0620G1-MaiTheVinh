@@ -1,5 +1,6 @@
 package case_study.controller;
 
+import case_study.commons.AnalystInput;
 import case_study.models.Vocabulary;
 
 import java.io.IOException;
@@ -27,6 +28,8 @@ public class Dictionary {
             AnalystInput setInput = new AnalystInput(input);
             String action = setInput.getAction();
             String vocab = setInput.getVocab();
+            String similar = setInput.getSimilar();
+            String pronoun = setInput.getPronoun();
             String type = "";
             String meaning = "";
             if (input.length() != (action + vocab).length() + 1) {
@@ -35,12 +38,12 @@ public class Dictionary {
             }
             switch (action) {
                 case "add":
-                    Adding add = new Adding(vocabularyMap, vocab, type, meaning);
+                    Adding add = new Adding(vocabularyMap, vocab, pronoun, similar, type, meaning);
                     vocabularyMap = add.checkVocab();
                     break;
                 case "drop":
-                    Deleting drop = new Deleting(vocabularyMap);
-                    drop.drop(vocab);
+                    Drop drop = new Drop(vocabularyMap);
+                    drop.drop(vocab, meaning);
                     break;
                 case "save":
                     Save save = new Save(vocabularyMap);
@@ -48,7 +51,9 @@ public class Dictionary {
                     break;
                 case "lookup":
                     LookUp lookUp = new LookUp(vocabularyMap);
+                    System.out.println("------------------------RESULT------------------------");
                     System.out.println(lookUp.lookUp(vocab));
+                    System.out.println("------------------------------------------------------");
                     break;
                 case "quit":
                     break loop;

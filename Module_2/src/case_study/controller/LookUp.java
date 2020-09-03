@@ -16,15 +16,15 @@ public class LookUp {
         String denifition = "";
         for (String vocab : vocabularyMap.keySet()) {
             if (vocab.equals(vocabulary)) {
-                denifition = vocabularyMap.get(vocab).showVocabulary();
+                denifition = vocabularyMap.get(vocab).showDefinition();
                 check = true;
                 break;
             }
         }
-        if(check){
+        if (check) {
             return denifition;
-        }else{
-            return vocabulary+" is not in this dictionary";
+        } else {
+            return vocabulary + " is not in this dictionary";
         }
     }
 }
