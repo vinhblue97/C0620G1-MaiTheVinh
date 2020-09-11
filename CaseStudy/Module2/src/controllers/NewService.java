@@ -83,7 +83,6 @@ public class NewService {
         int numHouse = houseList.size()+1;
         String houseId = setId(numHouse);
         System.out.println("Enter the House's Name");
-        scanner.nextLine();
         String name = scanner.nextLine();
         System.out.println("Enter the House's Area");
         double area = setArea();
@@ -102,7 +101,6 @@ public class NewService {
         int numRoom = roomList.size()+1;
         String roomId = setId(numRoom);
         System.out.println("Enter the Room's Name");
-        scanner.nextLine();
         String name = scanner.nextLine();
         System.out.println("Enter the Room's Area");
         double area = setArea();

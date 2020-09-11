@@ -7,17 +7,16 @@ import java.io.*;
 import java.util.*;
 
 public class AddNewBook {
+    int numTickKet = 0;
     static boolean checkRead = false;
     static Scanner scanner = new Scanner(System.in);
     static Queue<Customer> cinemaQueue = new LinkedList<>();
 
     public void addNewBook(List<Villa> villaList, List<House> houseList, List<Room> roomList, Map<Integer, Customer> bookingList, List<Customer> customersList) throws IOException {
-        if (!checkRead) {
-            readFileBooking(bookingList);
-        }
+        readFileBooking(bookingList);
         DisplayCustomerInformation displayCustomerInformation = new DisplayCustomerInformation(customersList);
         displayCustomerInformation.showCustomerInfor();
-        if (displayCustomerInformation.isCheckBook()){
+        if (displayCustomerInformation.isCheckBook()) {
             return;
         }
         System.out.println("Choose the customer: ");
@@ -26,7 +25,11 @@ public class AddNewBook {
                 "2.\tBooking House\n" +
                 "3.\tBooking Room\n" +
                 "4. Back to menu");
-        String choise = scanner.nextLine();
+        String choise = "";
+        do {
+            choise = scanner.nextLine();
+        } while (choise != "0");
+
         DisplayService displayService = new DisplayService(villaList, houseList, roomList);
         switch (choise) {
             case "1":
@@ -77,7 +80,7 @@ public class AddNewBook {
         fileUtils.writeFileCVS(bookingFile, bookingList);
     }
 
-    public void readFileBooking(Map<Integer, Customer> bookingList){
+    public void readFileBooking(Map<Integer, Customer> bookingList) {
         System.out.println("----------------------BOOKING LIST-------------------------");
         for (Integer index : bookingList.keySet()) {
             System.out.println("Customer: " + index);
@@ -96,6 +99,7 @@ public class AddNewBook {
         do {
             if (confirm.equals("Y")) {
                 System.out.println("You book cinema ticket successfully");
+                numTickKet++;
                 cinemaQueue.add(customer);
             } else if (confirm.equals("N")) {
                 System.out.println("You do not book cinema ticket");
@@ -103,8 +107,11 @@ public class AddNewBook {
                 System.out.println("You have to press Y or N");
             }
         } while (!confirm.equals("Y") && !confirm.equals("N"));
-        for (Customer queue : cinemaQueue) {
-            System.out.println(queue.getCustomerName());
+        if (numTickKet == 3) {
+            for (Customer queue : cinemaQueue) {
+                System.out.println(queue.getCustomerName());
+                numTickKet = 0;
+            }
         }
         return cinemaQueue;
     }

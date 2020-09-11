@@ -12,7 +12,8 @@ public class Definition {
     private List<String> adjList;
     private List<String> advList;
     private List<String> similarList;
-    public Definition(String vocab, String pronoun, List<String> similarList,List<String> nounList, List<String> verbList, List<String> adjList, List<String> advList) {
+
+    public Definition(String vocab, String pronoun, List<String> similarList, List<String> nounList, List<String> verbList, List<String> adjList, List<String> advList) {
         this.vocab = vocab;
         this.pronoun = pronoun;
         this.nounList = nounList;
@@ -20,6 +21,7 @@ public class Definition {
         this.adjList = adjList;
         this.advList = advList;
         this.similarList = similarList;
+//        Vocabulary.num = 1;
     }
 
     public String showVocab() {

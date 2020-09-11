@@ -30,19 +30,19 @@ public class Drop {
                     }
                     for (String mean : vocabularyMap.get(vocab).getVerbList()) {
                         if (mean.equals(meaning)) {
-                            vocabularyMap.get(vocab).getNounList().remove(meaning);
+                            vocabularyMap.get(vocab).getVerbList().remove(meaning);
                             break loop;
                         }
                     }
                     for (String mean : vocabularyMap.get(vocab).getAdjList()) {
                         if (mean.equals(meaning)) {
-                            vocabularyMap.get(vocab).getNounList().remove(meaning);
+                            vocabularyMap.get(vocab).getAdjList().remove(meaning);
                             break loop;
                         }
                     }
                     for (String mean : vocabularyMap.get(vocab).getAdvList()) {
                         if (mean.equals(meaning)) {
-                            vocabularyMap.get(vocab).getNounList().remove(meaning);
+                            vocabularyMap.get(vocab).getAdvList().remove(meaning);
                             break loop;
                         }
                     }

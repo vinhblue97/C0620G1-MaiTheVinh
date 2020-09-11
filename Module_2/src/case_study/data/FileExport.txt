@@ -1,6 +1,10 @@
 1.Chance
 *Noun: - cơ hội
 *Synonymous: - Opportunity
-1.downtown
-*Noun: - trung tâm thành phố
-*Synonymous: - city centre
+2.able
+*Adjective: - khả năng
+3.book
+*Noun: - quyển sách
+*Verb: - ghi chép
+4.car/kɑːr/
+*Noun: - xe hơi

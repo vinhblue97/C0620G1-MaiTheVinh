@@ -21,9 +21,12 @@ public class DisplayCustomerInformation {
     public void showCustomerInfor() {
         try {
             Collections.sort(customersList,new Comparing());
+            int index = 1;
             for (Customer customer : customersList) {
+                customer.setNum(index);
                 System.out.println(customer.getNum() + "\n" + customer.showInfor());
                 System.out.println("");
+                index++;
             }
         } catch (NullPointerException e) {
             this.checkBook = true;

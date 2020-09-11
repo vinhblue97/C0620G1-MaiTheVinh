@@ -1,6 +1,5 @@
 package case_study.models;
 
-import case_study.commons.Definition;
 import case_study.commons.Similar;
 
 import java.io.Serializable;
@@ -80,9 +79,10 @@ public class Vocabulary implements Serializable {
         this.vocabulary = vocabulary;
     }
 
-    public String showDefinition() {
-        num = 1;
-        Definition format = new Definition(vocabulary, pronoun, similarList, nounList, verbList, adjList, advList);
-        return format.showVocab();
+    public static String showDefinition() {
+//        Definition format = new Definition(vocabulary, pronoun, similarList, nounList, verbList, adjList, advList);
+//        return format.showVocab();
+        return "";
     }
+
 }
