@@ -148,14 +148,35 @@ drop view test;
 -- 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
 -- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.
 
-select * from adding_service
-where id in (
-select adding_service_id from task_13
-where SL = max(SL)
-);
+drop view if exists test;
+create view test as
+select adding_service_id, count(adding_service_id) as num_extra_service from contract_detail
+group by adding_service_id
+order by adding_service_id;
+
+
+select contracts.id as id, services.`name` as service_name, adding_service.`name` as extra_service_name, test.num_extra_service from adding_service 
+right join test on test.adding_service_id = adding_service.id 
+join contract_detail on contract_detail.adding_service_id = adding_service.id
+join contracts on contracts.id = contract_detail.contract_id
+join services on services.id = contracts.service_id
+where test.num_extra_service = 1;
+drop view if exists test;
 
 -- 15.	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai, DiaChi 
 -- mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019.
+
+drop view if exists test;
+create view test as
+select employee_id as id , count(employee_id) as num_employee_contract from contracts
+where year(begin_date) in (2018,2019)
+group by employee_id;
+
+select * from employees 
+where id in (
+select id from test
+where num_employee_contract > 3);
+drop view if exists test;
 
 -- 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
 
@@ -182,35 +203,19 @@ select * from task_17;
 -- 18.	Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng).
 drop view if exists task_18;
 create view task_18 as
-select customers.id from customers 
+select customers.id as id from customers 
 join contracts on contracts.customer_id = customers.id
-where year(begin_date) < 2016 or year(end_date) < 2016;
-
+where year(begin_date) < 2016 or year(end_date) < 2016
+group by customers.id;
 select * from task_18;
 
 delete from customers
 where customers.id in (
 select id from task_18); 
 drop view if exists task_18;
+-- -------------------------------bug 1175-----------------------------------
 
 -- 19.	Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.
-delimiter //
-create function countFre()
-returns int
-deterministic
-begin
-declare counter int;
-drop view if exists temp;
-create view temp as
-select count(adding_service_id) as Sl from contract_detail
-group by adding_service_id;
-set counter = temp.Sl;
-drop view if exists temp;
-return counter;
-end; //
-delimiter ;
-
-select countFre();
 
 -- 20.	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống, thông tin hiển thị bao gồm ID 
 -- (IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, NgaySinh, DiaChi.
