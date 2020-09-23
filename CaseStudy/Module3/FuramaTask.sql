@@ -180,8 +180,6 @@ drop view if exists test;
 
 -- 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
 
--- --------------------------------------bug 1175  -------------------------------------------
-
 delete from employees 
 where id not in (
 	select employee_id from contracts
@@ -192,41 +190,193 @@ select * from employees;
 -- 17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
 -- chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.
 
-drop view if exists task_17;
-create view task_17 as 
-select customers.`name`, customers.birthday, customers.identify_card,customers.phone_number, customers.email, customers.address from customers
-join contracts on contracts.customer_id = customers.id
-where ((customers.type_of_customer_id = 1) or (customers.type_of_customer_id = 2)) and ((year(contracts.begin_date) = 2019) and (contracts.total_cost > 1000000));
+drop view if exists test;
+create view test as
+select contracts.customer_id, sum(contracts.total_cost) as `sum` from contracts
+group by contracts.customer_id;
+select * from test;
 
-select * from task_17;
+update customers
+set customers.type_of_customer_id = 1 where customers.type_of_customer_id in (2) and customers.id in (
+select customer_id from test 
+where `sum` >= 10000000);
+select * from customers;
 
--- 18.	Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng).
+-- 18.	Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràng buộc giữa các bảng).
 drop view if exists task_18;
 create view task_18 as
 select customers.id as id from customers 
 join contracts on contracts.customer_id = customers.id
-where year(begin_date) < 2016 or year(end_date) < 2016
+where year(begin_date) > 2016
 group by customers.id;
 select * from task_18;
 
 delete from customers
-where customers.id in (
+where customers.id not in (
 select id from task_18); 
 drop view if exists task_18;
--- -------------------------------bug 1175-----------------------------------
 
+select * from customers;
 -- 19.	Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.
+drop view if exists test;
+create view test as
+select adding_service.id as id , count(contract_detail.adding_service_id) as num_extra_service from contracts 
+join contract_detail on contract_detail.contract_id = contracts.id
+join adding_service on adding_service.id = contract_detail.adding_service_id
+group by contract_detail.adding_service_id;
+
+update adding_service 
+set cost = cost*2 
+where id in (
+select id from test 
+where test.num_extra_service >=10);
+drop view if exists test;
+
 
 -- 20.	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống, thông tin hiển thị bao gồm ID 
 -- (IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, NgaySinh, DiaChi.
-delimiter //
-drop procedure if exists task_20;
-create procedure task_20()
-begin
+
 drop view if exists customer_employees;
-create view customer_employees as
-select customers.id, customers.`name` as customerName, customers.email as customerEmail, customers.phone_number as customerPhone, customers.birthday as customerBirthDay, customers.address as customerAddress  from customers
-select employees.id as employee_id, concat(employees.last_name,' ', employees.middle_name,' ', employees.first_name) as employeeName, employees.email as employeeEmail, employees.phone_number as employeePhone,employees.birth_day as employeeBirthDay,  employees.address as employeeAdress from  employees
+create view customer_view as
+select customers.id, customers.`name` as customerName, customers.email as customerEmail, customers.phone_number as customerPhone, customers.birthday as customerBirthDay, customers.address as customerAddress  from customers;
+create view employye_view as
+select employees.id as employee_id, concat(employees.last_name,' ', employees.middle_name,' ', employees.first_name) as employeeName, employees.email as employeeEmail, employees.phone_number as employeePhone,employees.birth_day as employeeBirthDay,  employees.address as employeeAdress from  employees;
+
+select * from customer_view;
+select * from employye_view;
+
+
+-- 21.	Tạo khung nhìn có tên là V_NHANVIEN để lấy được thông tin của tất cả các nhân viên có địa chỉ là “Hải Châu” và đã từng lập hợp đồng cho 1 
+-- hoặc nhiều Khách hàng bất kỳ với ngày lập hợp đồng là “12/12/2019”
+
+drop view if exists V_NHANVIEN;
+create view V_NHANVIEN as
+select * from employees 
+where id in(
+select employees.id from employees
+where employees.address = 'Hải Châu' and id in 
+(
+	select employees.id from employees
+	join contracts on contracts.employee_id = employees.id
+	where contracts.begin_date = '2019-12-12')
+)
+group by employees.id;
+select * from V_NHANVIEN;
+
+-- 22.	Thông qua khung nhìn V_NHANVIEN thực hiện cập nhật địa chỉ thành “Liên Chiểu” đối với tất cả các Nhân viên được 
+-- nhìn thấy bởi khung nhìn này.
+
+update employees
+set address ='Liên Chiểu'
+where id in ( select id from V_NHANVIEN);
+
+select * from employees;
+-- 23.	Tạo Store procedure Sp_1 Dùng để xóa thông tin của một Khách hàng nào đó với Id Khách hàng được truyền vào như là 1 tham số của Sp_1
+drop procedure if exists Sp_1;
+delimiter //
+create procedure Sp_1 (num int)
+begin
+delete from customers 
+where id = num;
+end; //
+delimiter ;
+select * from customers;
+call Sp_1(3);
+
+-- 24.	Tạp Store procedure Sp_2 Dùng để thêm mới vào bảng HopDong với yêu cầu Sp_2 phải thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung, 
+-- với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.
+
+-- 27.	Tạo user function thực hiện yêu cầu sau:
+-- a.	Tạo user function func_1: Đếm các dịch vụ đã được sử dụng với Tổng tiền là > 2.000.000 VNĐ.
+-- b.	Tạo user function Func_2: Tính khoảng thời gian dài nhất tính từ lúc bắt đầu làm hợp đồng đến lúc kết thúc hợp đồng mà Khách hàng đã
+-- thực hiện thuê dịch vụ (lưu ý chỉ xét các khoảng thời gian dựa vào từng lần làm hợp đồng thuê dịch vụ, không xét trên toàn bộ các lần làm 
+-- hợp đồng). Mã của Khách hàng được truyền vào như là 1 tham số của function này.
+
+drop function if exists func_1;
+delimiter //
+create function func_1()
+returns int 
+deterministic
+begin
+select count(contracts.service_id) into @result from contracts
+join services on contracts.service_id = services.id
+where services.cost > 2000000; 
+return @result;
 end; //
 delimiter ;
 
+select func_1();
+
+drop function if exists func_2;
+delimiter //
+create function func_2()
+returns int
+deterministic
+begin
+drop view if exists test;
+create view test as
+select contracts.customer_id, sum(abs(datediff(contracts.end_date,contracts.begin_date))) as period from contracts 
+group by contracts.customer_id;
+
+select max (period) into @result from test;
+return @result;
+end; //
+delimiter ;
+
+call func_2();
+
+-- 28.	Tạo Store procedure Sp_3 để tìm các dịch vụ được thuê bởi khách hàng với loại dịch vụ là “Room” từ đầu năm 2015 đến hết năm 2019 
+-- để xóa thông tin của các dịch vụ đó (tức là xóa các bảng ghi trong bảng DichVu) và xóa những HopDong sử dụng dịch vụ liên quan 
+-- (tức là phải xóa những bản gi trong bảng HopDong) và những bản liên quan khác.
+
+drop procedure if exists Sp_3;
+delimiter //
+create procedure Sp_3()
+begin
+drop view if exists test;
+create view test as
+select contracts.id as contract_id, services.id as service_id from contracts 
+join customers on contracts.customer_id = customers.id
+join services on services.id = contracts.service_id
+where services.type_of_service_id =2;
+
+delete from services 
+where services.id in (select service_id from test
+group by service_id);
+
+delete from contracts 
+where contracts.id in (select contract_id from test
+group by contract_id);
+
+delete from contract_detail
+where contract_detail.contract_id in (select contract_id from test
+group by contract_id);
+
+drop view if exists test;
+end ; //
+delimiter ;
+select * from services;
+select * from contracts;
+
+drop view if exists test;
+create view test as
+select contracts.id as contract_id, services.id as service_id from contracts 
+join customers on contracts.customer_id = customers.id
+join services on services.id = contracts.service_id
+where services.type_of_service_id =2;
+
+delete from services 
+where services.id in (select service_id from test
+group by service_id);
+
+delete from contracts 
+where contracts.id in (select contract_id from test
+group by contract_id);
+
+delete from contract_detail
+where contract_detail.contract_id in (select contract_id from test
+group by contract_id);
+
+drop view if exists test;
+
+select * from contract_detail;

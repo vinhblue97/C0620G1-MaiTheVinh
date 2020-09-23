@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Xây dựng Landing Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .option:active {
+            border: 2px dashed black;
+        }
+
+        #logo {
+            width: 140px
+        }
+
+        .dropbox {
+            font-size: 15px;
+            height: 40px;
+            width: 250px
+        }
+
+        #hand {
+            width: 1600px;
+            background-image: url("hading.png");
+            height: 720px;
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="container-fluid float-left">
+    <div class="nav nav-tabs row  mt-1 ml-3 " style=" border: none">
+        <div class="option" id="logo" style="border-right: 2px double black">
+            <a href="https://www.microsoft.com/vi-vn/" style="text-decoration: none">
+                <img src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31"
+                     width="108px" max-width="none">
+            </a>
+        </div>
+
+        <div class="option ml-3">
+            <a href="https://www.microsoft.com/en-us/surface" style="color: black">
+                <span style="font-size: 18px; font-weight: 600">Surface</span>
+            </a>
+        </div>
+
+        <div class="option  ml-2 dropdown">
+            <a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               style=" font-size: 15px; color: black">Computer</a>
+            <i class="fas fa-caret-down"></i>
+            <div class="dropdown-menu " style="background-color: #f4f4f4;">
+                <div>
+                    <a class="dropdown-item dropbox" href="#">
+                        NEW Surface Go 2
+                        <i class="fas fa-angle-right float-right "></i>
+                    </a>
+
+                </div>
+                <div>
+                    <a class="dropdown-item dropbox" href="#">
+                        Surface Laptop 3
+                        <i class="fas fa-angle-right float-right "></i>
+                    </a>
+                </div>
+                <div>
+                    <a class="dropdown-item dropbox" href="#">
+                        Surface Pro 7
+                        <i class="fas fa-angle-right float-right "></i>
+                    </a>
+                </div>
+                <div>
+                    <a class="dropdown-item dropbox" href="#">
+                        Surface Pro X
+                        <i class="fas fa-angle-right float-right "></i>
+                    </a>
+                </div>
+                <div>
+                    <a class="dropdown-item dropbox" href="#">
+                        Surface Studio 2
+                        <i class="fas fa-angle-right float-right "></i>
+                    </a>
+                </div>
+
+                <a class="dropdown-item dropbox" href="#">New Surface Duo</a>
+                <a class="dropdown-item dropbox" href="#">Surface Neo</a>
+                <a class="dropdown-item dropbox" href="#">Surface Hub 2S</a>
+                <a class="dropdown-item dropbox" href="#">Compare devices</a>
+                <a class="dropdown-item dropbox" href="#">Help me choose</a>
+            </div>
+        </div>
+
+        <div class="option ml-2">
+            <span style="font-size: 15px">Accessories</span>
+            <i class="fas fa-caret-down"></i>
+        </div>
+
+        <div class="option ml-2">
+            <a href="https://www.microsoft.com/en-us/surface/business" style="color: black; font-size: medium">
+                <span style="font-size: 15px">For business</span>
+            </a>
+        </div>
+
+        <div class="option ml-2">
+            <span style="font-size: 15px">Shop now</span>
+            <i class="fas fa-caret-down"></i>
+        </div>
+
+        <div class="option ml-2">
+            <a href="https://support.microsoft.com/en-us/surface?ui=en-US&rs=en-001&ad=US"
+               style="color: black; font-size: 20px ">
+                <span style="font-size: 15px">Support</span>
+            </a>
+        </div>
+        <div style="margin-left: 530px">
+            <div class="option dropdown">
+                <span style="font-size: 15px">All Microsoft</span>
+
+                <i class="fas fa-caret-down"></i>
+            </div>
+        </div>
+
+        <div class="option ml-2">
+            <span style="font-size: 15px">Search</span>
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="option ml-2">
+            <span style="font-size: 15px">Cart</span>
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="option ml-2">
+            <span style="font-size: 15px">Sign in</span>
+            <i class="fas fa-user-plus"></i>
+        </div>
+    </div>
+
+    <div class="row mr-4" id="hand">
+        <div class="col-lg-6">
+            <div style="margin-top: 200px; margin-left: 120px; width: 500px">
+                <span style="font-weight: 300; font-size: 40px"> Surface Duo is here</span><br>
+                <span style="font-weight: 300;font-size: 23px">Surface innovation comes to a mobile device, featuring due PixelSense<sup>TM</sup> Function Displays, the best of Microsoft 365, all your favorite Android apps, and more.</span><br>
+                <div class="mt-2">
+                    <a class="option"
+                       href="https://www.microsoft.com/en-us/surface/devices/surface-duo?activetab=overview">
+                        <span style="font-weight: 500; font-size: 15px; color: blue"><strong> MEET SURFACE DUO ></strong></span>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav nav-tabs row" style="padding-top: 20px">
+        <div class="col-lg-2 option">
+        </div>
+        <div class="col-lg-2">
+            <div align="center">
+                <a href="https://www.microsoft.com/en-us/surface/devices/compare-devices">
+                    <img src="https://c.s-microsoft.com/en-us/CMSImages/SurfaceHome_Lg_LinkNav_Panel_2_image1.svg?version=9257ec5f-8430-88a9-e2cd-c455f7ce172c"
+                         style="width: 40px"><br>
+                    <span style="color: blue;font-size: 15px"><strong>COMPARE DEVICE</strong></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-2 option">
+            <div align="center">
+                <a href="https://www.microsoft.com/en-us/surface/devices/help-me-choose">
+                    <img src="https://c.s-microsoft.com/en-us/CMSImages/SurfaceHome_Lg_LinkNav_Panel_2_image2.svg?version=da456df5-7733-1a20-6668-991b453cd479"
+                         style="width: 40px"><br>
+                    <span style="color: blue;font-size: 15px"><strong>HELP ME CHOOSE</strong></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-2 option">
+            <div align="center">
+                <a href="https://www.microsoft.com/en-us/store/b/surface-deals">
+                    <img src="https://c.s-microsoft.com/en-us/CMSImages/SurfaceHome_Lg_LinkNav_Panel_2_image4.svg?version=f06b4b40-4b8b-535a-1bdc-60d370824ced"
+                         style="width: 40px"><br>
+                    <span style="color: blue;font-size: 15px"><strong>DEALS</strong></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-2 option">
+            <div align="center">
+                <a href="https://www.microsoft.com/en-us/store/b/surface-accessories">
+                    <img src="https://c.s-microsoft.com/en-us/CMSImages/SurfaceHome_Lg_LinkNav_Panel_2_image3_new.svg?version=c80bda39-bfe6-c173-b664-5babf3df5ef8"
+                         style="width: 40px"><br>
+                    <span style="color: blue; font-size: 15px"><strong>ACCESSORIES</strong></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="nav nav-tas row">
+        <div class="jumbotron">
+            <div class="col-lg-2">
+                <img src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4FM3O">
+            </div>
+
+            <div class="col-lg-6">
+                <span>
+                    Get up to $700 back**
+                </span><br>
+                <span>
+                    Buy a new Surface Duo and get up to $700 back when you trade in an eligible device.
+                </span>
+            </div>
+
+            <div class="col-lg-2">
+                <a href="https://www.microsoft.com/en-us/store/b/microsoft-trade-in">
+                    LEARN MORE
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

@@ -98,7 +98,7 @@ id int auto_increment,
 area int not null,
 floors int not null,
 max_people varchar(45) not null,
-cost varchar(45) not null,
+cost int,
 type_of_service_id int,
 type_rent_id int,
 service_status varchar(45) not null,
@@ -118,21 +118,21 @@ cost varchar(45) not null,
 primary key (id)
 );
 
-alter table employees add foreign key(position_id) references employee_position(id);
-alter table employees add foreign key(level_id) references employee_level(id);
-alter table employees add foreign key(office_id) references offices(id);
+alter table employees add foreign key(position_id) references employee_position(id) ON DELETE CASCADE ON UPDATE CASCADE;
+alter table employees add foreign key(level_id) references employee_level(id) ON DELETE CASCADE ON UPDATE CASCADE;
+alter table employees add foreign key(office_id) references offices(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
-alter table contracts add foreign key(employee_id) references employees(id);
-alter table contracts add foreign key(customer_id) references customers(id);
-alter table contracts add foreign key(service_id) references services(id);
+alter table contracts add foreign key(employee_id) references employees(id) ON DELETE CASCADE ON UPDATE CASCADE;
+alter table contracts add foreign key(customer_id) references customers(id) ON DELETE CASCADE ON UPDATE CASCADE;
+alter table contracts add foreign key(service_id) references services(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
-alter table customers add foreign key(type_of_customer_id) references type_of_customers(id);
+alter table customers add foreign key(type_of_customer_id) references type_of_customers(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
-alter table services add foreign key(type_of_service_id) references type_of_service(id);
-alter table services add foreign key(type_rent_id) references type_rent(id);
+alter table services add foreign key(type_of_service_id) references type_of_service(id) ON DELETE CASCADE ON UPDATE CASCADE;
+alter table services add foreign key(type_rent_id) references type_rent(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
-alter table contract_detail add foreign key(contract_id) references contracts(id);
-alter table contract_detail add foreign key(adding_service_id) references adding_service(id);
+alter table contract_detail add foreign key(contract_id) references contracts(id) ON DELETE CASCADE ON UPDATE CASCADE;
+alter table contract_detail add foreign key(adding_service_id) references adding_service(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 insert into employee_position(id,`name`)
 values (1,'Receptionist'),
@@ -181,13 +181,13 @@ values (1,'massage', 200000, 1),
 (4,'drinks', 50000, 3);
 
 insert into services(`name`, area, floors, max_people, cost, type_of_service_id, type_rent_id, service_status)
-values ('Villa 1', 1000, 5, '20', '10.000.000', 1, 1,'busy'),
-('House 1', 500, 3, '4', '5.000.000', 2, 1,'available'),
-('Villa 2', 2000, 5, '20', '20.000.000', 1, 1,'available'),
-('House 2', 700, 2, '6', '8.000.000', 2, 3,'available');
+values ('Villa 1', 1000, 5, '20', 10000000, 1, 1,'busy'),
+('House 1', 500, 3, '4', 5000000, 2, 1,'available'),
+('Villa 2', 2000, 5, '20', 20000000, 1, 1,'available'),
+('House 2', 700, 2, '6', 8000000, 2, 3,'available');
 
 insert into employees (last_name, middle_name, first_name, position_id, level_id, office_id, birth_day, identify_card, salary,phone_number, email, address)
-values ('Nguyễn', 'Văn', 'Hoàng', 1, 1, 1,'1997-03-31','197362335', '10.000.000','0334611971', 'hoangvan@gmail.com','Đà Nẵng' ),
+values ('Nguyễn', 'Văn', 'Hoàng', 1, 1, 1,'1997-03-31','197362335', '10.000.000','0334611971', 'hoangvan@gmail.com','Hải Châu' ),
 ('Hoàng', 'Văn', 'Thất',2 ,2, 1, '2001-12-03','197362335', '15.000.000','0334611971', 'thathoang@gmail.com','Đà Nẵng' ),
 ('Trần', 'Công', 'Hoàn',3 ,2, 2, '1999-05-14','197362335', '13.000.000','0334611971', 'hoantran@gmail.com','Quảng Trị' );
 
@@ -200,10 +200,10 @@ values (1, 'Mai Thế Vinh', '1997-03-31','197362335', '0334611971', 'vinhblue97
 insert into contracts (employee_id, customer_id, service_id, begin_date, end_date, deposists, total_cost)
 values (2,2,3,'2017-01-30','2018-11-30',1000000, 3000000),
 (2,2,3,'2018-12-04','2018-12-30',1000000, 3000000),
-(1,1,1,'2018-12-31','2019-10-01',1000000, 1500000), 
-(2,1,2,'2019-10-30','2020-11-30',1000000, 3000000),
+(1,1,1,'2019-12-12','2019-10-01',1000000, 1500000), 
+(2,2,2,'2019-10-30','2020-11-30',1000000, 3000000),
 (2,1,2,'2015-10-30','2015-11-30',1000000, 3000000),
-(2,1,2,'2015-10-30','2016-11-30',1000000, 3000000);
+(2,2,4,'2015-10-30','2016-11-30',1000000, 3000000);
 
 insert into contract_detail(contract_id, adding_service_id)
 values (1, 2),
