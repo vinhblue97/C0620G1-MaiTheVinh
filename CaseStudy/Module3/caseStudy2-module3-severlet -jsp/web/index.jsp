@@ -57,13 +57,21 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto" style="margin-left: 30px">
           <li class="nav-item active" >
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.jsp" onclick="test_vinh();">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item navbars">
             <a class="nav-link" href="#">Employee<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item navbars" >
-            <a class="nav-link" href="customer.jsp">Customer<span class="sr-only">(current)</span></a>
+          <li class="nav-item navbars dropdown" >
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Customer
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="add_new_customer.jsp">Add new customer</a>
+              <a class="dropdown-item" href="/display_customer">Customer list</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
           </li>
           <li class="nav-item navbars" >
             <a class="nav-link" href="#">Service<span class="sr-only">(current)</span></a>
@@ -103,5 +111,10 @@
 
     </footer>
   </div>
+  <script>
+    function test_vinh() {
+    alert()
+    }
+  </script>
   </body>
 </html>
