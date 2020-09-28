@@ -23,19 +23,35 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
 <body>
-<div class="container-fluid" align="center">
-    <form action="/product", method="post">
-        <div class="row">
-            <div class="col-lg-6">
-                Name
-            </div>
-            <div class="col-lg-6">
-                <input type="text" placeholder="Enter the product name">
-            </div>
+<form action="/product" method="post">
+    <input type="hidden" name="action" value="create">
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Id</label>
+            <input type="text" class="form-control" name="product_id" required>
         </div>
-    </form>
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="product_name" required>
+        </div>
+        <div class="form-group">
+            <label>Cost</label>
+            <textarea  type="email" class="form-control" name="product_cost" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" name="product_dresciption" required>
+        </div>
+        <div class="form-group">
+            <label>Producer</label>
+            <input type="text" class="form-control" name="product_producer" required>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="/product?action=null"><input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"></a>
+        <input type="submit" class="btn btn-info" value="Save">
+    </div>
+</form>
 
-
-</div>
 </body>
 </html>
