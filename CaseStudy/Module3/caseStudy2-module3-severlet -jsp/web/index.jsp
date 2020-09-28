@@ -69,8 +69,6 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="add_new_customer.jsp">Add new customer</a>
               <a class="dropdown-item" href="/display_customer">Customer list</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
           <li class="nav-item navbars" >
