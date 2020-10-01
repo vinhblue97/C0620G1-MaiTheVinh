@@ -1,18 +1,25 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Customer {
+    public static int index = 1;
+    private int participleIndex;
     private String name;
-    private String birth_day;
+    private String birthday;
     private Integer gender;
-    private String id;
-    private String phone;
+    private String identify_card;
+    private String phone_number;
     private String email;
-    private Integer type;
+    private Integer type_of_customer_id;
     private String address;
 
+    public int getParticipleIndex() {
+        return participleIndex;
+    }
+
+    public void setParticipleIndex(int participleIndex) {
+        this.participleIndex = participleIndex;
+    }
 
     public String getName() {
         return name;
@@ -22,12 +29,12 @@ public class Customer {
         this.name = name;
     }
 
-    public String getBirth_day() {
-        return birth_day;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setBirth_day(String birth_day) {
-        this.birth_day = birth_day;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public Integer getGender() {
@@ -38,20 +45,20 @@ public class Customer {
         this.gender = gender;
     }
 
-    public String getId() {
-        return id;
+    public String getIdentify_card() {
+        return identify_card;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdentify_card(String identify_card) {
+        this.identify_card = identify_card;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhone_number() {
+        return phone_number;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
     }
 
     public String getEmail() {
@@ -62,12 +69,12 @@ public class Customer {
         this.email = email;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getType_of_customer_id() {
+        return type_of_customer_id;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setType_of_customer_id(Integer type_of_customer_id) {
+        this.type_of_customer_id = type_of_customer_id;
     }
 
     public String getAddress() {
@@ -82,15 +89,16 @@ public class Customer {
 
     }
 
-    public Customer(String name, String birth_day, Integer gender, String id, String phone, String email, Integer type, String address) {
+    public Customer(String name, String birthday, Integer gender, String identify_card, String phone_number, String email, Integer type_of_customer_id, String address) {
         this.name = name;
-        this.birth_day = birth_day;
+        this.birthday = birthday;
         this.gender = gender;
-        this.id = id;
-        this.phone = phone;
+        this.identify_card = identify_card;
+        this.phone_number = phone_number;
         this.email = email;
-        this.type = type;
+        this.type_of_customer_id = type_of_customer_id;
         this.address = address;
+        this.participleIndex = index;
+        index++;
     }
-
 }

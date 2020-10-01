@@ -133,10 +133,10 @@ public class CustomerServlet extends HttpServlet {
         response.sendRedirect("/customer?action=list");
     }
 
-    private void findCustomer(HttpServletRequest request, HttpServletResponse response){
+    private void findCustomer(HttpServletRequest request, HttpServletResponse response) {
         String search = request.getParameter("search");
         List<Customer> customerList = this.customerBO.find(search);
-        request.setAttribute("customerList",customerList);
+        request.setAttribute("customerList", customerList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("customer/find.jsp");
         try {
             dispatcher.forward(request, response);

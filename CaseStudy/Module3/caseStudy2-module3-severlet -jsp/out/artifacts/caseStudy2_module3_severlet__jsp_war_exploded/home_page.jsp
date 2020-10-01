@@ -98,20 +98,16 @@
                 <li>Item 3</li>
             </ul>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-9">
             <div align="center"> body</div>
         </div>
 
     </div>
     <!--    Phần footer-->
     <footer class="page-footer font-small blue">
-
-        <!-- Copyright -->
         <div class="footer-copyright text-center py-3">Furama Resort
             <a href="https://www.facebook.com/VinhBIue/posts/1430420450495688"> VinhBlue</a>
         </div>
-        <!-- Copyright -->
-
     </footer>
 </div>
 <script>

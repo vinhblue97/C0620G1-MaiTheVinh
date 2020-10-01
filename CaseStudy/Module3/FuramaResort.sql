@@ -1,5 +1,5 @@
-drop database if exists furama_resort;
-create database furama_resort;
+-- drop database if exists furama_resort;
+-- create database furama_resort;
 use furama_resort;
 
 create table employees(
@@ -43,7 +43,7 @@ create table contracts(
 id int auto_increment,
 
 employee_id int,
-customer_id int,
+customer_id varchar(45),
 service_id int,
 
 begin_date date not null,
@@ -70,15 +70,14 @@ adding_service_id int,
 
 constraint id primary key (contract_id, adding_service_id)
 );
-
+drop table customers;
 create table customers(
-id int auto_increment,
-
+id varchar(45) not null,
 type_of_customer_id int,
 
 `name` varchar(45) not null,
 birthday date not null,
-gender varchar(45) default 'male',
+gender int,
 identify_card varchar(45) not null,
 phone_number varchar(45) not null,
 email varchar(45) not null,
@@ -87,13 +86,13 @@ primary key(id)
 );
 
 create table type_of_customers(
-id int,
+id int auto_increment,
 `name` varchar(45) not null,
 primary key (id)
 );
 
 create table services(
-id int auto_increment,
+id varchar(45),
 `name` varchar(45) not null,
 area int not null,
 floors int not null,
@@ -180,30 +179,25 @@ values (1,'massage', 200000, 1),
 (3,'foods', 150000, 3),
 (4,'drinks', 50000, 3);
 
-insert into services(`name`, area, floors, max_people, cost, type_of_service_id, type_rent_id, service_status)
-values ('Villa 1', 1000, 5, '20', 10000000, 1, 1,'busy'),
-('House 1', 500, 3, '4', 5000000, 2, 1,'available'),
-('Villa 2', 2000, 5, '20', 20000000, 1, 1,'available'),
-('House 2', 700, 2, '6', 8000000, 2, 3,'available');
+insert into services(id,`name`, area, floors, max_people, cost, type_of_service_id, type_rent_id, service_status)
+values ('VL-001','Villa 1', 1000, 5, '20', 10000000, 1, 1,'busy'),
+('H-001','House 1', 500, 3, '4', 5000000, 2, 1,'available'),
+('VL-002','Villa 2', 2000, 5, '20', 20000000, 1, 1,'available'),
+('H-002','House 2', 700, 2, '6', 8000000, 2, 3,'available');
 
 insert into employees (last_name, middle_name, first_name, position_id, level_id, office_id, birth_day, identify_card, salary,phone_number, email, address)
 values ('Nguyễn', 'Văn', 'Hoàng', 1, 1, 1,'1997-03-31','197362335', '10.000.000','0334611971', 'hoangvan@gmail.com','Hải Châu' ),
 ('Hoàng', 'Văn', 'Thất',2 ,2, 1, '2001-12-03','197362335', '15.000.000','0334611971', 'thathoang@gmail.com','Đà Nẵng' ),
 ('Trần', 'Công', 'Hoàn',3 ,2, 2, '1999-05-14','197362335', '13.000.000','0334611971', 'hoantran@gmail.com','Quảng Trị' );
 
-insert into customers (type_of_customer_id, `name`, birthday, identify_card,phone_number, email, address)
-values (1, 'Mai Thế Vinh', '1997-03-31','197362335', '0334611971', 'vinhblue97@gmail.com', 'Quảng Trị'),
-(2, 'Hoàng Minh Quân', '1992-07-15','197362335', '0334251912', 'gigahoang@gmail.com', 'Sài Gòn'),
-(3, 'Trần Huỳnh Kim Ngân', '1992-11-03','423432423', '0334251912', 'kimngan@gmail.com', 'Đà Nẵng'),
-(4, 'Trần Huỳnh Kim Ngân', '1992-11-03','423432423', '0334251912', 'kimngan@gmail.com', 'Đà Nẵng');
-
 insert into contracts (employee_id, customer_id, service_id, begin_date, end_date, deposists, total_cost)
-values (2,2,3,'2017-01-30','2018-11-30',1000000, 3000000),
-(2,2,3,'2018-12-04','2018-12-30',1000000, 3000000),
-(1,1,1,'2019-12-12','2019-10-01',1000000, 1500000), 
-(2,2,2,'2019-10-30','2020-11-30',1000000, 3000000),
-(2,1,2,'2015-10-30','2015-11-30',1000000, 3000000),
-(2,2,4,'2015-10-30','2016-11-30',1000000, 3000000);
+values (2,'197362335',3,'2017-01-30','2018-11-30',1000000, 3000000),
+(2,'197362335',3,'2018-12-04','2018-12-30',1000000, 3000000),
+(1,'423432423',1,'2019-12-12','2019-10-01',1000000, 1500000), 
+(2,'123123213123123',2,'2019-10-30','2020-11-30',1000000, 3000000),
+(2,'197362335',2,'2015-10-30','2015-11-30',1000000, 3000000),
+(2,'197362335',4,'2015-10-30','2016-11-30',1000000, 3000000);
+
 
 insert into contract_detail(contract_id, adding_service_id)
 values (1, 2),

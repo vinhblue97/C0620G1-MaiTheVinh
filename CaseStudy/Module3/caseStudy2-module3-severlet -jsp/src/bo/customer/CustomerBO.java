@@ -12,7 +12,7 @@ public interface CustomerBO {
 
     void edit(Customer customer);
 
-    void delete(String id);
+    void delete(String customer_id_card);
 
     List<Customer> find(String search);
 

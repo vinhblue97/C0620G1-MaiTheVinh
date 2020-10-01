@@ -97,10 +97,11 @@
         <table class="table table-striped">
             <thead>
             <tr>
+                <th scope="col">Index</th>
+                <th scope="col">Id card</th>
                 <th scope="col">Name</th>
                 <th scope="col">Birth Day</th>
                 <th scope="col">Giới tính</th>
-                <th scope="col">Id card</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Email</th>
                 <th scope="col">Type</th>
@@ -112,8 +113,10 @@
             <tbody>
             <c:forEach var="customer" items="${customerList}">
                 <tr>
+                    <th><c:out value=" ${customer.participleIndex}"></c:out></th>
+                    <th><c:out value=" ${customer.identify_card}"></c:out></th>
                     <td><c:out value=" ${customer.name}"></c:out></td>
-                    <td><c:out value="${customer.birth_day}"></c:out></td>
+                    <td><c:out value="${customer.birthday}"></c:out></td>
                     <td>
                         <c:choose>
                             <c:when test="${customer.gender==0}">
@@ -127,33 +130,32 @@
                             </c:otherwise>
                         </c:choose>
                     </td>
-                    <th><c:out value=" ${customer.id}"></c:out></th>
                     <td><c:out value=" ${customer.email}"></c:out></td>
-                    <td><c:out value=" ${customer.phone}"></c:out></td>
+                    <td><c:out value=" ${customer.phone_number}"></c:out></td>
                     <td>
                         <c:choose>
-                            <c:when test="${customer.type==0}">
+                            <c:when test="${customer.type_of_customer_id==0}">
                                 <c:out value="Diamond"></c:out>
                             </c:when>
-                            <c:when test="${customer.type==1}">
+                            <c:when test="${customer.type_of_customer_id==1}">
                                 <c:out value="Platinium"></c:out>
                             </c:when>
-                            <c:when test="${customer.type==2}">
+                            <c:when test="${customer.type_of_customer_id==2}">
                                 <c:out value="Gold"></c:out>
                             </c:when>
-                            <c:when test="${customer.type==3}">
+                            <c:when test="${customer.type_of_customer_id==3}">
                                 <c:out value="Silver"></c:out>
                             </c:when>
-                            <c:when test="${customer.type==4}">
+                            <c:when test="${customer.type_of_customer_id==4}">
                                 <c:out value="Member"></c:out>
                             </c:when>
                         </c:choose>
                     </td>
                     <td><c:out value=" ${customer.address}"></c:out></td>
-                    <td><a href="/customer?action=edit&customer_id_card=${customer.id}">
+                    <td><a href="/customer?action=edit&customer_id_card=${customer.identify_card}">
                         <button>Edit</button>
                     </a></td>
-                    <td><a href="/customer?action=delete&customer_id_card=${customer.id}">
+                    <td><a href="/customer?action=delete&customer_id_card=${customer.identify_card} " >
                         <button>Delete</button>
                     </a></td>
                 </tr>
@@ -162,5 +164,10 @@
         </table>
     </div>
 </div>
+<script>
+    function confirmDelete(name) {
+        confirm("Bạn có thật sự muốn xoá khách hàng " + name + "ra khỏi danh sách không");
+    }
+</script>
 </body>
 </html>
