@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="spring-core-4.3.16.RELEASE">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../../library/Maven org.springframeworkspring-webmvc4.3.162/spring-core-4.3.16.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
