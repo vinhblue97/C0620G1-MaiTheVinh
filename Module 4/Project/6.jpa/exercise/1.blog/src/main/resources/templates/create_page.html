@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{home_page::bootstrap}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:insert="home_page::nab">
+</th:block>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div id="register_box">
+                <form th:object="${modelList}">
+                    <p><label>Id: <input type="text" th:field="*{modelId}"></label></p>
+                    <p><label>Name: <input type="text" th:field="*{modelName}"></label></p>
+                    <p><label>Age: <input type="text" th:field="*{modelAge}"></label></p>
+<!--                    <p><label>Hobby: <textarea th:field="*{modelHobby}"></textarea></label></p>-->
+                    <p><label>Hobby: <input type="text" th:field="*{urlImg}"></label></p>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+</body>
+</html>
