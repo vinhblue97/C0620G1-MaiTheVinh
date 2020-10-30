@@ -4,7 +4,7 @@ import model.ClientSide;
 
 import java.util.List;
 
-public interface ProductDAO {
+public interface ClientSideDAO {
 
     void  create(ClientSide clientSide);
 

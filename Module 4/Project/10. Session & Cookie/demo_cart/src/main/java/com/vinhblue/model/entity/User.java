@@ -6,16 +6,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 @Entity(name = "user")
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Getter @Setter @NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer userId;
     @Column(name = "user_name")
-    private Integer userName;
+//    @NotBlank
+    private String userName;
     @Column(name = "password")
-    private Integer userPassword;
+//    @NotBlank
+    private String userPassword;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="item_user", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="item_id"))
+    private Set<Item> likedItem;
 }

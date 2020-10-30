@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Model {
+public class ModelManager {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +22,14 @@ public class Model {
     private String modelAge;
     @Column(name = "model_hobby")
     private String modelHobby;
+    @Column(name="url_img")
+    private String urlImg;
 
-    public Model(Integer modelId, String modelName, String modelAge, String modelHobby) {
+    public ModelManager(Integer modelId, String modelName, String modelAge, String modelHobby, String urlImg) {
         this.modelId = modelId;
         this.modelName = modelName;
         this.modelAge = modelAge;
         this.modelHobby = modelHobby;
+        this.urlImg = urlImg;
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -21,21 +22,25 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void save(Customer customer) {
-        this.customerRepository.save(customer);
+        if (!customer.getCustomerBirthDay().equals("")) {
+            this.customerRepository.save(customer);
+        }
     }
 
     @Override
     public void update(Customer customer) {
-        this.customerRepository.update(customer);
+        this.customerRepository.save(customer);
     }
 
     @Override
     public Customer findById(String customerId) {
-        return this.customerRepository.findById(customerId);
+        return this.customerRepository.findById(customerId).orElse(null);
     }
 
     @Override
     public void delete(String id) {
-        this.customerRepository.delete(id);
+        Customer customer = Objects.requireNonNull(this.customerRepository.findById(id).orElse(null));
+        this.customerRepository.delete(customer);
+
     }
 }

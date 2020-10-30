@@ -3,38 +3,36 @@ package common;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.lang3.text.WordUtils;
+
 public class Validate {
 
-    // Validate customer ID
-    public static String validateCustomerID(String ID) {
+    // Validate Name
+    public static String validateName(String name) {
         String msg = "Not OK";
-        Pattern pattern = Pattern.compile("^KH\\-\\d{4}$");
-        Matcher matcher = pattern.matcher(ID);
-        if (matcher.matches()) {
+        if (!name.equals("")) {
             msg = "OK";
         }
         return msg;
     }
 
-    // Validate Customer phone
+    // Validate price
 
-    public static String validateCustomerPhone(String phone) {
+    public static String validatePrice(String price) {
         String msg = "Not OK";
-        Pattern pattern = Pattern.compile("^(090|091|\\(84\\)\\+90|\\(84\\)+01)\\d{7}$");
-        Matcher matcher = pattern.matcher(phone);
-        if (matcher.matches()) {
+        if (!price.equals("") && Double.parseDouble(price) > 10000000) {
             msg = "OK";
         }
         return msg;
     }
 
-    // Validate Customer Identify card
+    // Validate Quantity
 
-    public static String validateIdCard(String identify_card) {
+    public static String validateQuantity(String quantity) {
         String msg = "Not OK";
-        Pattern pattern = Pattern.compile("^(\\d{9}|\\d{12})$");
-        Matcher matcher = pattern.matcher(identify_card);
-        if (matcher.matches()) {
+        if (!quantity.equals("") && Integer.parseInt(quantity) > 0) {
             msg = "OK";
         }
         return msg;
@@ -65,5 +63,18 @@ public class Validate {
 
     // Validate
 
-
+    public static String validatePositiveNumber(String num) {
+        String message = "OK";
+//        System.out.println(WordUtils.capitalizeFully("mai thế vInh"));
+        if (!NumberUtils.isParsable(num)) {
+            return "Not OK. Input must be a number";
+        }
+        double number = Double.parseDouble(num);
+        if (number <= 0) {
+            return "Not OK. Number must be positive";
+        }
+        return message;
+    }
 }
+
+

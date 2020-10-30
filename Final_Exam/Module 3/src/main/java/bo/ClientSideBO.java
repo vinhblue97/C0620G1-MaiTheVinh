@@ -4,7 +4,7 @@ import model.ClientSide;
 
 import java.util.List;
 
-public interface ProductBO {
+public interface ClientSideBO {
 
     void create(ClientSide clientSide);
 

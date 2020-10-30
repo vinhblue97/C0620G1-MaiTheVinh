@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Customer</title>
@@ -61,10 +62,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto" style="margin-left: 30px">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/home"> Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item navbars">
-                    <a class="nav-link" href="#">Employee<span class="sr-only">(current)</span></a>
+                <li class="nav-item navbars dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Employee
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/employee?action=create">Add new employee</a>
+                        <a class="dropdown-item" href="/employee?action=list">Employee list</a>
+                    </div>
                 </li>
                 <li class="nav-item navbars dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -72,15 +80,31 @@
                         Customer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Add new customer</a>
+                        <a class="dropdown-item" href="/customer?action=create">Add new customer</a>
                         <a class="dropdown-item" href="/customer?action=list">Customer list</a>
                     </div>
                 </li>
-                <li class="nav-item navbars">
-                    <a class="nav-link" href="#">Service<span class="sr-only">(current)</span></a>
+                <li class="nav-item navbars dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Service
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/service?action=create">Add new service</a>
+                        <a class="dropdown-item" href="/service?action=list">Service list</a>
+                    </div>
                 </li>
-                <li class="nav-item navbars">
-                    <a class="nav-link" href="#">Contract<span class="sr-only">(current)</span></a>
+                <li class="nav-item navbars dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contract
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/contract?action=create">Add new contract</a>
+                        <a class="dropdown-item" href="/contract?action=list">Contract list</a>
+                        <a class="dropdown-item" href="/contract_detail?action=create">Add new contract Detail</a>
+                        <a class="dropdown-item" href="/contract_detail?action=list">Contract detail list</a>
+                    </div>
                 </li>
             </ul>
             <form action="/customer" class="form-inline my-2 my-lg-1">
@@ -92,6 +116,11 @@
         </div>
     </nav>
     <%--    TẠO BOX REGISTER--%>
+    <div align="center" style="color: red; font-weight: bold">
+        <c:forEach var="msgList" items="${msgList}">
+            <c:out value="${msgList}"></c:out><br>
+        </c:forEach>
+    </div>
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4" style="border: blue solid 1px" align="center">
@@ -104,15 +133,16 @@
                             Customer id
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" name="id" placeholder="Customer Id">
+                            <input type="text" name="id" placeholder="Customer Id" value="${correct_id}">
                         </div>
                     </div>
                     <div class="row input_box_row">
                         <div class="col-lg-6">
-                            Id card
+                            ID card
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" name="identify_card" placeholder="identify_card">
+                            <input type="text" name="identify_card" placeholder="identify_card"
+                                   value="${correct_id_card}">
                         </div>
                     </div>
                     <div class="row input_box_row">
@@ -149,7 +179,7 @@
                             Number phone
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" name="phone_number" placeholder="phone_number">
+                            <input type="text" name="phone_number" placeholder="phone_number" value="${correct_phone}">
                         </div>
                     </div>
                     <div class="row input_box_row">
@@ -157,7 +187,7 @@
                             Email
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" name="email" placeholder="abc@abc.abc">
+                            <input type="text" name="email" placeholder="abc@abc.abc" value="${correct_email}">
                         </div>
                     </div>
                     <div class="row input_box_row">
@@ -166,11 +196,9 @@
                         </div>
                         <div class="col-lg-6">
                             <select name="type_of_customer_id">
-                                <option value="0">Diamond</option>
-                                <option value="1">Platinium</option>
-                                <option value="2">Gold</option>
-                                <option value="3">Silver</option>
-                                <option value="4">Member</option>
+                                <c:forEach var="typeOfCustomer" items="${typeOfCustomerList}">
+                                    <option value="${typeOfCustomer.id}">${typeOfCustomer.name}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>

@@ -1,9 +1,9 @@
-package bo.service.type_of_service;
+package bo.service.type_of_rent;
 
-import model.service.type_of_service.TypeOfService;
+import model.service.type_of_rent.TypeOfRent;
 
 import java.util.List;
 
-public interface TypeOfServiceBO {
-    List<TypeOfService> findAll();
+public interface TypeOfRentBO {
+    List<TypeOfRent> findAll();
 }

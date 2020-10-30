@@ -1,10 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Employee List</title>
+    <th:block th:insert="home_page::headPage"></th:block>
 </head>
 <body>
-$END$
+<th:block th:replace="home_page::nav_bar"></th:block>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-10">
+            <table class="table table-striped bg-light" style="opacity: 0.9">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">BirthDay</th>
+                    <th scope="col">Id Card</th>
+                    <th scope="col">Education Degree</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Division</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="employee:${employeeList}">
+                    <tr>
+                        <th scope="row" th:text="${employee.employeeId}"></th>
+                        <td th:text="${employee.employeeName}"></td>
+                        <td th:text="${employee.employeeBirthDay}"></td>
+                        <td th:text="${employee.employeeIdCard}"></td>
+                        <td th:text="${employee.educationDegree.educationDegreeName}"></td>
+                        <td th:text="${employee.position.positionName}"></td>
+                        <td th:text="${employee.division.divisionName}"></td>
+                        <td th:text="${employee.employeePhoneNumber}"></td>
+                        <td th:text="${employee.employeeEmail}"></td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+            <div align="center" class="bg-light" >
+                <a th:if="${employeeList.hasPrevious()}" th:href="@{/employeeList(page=${employeeList.number - 1})}"><i class="far fa-caret-square-left"></i></a>
+                <span ></span>
+                <a th:if="${employeeList.hasNext()}" th:href="@{/employeeList(page=${employeeList.number + 1})}"><i class="far fa-caret-square-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="/employee/employeeList" id="submit_search">
+
+</form>
+<script>
+    function clickSearch() {
+        alert("haha");
+    }
+</script>
 </body>
 </html>

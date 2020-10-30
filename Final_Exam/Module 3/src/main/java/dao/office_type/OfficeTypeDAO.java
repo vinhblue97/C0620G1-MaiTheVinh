@@ -1,9 +1,9 @@
-package dao.category;
+package dao.office_type;
 
-import model.Category;
+import model.OfficeType;
 
 import java.util.List;
 
-public interface CategoryDAO {
-    List<Category> findAll();
+public interface OfficeTypeDAO {
+    List<OfficeType> findAll();
 }

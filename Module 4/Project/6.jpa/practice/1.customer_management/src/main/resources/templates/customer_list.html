@@ -15,7 +15,7 @@
         <th>Action</th>
     </tr>
     <tr th:each="customer:${customerList}">
-        <td th:text="${customer.getCustomerId()}"></td>
+        <td th:text="${customer.customerId}"></td>
         <td th:text="${customer.getCustomerName()}"></td>
         <td th:text="${customer.getCustomerBirthDay()}"></td>
         <td th:text="${customer.getCustomerEmail()}"></td>

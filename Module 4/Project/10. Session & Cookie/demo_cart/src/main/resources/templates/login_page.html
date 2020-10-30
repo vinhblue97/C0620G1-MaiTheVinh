@@ -7,10 +7,13 @@
 <body>
 <form action="/user/checkLogin" method="post" th:object="${userLogin}">
     <p>User Name:</p>
-    <input type="text" name="user_name" th:value="*{userName}">
+    <input type="text" name="userName" th:value="*{userName}">
     <p>Password:</p>
-    <input type="password" name="password" th:value="*{userPassword}">
+    <input type="password" name="userPassword" th:value="*{userPassword}">
     <button type="submit">Login</button>
 </form>
+<scrip>
+
+</scrip>
 </body>
 </html>

@@ -1,4 +1,16 @@
 package bo.employee.position;
 
-public class PositionBOImpl {
+import dao.employee.position.PositionDAO;
+import dao.employee.position.PositionDAOImpl;
+import model.employee.Position;
+
+import java.util.List;
+
+public class PositionBOImpl implements PositionBO{
+
+    PositionDAO positionDAO = new PositionDAOImpl();
+    @Override
+    public List<Position> findAll() {
+        return this.positionDAO.findAll();
+    }
 }

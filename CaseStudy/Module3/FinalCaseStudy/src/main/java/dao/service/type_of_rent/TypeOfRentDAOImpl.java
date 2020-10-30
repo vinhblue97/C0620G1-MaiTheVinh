@@ -1,9 +1,7 @@
-package dao.service.type_of_service;
+package dao.service.type_of_rent;
 
-import bo.customer.type_of_customers.TypeOfCustomerBO;
 import common.BaseDAO;
-import model.customer.TypeOfCustomer;
-import model.service.type_of_service.TypeOfService;
+import model.service.type_of_rent.TypeOfRent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,27 +10,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TypeOfServiceDAOImpl implements TypeOfServiceDAO {
+public class TypeOfRentDAOImpl implements TypeOfRentDAO {
 
     BaseDAO baseDAO = new BaseDAO();
     Connection connection = this.baseDAO.getConnection();
     @Override
-    public List<TypeOfService> findAll() {
-        List<TypeOfService> typeOfServiceList = new ArrayList<>();
-        TypeOfService typeOfService;
+    public List<TypeOfRent> findAll() {
+        List<TypeOfRent> typeOfRentList = new ArrayList<>();
+        TypeOfRent typeOfRent;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select id, `name` from type_of_service");
+            PreparedStatement preparedStatement = connection.prepareStatement("select id, `name`, cost from type_rent;");
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 String id = resultSet.getString("id");
                 String name = resultSet.getString("name");
-                typeOfService = new TypeOfService(id, name);
-                typeOfServiceList.add(typeOfService);
+                String cost = resultSet.getString("cost");
+                typeOfRent = new TypeOfRent(id, name, cost);
+                typeOfRentList.add(typeOfRent);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return typeOfServiceList;
+        return typeOfRentList;
     }
 }

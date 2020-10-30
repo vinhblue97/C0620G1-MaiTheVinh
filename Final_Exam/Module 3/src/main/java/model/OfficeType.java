@@ -1,6 +1,6 @@
 package model;
 
-public class Category {
+public class OfficeType {
     private String id;
     private String name;
 
@@ -12,7 +12,7 @@ public class Category {
         return name;
     }
 
-    public Category(String id, String name) {
+    public OfficeType(String id, String name) {
         this.id = id;
         this.name = name;
     }

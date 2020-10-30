@@ -15,9 +15,10 @@ public class BookManagement {
     private Integer bookId;
     @Column(name="name")
     private String bookName;
+    @Column(name="quantity")
+    private Integer bookQuantity;
 
-    @ManyToOne
-    @JoinColumn(name="borrower_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "bookManagement", cascade = CascadeType.ALL)
     private BorrowerManagement borrowerManagement;
 
 }

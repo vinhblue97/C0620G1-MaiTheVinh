@@ -64,8 +64,15 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item navbars">
-                    <a class="nav-link" href="#">Employee<span class="sr-only">(current)</span></a>
+                <li class="nav-item navbars dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Employee
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/employee?action=create">Add new employee</a>
+                        <a class="dropdown-item" href="/employee?action=list">Employee list</a>
+                    </div>
                 </li>
                 <li class="nav-item navbars dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -74,14 +81,30 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/customer?action=create">Add new customer</a>
-                        <a class="dropdown-item" href="#">Customer list</a>
+                        <a class="dropdown-item" href="/customer?action=list">Customer list</a>
                     </div>
                 </li>
-                <li class="nav-item navbars">
-                    <a class="nav-link" href="#">Service<span class="sr-only">(current)</span></a>
+                <li class="nav-item navbars dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Service
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/service?action=create">Add new service</a>
+                        <a class="dropdown-item" href="/service?action=list">Service list</a>
+                    </div>
                 </li>
-                <li class="nav-item navbars">
-                    <a class="nav-link" href="#">Contract<span class="sr-only">(current)</span></a>
+                <li class="nav-item navbars dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contract
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/contract?action=create">Add new contract</a>
+                        <a class="dropdown-item" href="/contract?action=list">Contract list</a>
+                        <a class="dropdown-item" href="/contract_detail?action=create">Add new contract Detail</a>
+                        <a class="dropdown-item" href="/contract_detail?action=list">Contract detail list</a>
+                    </div>
                 </li>
             </ul>
             <form action="/customer" class="form-inline my-2 my-lg-1">

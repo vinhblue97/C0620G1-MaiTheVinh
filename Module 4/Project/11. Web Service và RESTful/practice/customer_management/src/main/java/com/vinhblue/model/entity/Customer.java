@@ -1,4 +1,4 @@
-package com.vinhblue.model;
+package com.vinhblue.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,38 +1,65 @@
-package com.codegym.repository.impl;
+package com.vinhblue.model.repository.impl;
 
-import com.codegym.entity.Student;
-import com.codegym.repository.StudentRepository;
+import com.vinhblue.model.entity.Customer;
+import com.vinhblue.model.repository.CustomerRepository;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class StudentRepositoryImpl implements StudentRepository {
+public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
-    public List<Student> findAll() {
-        TypedQuery<Student> typedQuery =
-                BaseRepository.entityManager.createQuery("select s from student s", Student.class);
+    public List<Customer> findAll() {
+        TypedQuery<Customer> typedQuery =
+                BaseRepository.entityManager.createQuery("select c from customer c", Customer.class);
         return typedQuery.getResultList();
     }
 
     @Override
-    public Student findById(Integer id) {
-        TypedQuery<Student> typedQuery =
-                BaseRepository.entityManager.createQuery("select s from student s where id = :idStudent", Student.class);
-        typedQuery.setParameter("idStudent", id);
-
+    public Customer findById(String id) {
+        TypedQuery<Customer> typedQuery =
+                BaseRepository.entityManager.createQuery("select c from customer c " +
+                        "where customerId = : customerId", Customer.class);
+        typedQuery.setParameter("customerId", id);
         return typedQuery.getSingleResult();
-//        return BaseRepository.entityManager.find(Student.class, id);
     }
 
     @Override
-    public void save(Student student) {
+    public void save(Customer customer) {
         EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();
-        entityTransaction.begin();
-        BaseRepository.entityManager.persist(student);
-        entityTransaction.commit();
+        try {
+            entityTransaction.begin();
+            BaseRepository.entityManager.persist(customer);
+            entityTransaction.commit();
+        } catch (PersistenceException | IllegalStateException e) {
+            entityTransaction.rollback();
+        }
+    }
+
+    @Override
+    public void update(Customer customer) {
+        EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();
+        try {
+            entityTransaction.begin();
+            BaseRepository.entityManager.merge(customer);
+            entityTransaction.commit();
+        } catch (PersistenceException | IllegalStateException e) {
+            entityTransaction.rollback();
+        }
+    }
+
+    @Override
+    public void delete(String id) {
+        EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();
+        try {
+            entityTransaction.begin();
+            BaseRepository.entityManager.remove(findById(id));
+            entityTransaction.commit();
+        } catch (PersistenceException | IllegalStateException e) {
+            entityTransaction.rollback();
+        }
     }
 }

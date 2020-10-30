@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Update</title>
 </head>
 <body>
-$END$
+<form action="/customer/update" method="post" th:object="${customer}">
+    <fieldset>
+        <legend>Update customer information</legend>
+        <input type="hidden" th:field="*{customerId}">
+        <p>
+            <label>Id:
+                <input th:field="*{customerId}" disabled>
+            </label>
+        </p>
+        <p>
+            <label>Name:
+                <input type="text" th:field="*{customerName}"/>
+            </label>
+        </p>
+        <p>
+            <label>Birth Day:
+                <input type="date" th:field="*{customerBirthDay}"/>
+            </label>
+        </p>
+        <p>
+            <label>Email:
+                <input type="email" th:field="*{customerEmail}"/>
+            </label>
+        </p>
+        <p>
+            <label>Address:
+                <input type="text" th:field="*{customerAddress}"/>
+            </label>
+        </p>
+        <button type="submit">Save</button>
+    </fieldset>
+</form>
 </body>
 </html>

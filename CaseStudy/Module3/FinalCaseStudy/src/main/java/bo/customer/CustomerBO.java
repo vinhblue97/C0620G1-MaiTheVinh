@@ -3,11 +3,12 @@ package bo.customer;
 import model.customer.Customer;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CustomerBO {
     List<Customer> findAll();
 
-    void create(Customer customer);
+    Map<Integer,String> create(Customer customer);
 
     void edit(Customer customer);
 

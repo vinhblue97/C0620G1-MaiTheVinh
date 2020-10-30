@@ -1,9 +1,9 @@
-package dao.service.type_of_service;
+package dao.service.type_of_rent;
 
-import model.service.type_of_service.TypeOfService;
+import model.service.type_of_rent.TypeOfRent;
 
 import java.util.List;
 
-public interface TypeOfServiceDAO {
-    List<TypeOfService> findAll();
+public interface TypeOfRentDAO {
+    List<TypeOfRent> findAll();
 }

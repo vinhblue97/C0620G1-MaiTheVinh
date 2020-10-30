@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Customer</title>
@@ -61,10 +62,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto" style="margin-left: 30px">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/home"> Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item navbars">
-                    <a class="nav-link" href="#">Employee<span class="sr-only">(current)</span></a>
+                <li class="nav-item navbars dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Employee
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/employee?action=create">Add new employee</a>
+                        <a class="dropdown-item" href="/employee?action=list">Employee list</a>
+                    </div>
                 </li>
                 <li class="nav-item navbars dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -72,15 +80,31 @@
                         Customer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Add new customer</a>
+                        <a class="dropdown-item" href="/customer?action=create">Add new customer</a>
                         <a class="dropdown-item" href="/customer?action=list">Customer list</a>
                     </div>
                 </li>
-                <li class="nav-item navbars">
-                    <a class="nav-link" href="#">Service<span class="sr-only">(current)</span></a>
+                <li class="nav-item navbars dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Service
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/service?action=create">Add new service</a>
+                        <a class="dropdown-item" href="/service?action=list">Service list</a>
+                    </div>
                 </li>
-                <li class="nav-item navbars">
-                    <a class="nav-link" href="#">Contract<span class="sr-only">(current)</span></a>
+                <li class="nav-item navbars dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contract
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/contract?action=create">Add new contract</a>
+                        <a class="dropdown-item" href="/contract?action=list">Contract list</a>
+                        <a class="dropdown-item" href="/contract_detail?action=create">Add new contract Detail</a>
+                        <a class="dropdown-item" href="/contract_detail?action=list">Contract detail list</a>
+                    </div>
                 </li>
             </ul>
             <form action="/customer" class="form-inline my-2 my-lg-1">
@@ -97,15 +121,23 @@
         <div class="col-lg-4" style="border: blue solid 1px" align="center">
             <div align="left">
                 <form action="/customer" method="post">
-                    <input type="hidden" name="customer_id_card" value="${customer_id_card}">
                     <input type="hidden" name="action" value="edit">
-                    <h2 align="center">Edit</h2>
+                    <input type="hidden" name="id" value="${id}">
+                    <h2 align="center">Update information</h2>
+                    <div class="row input_box_row">
+                        <div class="col-lg-6">
+                            Id card
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" name="identify_card" placeholder="identify_card">
+                        </div>
+                    </div>
                     <div class="row input_box_row">
                         <div class="col-lg-6">
                             Customer name
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" name="customer_name" placeholder="Customer name">
+                            <input type="text" name="name" placeholder="Customer name">
                         </div>
                     </div>
                     <div class="row input_box_row">
@@ -113,7 +145,7 @@
                             Birth day
                         </div>
                         <div class="col-lg-6">
-                            <input type="date" name="customer_birthday" placeholder="Birthday">
+                            <input type="date" name="birthDay" placeholder="Birthday">
                         </div>
                     </div>
                     <div class="row input_box_row">
@@ -121,19 +153,20 @@
                             Gender
                         </div>
                         <div class="col-lg-6">
-                            <select name="customer_gender">
+                            <select name="gender">
                                 <option value="0">Female</option>
                                 <option value="1">Male</option>
                                 <option value="3">Apache Helicopter</option>
                             </select>
                         </div>
                     </div>
+
                     <div class="row input_box_row">
                         <div class="col-lg-6">
                             Number phone
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" name="customer_phone" placeholder="XXXXXXXXX">
+                            <input type="text" name="phone_number" placeholder="phone_number">
                         </div>
                     </div>
                     <div class="row input_box_row">
@@ -141,7 +174,7 @@
                             Email
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" name="customer_email" placeholder="abc@abc.abc">
+                            <input type="text" name="email" placeholder="abc@abc.abc">
                         </div>
                     </div>
                     <div class="row input_box_row">
@@ -149,12 +182,10 @@
                             Type
                         </div>
                         <div class="col-lg-6">
-                            <select name="customer_type">
-                                <option value="0">Diamond</option>
-                                <option value="1">Platinium</option>
-                                <option value="2">Gold</option>
-                                <option value="3">Silver</option>
-                                <option value="4">Member</option>
+                            <select name="type_of_customer_id">
+                                <c:forEach var="typeOfCustomer" items="${typeOfCustomerList}">
+                                    <option value="${typeOfCustomer.id}">${typeOfCustomer.name}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
@@ -163,11 +194,10 @@
                             Address
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" name="customer_address">
+                            <input type="text" name="address">
                         </div>
                     </div>
                     <br>
-                    <a href="/home"><button>Cancel</button></a>
                     <div align="center"><input type="submit" value="Save"></div>
                 </form>
             </div>

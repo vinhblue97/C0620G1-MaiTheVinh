@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Create Customer</title>
 </head>
 <body>
-$END$
+<form action="/customer/save" method="post" th:object="${customer}">
+    <fieldset>
+        <legend> Create Customer</legend>
+        <p>
+            <label>Name:
+                <input type="text" placeholder="Enter customer's name" th:field="*{customerName}">
+            </label>
+        </p>
+        <p>
+            <label>Birth day:
+                <input type="date" th:field="*{customerBirthDay}">
+            </label>
+        </p>
+        <p>
+            <label>Email:
+                <input type="email" placeholder="Enter customer's email" th:field="*{customerEmail}">
+            </label>
+        </p>
+        <p>
+            <label>Address:
+                <input type="text" placeholder="Enter customer's address" th:field="*{customerAddress}">
+            </label>
+        </p>
+        <a th:href="@{/customer}">
+            <button> Cancel</button>
+        </a>
+        <button type="submit"> Create</button>
+    </fieldset>
+</form>
+<div th:replace="customer_list::footerCustomer"></div>
 </body>
 </html>

@@ -1,7 +1,7 @@
-package dao.category;
+package dao.office_type;
 
 import common.BaseDAO;
-import model.Category;
+import model.OfficeType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,24 +10,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDAOImpl implements CategoryDAO {
+public class OfficeTypeDAOImpl implements OfficeTypeDAO {
     BaseDAO baseDAO = new BaseDAO();
     Connection connection = this.baseDAO.getConnection();
     @Override
-    public List<Category> findAll() {
-        List<Category> categoryList= new ArrayList<>();
+    public List<OfficeType> findAll() {
+        List<OfficeType> officeTypeList = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select id, `name` from category;");
+            PreparedStatement preparedStatement = connection.prepareStatement("select id, `name` from office_type;");
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 String id = resultSet.getString("id");
                 String name = resultSet.getString("name");
-                Category category = new Category(id, name);
-                categoryList.add(category);
+                OfficeType officeType = new OfficeType(id, name);
+                officeTypeList.add(officeType);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return categoryList;
+        return officeTypeList;
     }
 }

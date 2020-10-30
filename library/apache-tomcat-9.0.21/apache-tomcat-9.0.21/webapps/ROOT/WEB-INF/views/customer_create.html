@@ -9,13 +9,13 @@
     <fieldset>
         <legend> Create Customer</legend>
         <p>
-            <label>Id:
-                <input type="text" placeholder="Enter customer's id" th:field="*{customerId}">
+            <label>Name:
+                <input type="text" placeholder="Enter customer's name" th:field="*{customerName}">
             </label>
         </p>
         <p>
-            <label>Name:
-                <input type="text" placeholder="Enter customer's name" th:field="*{customerName}">
+            <label>Birth day:
+                <input type="date" th:field="*{customerBirthDay}">
             </label>
         </p>
         <p>
@@ -28,7 +28,9 @@
                 <input type="text" placeholder="Enter customer's address" th:field="*{customerAddress}">
             </label>
         </p>
-        <button> Cancel</button>
+        <a th:href="@{/customer}">
+            <button> Cancel</button>
+        </a>
         <button type="submit"> Create</button>
     </fieldset>
 </form>

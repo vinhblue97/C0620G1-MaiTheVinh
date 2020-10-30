@@ -18,9 +18,7 @@ public class StudentController {
     @RequestMapping(method = RequestMethod.GET)
 //    @GetMapping(value = "/")
     public String goListStudent(Model model) {
-
         model.addAttribute("listStudent", studentService.findAll());
-
         return "list_student";
     }
 
@@ -39,16 +37,13 @@ public class StudentController {
     @GetMapping("/create")
     public String goCreateStudent(Model model) {
         model.addAttribute("student", new Student());
-
         return "create_student";
     }
 
     @PostMapping("/create")
     public String createStudent(@ModelAttribute Student student, RedirectAttributes redirectAttributes) {
-
         this.studentService.save(student);
         redirectAttributes.addFlashAttribute("message", "Create student OK!");
-
         return "redirect:/student";
     }
 }

@@ -16,20 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ExamServlet", urlPatterns = {"", "/exam", "/product","/clientSide"})
+@WebServlet(name = "ExamServlet", urlPatterns = {"", "/exam", "/product", "/clientSide"})
 public class ClientSideServlet extends HttpServlet {
 
     ClientSideBO clientSideBo = new ClientSideBOImpl();
     OfficeTypeBO officeTypeBO = new OfficeTypeBOImpl();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws  IOException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
         }
         switch (action) {
             case "create":
-//                create(request, response);
+                create(request, response);
                 break;
             case "read":
                 readList(request, response);
@@ -66,28 +66,19 @@ public class ClientSideServlet extends HttpServlet {
     }
     //Function Create
 
-//    private void create(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        List<ClientSide> clientSideList = this.productBo.findAll();
-//        List<OfficeType> officeTypeList = this.categoryBO.findAll();
-//        String id = request.getParameter("_id");
-//        String name = request.getParameter("_name");
-//        String price = request.getParameter("price");
-//        String quantity = request.getParameter("quantity");
-//        String color = request.getParameter("color");
-//        String description = request.getParameter("description");
-//        String category_id = request.getParameter("category_id");
-//        ClientSide clientSide = new ClientSide(id, name, price, quantity, color, description, category_id);
-//        request.setAttribute("productList", clientSideList);
-//        request.setAttribute("categoryList", officeTypeList);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("read_list.jsp");
-//        try {
-//            dispatcher.forward(request, response);
-//        } catch (ServletException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void create(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String area_id = request.getParameter("area_id");
+        String area = request.getParameter("area");
+        String status = request.getParameter("status");
+        String floors = request.getParameter("floors");
+        String office_type_id = request.getParameter("office_type_id");
+        String price = request.getParameter("price");
+        String begin_date = request.getParameter("begin_date");
+        String end_date = request.getParameter("end_date");
+        ClientSide clientSide = new ClientSide(area_id, area, status, floors, office_type_id, null, price, begin_date, end_date);
+        this.clientSideBo.create(clientSide);
+        response.sendRedirect("/clientSide");
+    }
 
     // function Readlist
     private void readList(HttpServletRequest request, HttpServletResponse response) {
@@ -106,9 +97,10 @@ public class ClientSideServlet extends HttpServlet {
     }
 
     private void find(HttpServletRequest request, HttpServletResponse response) {
-        String find_name = request.getParameter("find_name");
+        String find_name = request.getParameter("find_type_area");
         String find_price = request.getParameter("find_price");
-        List<ClientSide> clientSideList = this.clientSideBo.find(find_name, find_price);
+        String find_floor = request.getParameter("find_floor");
+        List<ClientSide> clientSideList = this.clientSideBo.find(find_name, find_price, find_floor);
         request.setAttribute("productList", clientSideList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("read_list.jsp");
         try {

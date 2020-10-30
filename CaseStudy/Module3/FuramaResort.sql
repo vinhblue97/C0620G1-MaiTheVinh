@@ -1,9 +1,9 @@
 -- drop database if exists furama_resort;
 -- create database furama_resort;
 use furama_resort;
-
+select * from employees;
 create table employees(
-id int auto_increment,
+id varchar(45),
 last_name varchar(45) not null,
 middle_name varchar(45) not null,
 first_name varchar(45) not null,
@@ -40,11 +40,11 @@ primary key(id)
 );
 
 create table contracts(
-id int auto_increment,
+id int,
 
-employee_id int,
+employee_id varchar(45),
 customer_id varchar(45),
-service_id int,
+service_id varchar(45),
 
 begin_date date not null,
 end_date date not null,
@@ -53,7 +53,7 @@ total_cost int not null,
 primary key(id)
 );
 
-create table adding_service(
+create table extra_service(
 id int,
 `name` varchar(45) not null,
 cost int not null,
@@ -61,16 +61,14 @@ unit int not null,
 `status` varchar(45) default null,
 primary key (id)
 );
-
+drop table contract_detail;
 create table contract_detail(
 amount int,
-
 contract_id int,
-adding_service_id int,
-
-constraint id primary key (contract_id, adding_service_id)
+extra_service_id int,
+constraint id primary key (contract_id, extra_service_id)
 );
-drop table customers;
+
 create table customers(
 id varchar(45) not null,
 type_of_customer_id int,
@@ -100,7 +98,9 @@ max_people varchar(45) not null,
 cost int,
 type_of_service_id int,
 type_rent_id int,
-service_status varchar(45) not null,
+standard_room varchar(45),
+pool_area varchar(45),
+service_status varchar(45),
 primary key(id)
 );
 
@@ -131,7 +131,7 @@ alter table services add foreign key(type_of_service_id) references type_of_serv
 alter table services add foreign key(type_rent_id) references type_rent(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 alter table contract_detail add foreign key(contract_id) references contracts(id) ON DELETE CASCADE ON UPDATE CASCADE;
-alter table contract_detail add foreign key(adding_service_id) references adding_service(id) ON DELETE CASCADE ON UPDATE CASCADE;
+alter table contract_detail add foreign key(extra_service_id) references extra_service(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 insert into employee_position(id,`name`)
 values (1,'Receptionist'),
@@ -173,33 +173,13 @@ values (1, 'Hour', '100.000'),
 (4, 'Month', '40.000.000'),
 (5, 'Year', '500.000.000');
 
-insert into adding_service (id,`name`, cost, unit)
+insert into extra_service (id,`name`, cost, unit)
 values (1,'massage', 200000, 1),
 (2,'karaoke', 100000, 2),
 (3,'foods', 150000, 3),
 (4,'drinks', 50000, 3);
-
-insert into services(id,`name`, area, floors, max_people, cost, type_of_service_id, type_rent_id, service_status)
-values ('VL-001','Villa 1', 1000, 5, '20', 10000000, 1, 1,'busy'),
-('H-001','House 1', 500, 3, '4', 5000000, 2, 1,'available'),
-('VL-002','Villa 2', 2000, 5, '20', 20000000, 1, 1,'available'),
-('H-002','House 2', 700, 2, '6', 8000000, 2, 3,'available');
-
-insert into employees (last_name, middle_name, first_name, position_id, level_id, office_id, birth_day, identify_card, salary,phone_number, email, address)
-values ('Nguyễn', 'Văn', 'Hoàng', 1, 1, 1,'1997-03-31','197362335', '10.000.000','0334611971', 'hoangvan@gmail.com','Hải Châu' ),
-('Hoàng', 'Văn', 'Thất',2 ,2, 1, '2001-12-03','197362335', '15.000.000','0334611971', 'thathoang@gmail.com','Đà Nẵng' ),
-('Trần', 'Công', 'Hoàn',3 ,2, 2, '1999-05-14','197362335', '13.000.000','0334611971', 'hoantran@gmail.com','Quảng Trị' );
-
-insert into contracts (employee_id, customer_id, service_id, begin_date, end_date, deposists, total_cost)
-values (2,'197362335',3,'2017-01-30','2018-11-30',1000000, 3000000),
-(2,'197362335',3,'2018-12-04','2018-12-30',1000000, 3000000),
-(1,'423432423',1,'2019-12-12','2019-10-01',1000000, 1500000), 
-(2,'123123213123123',2,'2019-10-30','2020-11-30',1000000, 3000000),
-(2,'197362335',2,'2015-10-30','2015-11-30',1000000, 3000000),
-(2,'197362335',4,'2015-10-30','2016-11-30',1000000, 3000000);
-
-
-insert into contract_detail(contract_id, adding_service_id)
+select * from contract_detail;
+insert into contract_detail(contract_id, extra_service_id)
 values (1, 2),
 (1, 4),
 (1, 1),

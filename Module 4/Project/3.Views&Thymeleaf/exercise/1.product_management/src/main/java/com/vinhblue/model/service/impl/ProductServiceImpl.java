@@ -2,12 +2,14 @@ package com.vinhblue.model.service.impl;
 
 import com.vinhblue.model.entity.Product;
 import com.vinhblue.model.service.ProductService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+@Service
 public class ProductServiceImpl implements ProductService {
     static Map<String, Product> productMap;
 
@@ -19,9 +21,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product create(Product product) {
-
-        return null;
+    public void create(Product product) {
+        if (!product.getProductId().equals("")) {
+            productMap.put(product.getProductId(), product);
+        }
     }
 
     @Override
@@ -37,16 +40,23 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void update(Product product) {
-
+        if (!product.getProductId().equals("")) {
+            productMap.put(product.getProductId(), product);
+        }
     }
 
     @Override
-    public void delete() {
-
+    public void delete(String id) {
+        productMap.remove(id);
     }
 
     @Override
     public Product findById(String id) {
+        for (String key : productMap.keySet()) {
+            if (key.equals(id)) {
+                return productMap.get(key);
+            }
+        }
         return null;
     }
 }

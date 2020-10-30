@@ -16,6 +16,7 @@
     <form:form action="/student/create" method="post" modelAttribute="student">
         <p>Name:</p>
         <form:input type="text" path="name"/>
+
         <p>Date of birth:</p>
         <form:input type="date" path="dateOfBirth" />
         <br>

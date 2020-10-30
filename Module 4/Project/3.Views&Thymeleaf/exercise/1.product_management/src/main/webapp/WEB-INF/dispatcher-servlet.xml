@@ -12,7 +12,7 @@
 
     <context:component-scan base-package="com.vinhblue"/>
     <mvc:annotation-driven/>
-
+    <mvc:resources mapping="/images/**" location="/images/" />
     <bean id="viewResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/views/" />
         <property name="suffix" value=".html" />
@@ -25,4 +25,5 @@
     <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="engine" />
     </bean>
+
 </beans>

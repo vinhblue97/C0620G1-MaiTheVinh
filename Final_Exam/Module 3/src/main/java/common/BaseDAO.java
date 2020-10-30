@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class BaseDAO {
     private Connection connection;
-    private String jdbcURL = "jdbc:mysql://localhost:3306/furama_resort";
+    private String jdbcURL = "jdbc:mysql://localhost:3306/final_exam";
     private String jdbcUsername = "root";
     private String jdbcPassword = "bluewind97";
 

@@ -1,18 +1,16 @@
-package bo.service.type_of_service;
+package bo.service.type_of_rent;
 
-import bo.customer.type_of_customers.TypeOfCustomerBO;
-import dao.service.type_of_service.TypeOfServiceDAO;
-import dao.service.type_of_service.TypeOfServiceDAOImpl;
-import model.customer.TypeOfCustomer;
-import model.service.type_of_service.TypeOfService;
+import dao.service.type_of_rent.TypeOfRentDAO;
+import dao.service.type_of_rent.TypeOfRentDAOImpl;
+import model.service.type_of_rent.TypeOfRent;
 
 import java.util.List;
 
-public class TypeOfServiceBOImpl implements TypeOfServiceBO {
+public class TypeOfRentBOImpl implements TypeOfRentBO {
 
-    TypeOfServiceDAO typeOfServiceDAO = new TypeOfServiceDAOImpl();
+    TypeOfRentDAO typeOfServiceDAO = new TypeOfRentDAOImpl();
     @Override
-    public List<TypeOfService> findAll() {
+    public List<TypeOfRent> findAll() {
         return this.typeOfServiceDAO.findAll();
     }
 }

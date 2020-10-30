@@ -18,6 +18,8 @@ public class BorrowerManagement {
     @Column(name="name")
     private String borrowerName;
 
-    @OneToMany(mappedBy = "borrowerManagement", cascade = CascadeType.ALL)
-    private List<BookManagement> bookManagementList;
+    @OneToOne
+    @JoinColumn(name="book_id", referencedColumnName = "id")
+    private BookManagement bookManagement;
+
 }

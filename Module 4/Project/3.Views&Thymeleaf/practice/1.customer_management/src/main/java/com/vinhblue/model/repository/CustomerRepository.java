@@ -1,14 +1,17 @@
-package com.codegym.repository;
+package com.vinhblue.model.repository;
 
-import com.codegym.entity.Student;
-
+import com.vinhblue.model.entity.Customer;
 import java.util.List;
 
-public interface StudentRepository {
+public interface CustomerRepository {
 
-    List<Student> findAll();
+    List<Customer> findAll();
 
-    Student findById(Integer id);
+    Customer findById(String id);
 
-    void save(Student student);
+    void save(Customer customer);
+
+    void update(Customer customer);
+
+    void delete(String id);
 }

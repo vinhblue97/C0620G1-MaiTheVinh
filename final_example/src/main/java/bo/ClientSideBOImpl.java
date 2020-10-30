@@ -20,8 +20,8 @@ public class ClientSideBOImpl implements ClientSideBO {
     }
 
     @Override
-    public List<ClientSide> find(String name, String price) {
-        return this.clientSideDao.find(name, price);
+    public List<ClientSide> find(String name, String price, String find_floor) {
+        return this.clientSideDao.find(name, price, find_floor);
     }
 
 

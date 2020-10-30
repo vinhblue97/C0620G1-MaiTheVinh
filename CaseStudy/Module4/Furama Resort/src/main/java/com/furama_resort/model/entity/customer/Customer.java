@@ -1,4 +1,4 @@
-package com.furama_resort.model.entity;
+package com.furama_resort.model.entity.customer;
 
 public class Customer {
 }

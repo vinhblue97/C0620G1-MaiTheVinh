@@ -1,15 +1,15 @@
-package bo.catefory;
+package bo.office_type;
 
-import dao.category.CategoryDAO;
-import dao.category.CategoryDAOImpl;
-import model.Category;
+import dao.office_type.OfficeTypeDAO;
+import dao.office_type.OfficeTypeDAOImpl;
+import model.OfficeType;
 
 import java.util.List;
 
-public class CategoryBOImpl implements CategoryBO {
-    CategoryDAO categoryDAO = new CategoryDAOImpl();
+public class OfficeTypeBOImpl implements OfficeTypeBO {
+    OfficeTypeDAO officeTypeDAO = new OfficeTypeDAOImpl();
     @Override
-    public List<Category> findAll() {
-        return this.categoryDAO.findAll();
+    public List<OfficeType> findAll() {
+        return this.officeTypeDAO.findAll();
     }
 }

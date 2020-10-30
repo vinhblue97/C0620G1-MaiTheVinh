@@ -1,58 +1,71 @@
 package model;
 
-public class Client {
+public class ClientSide {
     public static int counter = 1;
     private String index_counter;
-    private String id;
-    private String name;
-    private String price;
-    private String quantity;
-    private String color;
+    private String areaId;
+    private String area;
+    private String status;
+    private String floors;
+    private String officeType;
     private String description;
-    private String category_id;
+    private String rentPrice;
+    private String beginDate;
+    private String endDate;
 
 
     public String getIndex_counter() {
         return index_counter;
     }
 
-    public String getId() {
-        return id;
+    public String getAreaId() {
+        return areaId;
     }
 
-    public String getName() {
-        return name;
+    public String getArea() {
+        return area;
     }
 
-    public String getPrice() {
-        return price;
+    public String getStatus() {
+        return status;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public String getFloors() {
+        return floors;
     }
 
-    public String getColor() {
-        return color;
+    public String getOfficeType() {
+        return officeType;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public String getCategory_id() {
-        return category_id;
+    public String getRentPrice() {
+        return rentPrice;
     }
 
-    public Client(String id, String name, String price, String quantity, String color, String description, String category_id) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-        this.color = color;
+    public String getBeginDate() {
+        return beginDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public ClientSide(String areaId, String area, String status, String floors, String officeType, String description,
+                      String rentPrice, String beginDate, String endDate) {
+        this.areaId = areaId;
+        this.area = area;
+        this.status = status;
+        this.floors = floors;
+        this.officeType = officeType;
         this.description = description;
-        this.category_id = category_id;
-        this.index_counter = String.valueOf(counter);
+        this.rentPrice = rentPrice;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.index_counter += counter;
         counter++;
     }
 }

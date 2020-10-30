@@ -1,33 +1,33 @@
 package bo;
 
-import dao.ProductDAO;
-import dao.ProductDAOImpl;
+import dao.ClientSideDAO;
+import dao.ClientSideDAOImpl;
 import model.ClientSide;
 
 import java.util.List;
 
-public class ProductBOImpl implements ProductBO {
-    ProductDAO productDao = new ProductDAOImpl();
+public class ClientSideBOImpl implements ClientSideBO {
+    ClientSideDAO clientSideDao = new ClientSideDAOImpl();
 
     @Override
     public void create(ClientSide clientSide) {
-        this.productDao.create(clientSide);
+        this.clientSideDao.create(clientSide);
     }
 
     @Override
     public List<ClientSide> findAll() {
-        return this.productDao.findAll();
+        return this.clientSideDao.findAll();
     }
 
     @Override
     public List<ClientSide> find(String name, String price) {
-        return this.productDao.find(name, price);
+        return this.clientSideDao.find(name, price);
     }
 
 
     @Override
     public String delete(String id) {
-        this.productDao.delete(id);
+        this.clientSideDao.delete(id);
         return "null";
     }
 }

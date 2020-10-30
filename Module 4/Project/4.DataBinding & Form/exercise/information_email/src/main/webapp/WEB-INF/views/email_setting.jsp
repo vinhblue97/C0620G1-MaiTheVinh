@@ -8,9 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Email Setting</title>
 </head>
 <body>
-$END$
+<div>
+    <p>Language: ${email.language}</p>
+    <p>Page Size: ${email.pageSize}</p>
+    <p>Spam Filter: ${email.spamsFilter}</p>
+    <p>Signature: ${email.signature}</p>
+    <a href="/home">Back</a>
+</div>
 </body>
 </html>

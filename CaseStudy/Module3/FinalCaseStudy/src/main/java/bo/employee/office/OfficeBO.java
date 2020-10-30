@@ -1,4 +1,9 @@
 package bo.employee.office;
 
-public interface OfficeBO {
+import model.employee.Office;
+
+import java.util.List;
+
+public interface OfficeBO{
+    List<Office> findAll();
 }

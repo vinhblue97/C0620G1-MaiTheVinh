@@ -1,9 +1,9 @@
-package bo.catefory;
+package bo.office_type;
 
-import model.Category;
+import model.OfficeType;
 
 import java.util.List;
 
-public interface CategoryBO {
-    List<Category> findAll();
+public interface OfficeTypeBO {
+    List<OfficeType> findAll();
 }

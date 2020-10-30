@@ -1,6 +1,6 @@
 package model.customer;
 
-public class CustomerType {
+public class TypeOfCustomer {
     private String id;
     private String name;
 
@@ -12,7 +12,7 @@ public class CustomerType {
         return name;
     }
 
-    public CustomerType(String id, String name) {
+    public TypeOfCustomer(String id, String name) {
         this.id = id;
         this.name = name;
     }

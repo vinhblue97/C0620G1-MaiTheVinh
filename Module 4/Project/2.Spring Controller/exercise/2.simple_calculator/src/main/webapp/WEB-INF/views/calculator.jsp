@@ -8,9 +8,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Calculator</title>
 </head>
 <body>
-$END$
+<h1>Calculator</h1>
+<form id="result_submit" action="/result" method="post">
+    <input type="text" name="num1" value="${num1}">
+    <input type="text" name="num2" value="${num2}">
+    <button type="submit" formaction="/addition">Addition(+)</button>
+    <button type="submit" formaction="/subtraction">Subbtraction(-)</button>
+    <button type="submit" formaction="/multiplication">Multiplication(*)</button>
+    <button type="submit" formaction="/division">Division(/)</button>
+</form>
+<div>
+    <p>${result}</p>
+</div>
+
 </body>
 </html>

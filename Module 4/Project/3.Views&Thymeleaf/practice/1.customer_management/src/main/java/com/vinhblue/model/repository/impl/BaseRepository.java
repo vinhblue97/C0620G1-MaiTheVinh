@@ -1,4 +1,4 @@
-package com.codegym.repository.impl;
+package com.vinhblue.model.repository.impl;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
