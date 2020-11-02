@@ -43,10 +43,11 @@
                 </th:block>
                 </tbody>
             </table>
-            <div align="center" class="bg-light" >
-                <a th:if="${employeeList.hasPrevious()}" th:href="@{/employeeList(page=${employeeList.number - 1})}"><i class="far fa-caret-square-left"></i></a>
-                <span ></span>
-                <a th:if="${employeeList.hasNext()}" th:href="@{/employeeList(page=${employeeList.number + 1})}"><i class="far fa-caret-square-right"></i></a>
+            <div align="center">
+                <a th:if="${employeeList.hasPrevious()}" th:href="@{/employeeList(page=${employeeList.number - 1})}">Perious</i></a>
+                <a href="#"><span>adsdsd</span></a>
+                <a th:if="${employeeList.hasNext()}"
+                   th:href="@{/employeeList(page=${employeeList.number + 1})}">Next</i></a>
             </div>
         </div>
     </div>
