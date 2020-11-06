@@ -1,10 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Customer List</title>
+    <th:block th:insert="home_page::header"></th:block>
 </head>
 <body>
-$END$
+<th:block th:insert="home_page::navbar"></th:block>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-10">
+            <table class="table table-hover bg-light" style="opacity: 0.9">
+                <thead>
+                <tr>
+                    <th scope="col"><small><b>Id</b></small></th>
+                    <th scope="col"><small><b>Name</b></small></th>
+                    <th scope="col"><small><b>Birth day</b></small></th>
+                    <th scope="col"><small><b>Gender</b></small></th>
+                    <th scope="col"><small><b>Id card</b></small></th>
+                    <th scope="col"><small><b>Phone</b></small></th>
+                    <th scope="col"><small><b>Email</b></small></th>
+                    <th scope="col"><small><b>Type</b></small></th>
+                    <th scope="col"><small><b>Address</b></small></th>
+                    <th scope="col"><small><b>Action</b></small></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="customer:${customerList}">
+                    <tr>
+                        <th scope="row"><small><b th:text="${customer.customerId}"></b></small></th>
+                        <td><small th:text="${customer.customerName}"></small></td>
+                        <td><small th:text="${customer.customerBirthDay}"></small></td>
+                        <td th:switch="${customer.customerGender}">
+                            <small th:case="0">Female</small>
+                            <small th:case="1">Male</small>
+                            <small th:case="*">Other</small>
+                        </td>
+                        <td><small th:text="${customer.customerIdCard}"> </small></td>
+                        <td><small th:text="${customer.customerPhone}"> </small></td>
+                        <td><small th:text="${customer.customerEmail}"> </small></td>
+                        <td><small th:text="${customer.typeCustomer.typeCustomerName}"></small></td>
+                        <td><small th:text="${customer.customerAddress}"></small></td>
+                        <td>
+                            <a th:href="@{/customer/goUpdate(id=${customer.customerId})}" style="text-decoration: none">
+                                <i class="fas fa-user-edit" style="color:blue"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fas fa-user-minus btn-delete" style="color:black"
+                                   th:value="${customer.customerId}"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+            <div th:align="center">
+                <input type="hidden" id="present-page" th:value="${customerList.number}">
+                <a th:if="${customerList.hasPrevious()}"
+                   th:href="@{/customer(page = ${customerList.number - 1}, keyword = ${keywordOld})}">Previous</a>
+                <span id="list-page"></span>
+                <a th:if="${customerList.hasNext()}"
+                   th:href="@{/customer(page = ${customerList.number + 1}, keyword = ${keywordOld})}">Next</a>
+            </div>
+            <a th:href="@{/customer/goCreate}"><span class="btn btn-primary">Add New Customer</span></a>
+        </div>
+    </div>
+</div>
+<form action="/customer/delete">
+    <input type="hidden" id="id-delete">
+</form>
+<div id="my-modal-delete">
+    <p>Are you sur to delete this customer</p>
+    <a th:href="@{/customer/delete}"></a><span class="btn btn-primary">Yes</span>
+    <a href="#"></a><span class="btn btn-light">No</span>
+</div>
+<th:block th:insert="home_page::jquery_cdn"></th:block>
+<script>
+
+    function pageAble() {
+        let str = "";
+        let present = parseInt($("#present-page").val());
+        for (let i = present; i < present + 3; i++) {
+            str += `<a th:href='@{/customer(page = ${i})'><span class='btn btn-primary'> ${(i + 1)}</span></a>`;
+        }
+        document.getElementById("list-page").innerHTML = str;
+    }
+
+    pageAble();
+
+    $(document).ready(function () {
+        $("#my-modal-delete").hide();
+        $("#btn-delete").click(function () {
+            // alert($(".btn-delete").val($(this)));
+        });
+    });
+</script>
 </body>
 </html>

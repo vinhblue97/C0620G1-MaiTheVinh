@@ -1,4 +1,4 @@
 package com.vinhblue.model.repository;
 
-public interface CustomerRepository {
+public interface EmployeeRepository {
 }
