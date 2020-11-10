@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Employee</title>
+    <th:block th:insert="home_page::header"></th:block>
+</head>
+<body>
+<th:block th:insert="home_page::navbar"></th:block>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 bg-light" id="create-form">
+            <form action="/employee/update" method="post" style="margin: 5px" th:object="${employee}">
+                <input type="hidden" th:field="*{employeeId}">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Name</label>
+                        <input type="text" class="form-control" placeholder="Email" th:field="*{employeeName}">
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Id Card</label>
+                        <input type="text" class="form-control" th:field="*{employeeIdCard}">
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Id Card</label>
+                        <input type="date" class="form-control" th:field="*{employeeBirthDay}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-lg-6">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" th:field="*{employeePhone}">
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label>Email</label>
+                        <input type="email" class="form-control" th:field="*{employeeEmail}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-lg-4">
+                        <label>Education Degree</label>
+                        <select th:field="*{educationDegree}">
+                            <option th:each="education:${educationList}" th:value="${education.id}"
+                                    th:text="${education.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Position</label>
+                        <select th:field="*{position}">
+                            <option th:each="positionL:${positionlist}" th:value="${positionL.id}"
+                                    th:text="${positionL.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Division</label>
+                        <select th:field="*{division}">
+                            <option th:each="divisionL:${divisionList}" th:value="${divisionL.id}"
+                                    th:text="${divisionL.name}"></option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+</body>
+</html>
