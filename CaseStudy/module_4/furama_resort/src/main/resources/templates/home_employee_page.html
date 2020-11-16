@@ -1,10 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Employee</title>
+    <th:block th:insert="home_page::header"></th:block>
 </head>
 <body>
-$END$
+<th:block th:insert="home_page::navbar"></th:block>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-10">
+            <table class="table table-hover bg-light" style="opacity: 0.9">
+                <thead>
+                <tr>
+                    <th scope="col"><small><b>Id</b></small></th>
+                    <th scope="col"><small><b>Name</b></small></th>
+                    <th scope="col"><small><b>Id card</b></small></th>
+                    <th scope="col"><small><b>Birth day</b></small></th>
+                    <th scope="col"><small><b>Phone</b></small></th>
+                    <th scope="col"><small><b>Email</b></small></th>
+                    <th scope="col"><small><b>Education Degree</b></small></th>
+                    <th scope="col"><small><b>Position</b></small></th>
+                    <th scope="col"><small><b>Division</b></small></th>
+                    <th scope="col"><small><b>Action</b></small></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="employee:${employeeList}">
+                    <tr>
+                        <th scope="row"><small><b th:text="${employee.employeeId}"></b></small></th>
+                        <td><small th:text="${employee.employeeName}"></small></td>
+                        <td><small th:text="${employee.employeeIdCard}"> </small></td>
+                        <td><small th:text="${employee.employeeBirthDay}"> </small></td>
+                        <td><small th:text="${employee.employeePhone}"> </small></td>
+                        <td><small th:text="${employee.employeeEmail}"> </small></td>
+                        <td><small th:text="${employee.educationDegree.name}"></small></td>
+                        <td><small th:text="${employee.position.name}"></small></td>
+                        <td><small th:text="${employee.division.name}"></small></td>
+                        <td>
+                            <a th:href="@{/employee/goUpdate(id=${employee.employeeId})}" style="text-decoration: none">
+                                <i class="fas fa-user-edit" style="color:blue"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fas fa-user-minus btn-delete" style="color:black"
+                                   th:value="${employee.employeeId}" data-toggle="modal"
+                                   data-target="#exampleModal"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+            <div th:align="center">
+                <input type="hidden" id="present-page" th:value="${employeeList.number}">
+                <a th:if="${employeeList.hasPrevious()}"
+                   th:href="@{/employee(page = ${employeeList.number - 1}, keyword = ${keywordOld})}">Previous</a>
+                <span th:text="${employeeList.number + 1}"></span>/<span th:text="${employeeList.totalPages}"></span>
+                <a th:if="${employeeList.hasNext()}"
+                   th:href="@{/employee(page = ${employeeList.number + 1}, keyword = ${keywordOld})}">Next</a>
+            </div>
+            <a th:href="@{/employee/goCreate}"><span class="btn btn-primary">Add New Employee</span></a>
+        </div>
+    </div>
+</div>
+<!-- modal-delete-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete this employee?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="#" id="continue"><button type="button" class="btn btn-primary" >Delete</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".btn-delete").click(function () {
+            let id = $(this).attr("value");
+            $("#continue").attr("href", `/employee/delete?id=${id}`);
+
+        });
+    });
+</script>
 </body>
 </html>

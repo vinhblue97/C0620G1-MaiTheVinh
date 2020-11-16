@@ -1,8 +1,8 @@
-package com.vinhblue.model.service.impl;
+package com.vinhblue.model.service.employee.impl;
 
 import com.vinhblue.model.entity.employee.Division;
-import com.vinhblue.model.repository.DivisionRepository;
-import com.vinhblue.model.service.DivisionService;
+import com.vinhblue.model.repository.employee.DivisionRepository;
+import com.vinhblue.model.service.employee.DivisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -13,10 +13,11 @@
         <div class="col-lg-8">
             <form action="/customer/update" method="post" class="bg-light" style="opacity: 0.9"
                   th:object="${customerDetail}">
+                <input type="hidden" class="form-control" th:field="*{customerId}">
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label>Id</label>
-                        <input type="text" class="form-control" th:field="*{customerId}" disabled>
+                        <input type="text" class="form-control" th:value="${customerDetail.customerId}" disabled>
                     </div>
                     <div class="form-group col-md-4">
                         <label>Name</label>

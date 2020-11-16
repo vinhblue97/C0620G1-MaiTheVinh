@@ -1,4 +1,4 @@
-package com.vinhblue.model.entity.employee;
+package com.vinhblue.model.entity.product;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +11,9 @@ import java.util.List;
 @Getter @Setter @NoArgsConstructor
 public class TypeProduct {
     @Id
-    @Column(name="type_product_id", columnDefinition = "int")
+    @Column(name="type_product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String typeProductId;
+    private Integer typeProductId;
 
     @Column(name="type_product_name")
     private String typeProductName;

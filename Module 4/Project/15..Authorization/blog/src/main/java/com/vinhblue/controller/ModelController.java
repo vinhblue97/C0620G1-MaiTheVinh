@@ -64,4 +64,9 @@ public class ModelController {
         model.addAttribute("listModel", this.modelService.findByNameContaining(pageable, name));
         return "home_page";
     }
+
+    @GetMapping("/403")
+    private String go403(){
+        return "403";
+    }
 }

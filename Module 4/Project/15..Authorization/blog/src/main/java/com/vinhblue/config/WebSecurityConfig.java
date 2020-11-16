@@ -9,10 +9,17 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private DataSource dataSource;
+
     @Autowired
     private UserDetailServiceImpl userDetailService;
 
@@ -49,6 +56,37 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutUrl("/logout")
                 // logout successful
                 .logoutSuccessUrl("/login");
+        // authorization
+        // guest
+        http.authorizeRequests().antMatchers("/login", "/logout").permitAll();
+
+        // user
+//        http.authorizeRequests().antMatchers("/", "/student", "/student/detail").hasRole("USER");
+//        http.authorizeRequests().antMatchers("/", "/student", "/student/detail")
+//                .access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')");
+        http.authorizeRequests().antMatchers("/", "/student", "/student/detail")
+                .access("hasRole('ROLE_USER')");
+
+        // admin
+        http.authorizeRequests().antMatchers("/student/create", "/student/update")
+                .access("hasAnyRole('ROLE_ADMIN')");
+
+        // no permission
+        http.exceptionHandling().accessDeniedPage("/403");
+
+        // remember me
+        http.rememberMe()
+                .rememberMeParameter("rememberMe")
+                .rememberMeCookieName("rememberMeCookie")
+                .tokenValiditySeconds(30);
+//                .tokenRepository(this.persistentTokenRepository());
+    }
+// Lưu cookie vào DB
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
+        db.setDataSource(dataSource);
+        return db;
     }
 
 }

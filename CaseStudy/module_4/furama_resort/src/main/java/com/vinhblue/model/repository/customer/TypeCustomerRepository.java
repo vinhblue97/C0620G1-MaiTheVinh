@@ -1,4 +1,4 @@
-package com.vinhblue.model.repository;
+package com.vinhblue.model.repository.customer;
 
 import com.vinhblue.model.entity.customer.TypeCustomer;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Employee</title>
@@ -7,6 +7,7 @@
 </head>
 <body>
 <th:block th:insert="home_page::navbar"></th:block>
+<p th:insert="home_page::tim-kiem"></p>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-2"></div>
@@ -14,39 +15,31 @@
             <table class="table table-hover bg-light" style="opacity: 0.9" id="result">
                 <thead>
                 <tr>
-                    <th scope="col"><small><b>Id</b></small></th>
-                    <th scope="col"><small><b>Name</b></small></th>
-                    <th scope="col"><small><b>Id card</b></small></th>
-                    <th scope="col"><small><b>Birth day</b></small></th>
-                    <th scope="col"><small><b>Phone</b></small></th>
-                    <th scope="col"><small><b>Email</b></small></th>
-                    <th scope="col"><small><b>Education Degree</b></small></th>
-                    <th scope="col"><small><b>Position</b></small></th>
-                    <th scope="col"><small><b>Division</b></small></th>
-                    <th scope="col"><small><b>Salary</b></small></th>
-                    <th scope="col"><small><b>Action</b></small></th>
+                    <th scope="col"><small><b>STT</b></small></th>
+                    <th scope="col"><small><b>Chọn</b></small></th>
+                    <th scope="col"><small><b>Tên sản phẩm</b></small></th>
+                    <th scope="col"><small><b>Loại sản phẩm</b></small></th>
+                    <th scope="col"><small><b>Giá bắt đầu</b></small></th>
+                    <th scope="col"><small><b>Tình trạng</b></small></th>
+                    <th scope="col"><small><b>Hành động</b></small></th>
                 </tr>
                 </thead>
                 <tbody>
                 <th:block th:each="product:${productList}">
                     <tr>
-                        <th scope="row"><small><b th:text="${product.employeeId}"></b></small></th>
-                        <td><small th:text="${product.employeeName}"></small></td>
-                        <td><small th:text="${product.employeeIdCard}"> </small></td>
-                        <td><small th:text="${product.employeeBirthDay}"> </small></td>
-                        <td><small th:text="${product.employeePhone}"> </small></td>
-                        <td><small th:text="${product.employeeEmail}"> </small></td>
-                        <td><small th:text="${product.employeeEducationDegree.name}"></small></td>
-                        <td><small th:text="${product.employeePosition.name}"></small></td>
-                        <td><small th:text="${product.employeeDivision.name}"></small></td>
-                        <td><small th:text="${product.employeeSalary}"></small></td>
+                        <th scope="row"><small><b th:text="${product.productId}"></b></small></th>
+                        <td><input type="checkbox" th:value="${product.productId}"/></td>
+                        <td><small th:text="${product.productName}"></small></td>
+                        <td><small th:text="${product.productPrice}"> </small></td>
+                        <td><small th:text="${product.typeProduct.typeProductName}"></small></td>
+                        <td><small th:text="${product.productStatus}"> </small></td>
                         <td>
-                            <a th:href="@{/product/goUpdate(id=${product.employeeId})}" style="text-decoration: none">
+                            <a th:href="@{/product/goUpdate(id=${product.productId})}" style="text-decoration: none">
                                 <i class="fas fa-user-edit" style="color:blue"></i>
                             </a>
                             <a href="#">
                                 <i class="fas fa-user-minus btn-delete" style="color:black"
-                                   th:value="${product.employeeId}" data-toggle="modal"
+                                   th:value="${product.productId}" data-toggle="modal"
                                    data-target="#exampleModal"></i>
                             </a>
                         </td>
@@ -57,12 +50,12 @@
             <div th:align="center">
                 <input type="hidden" id="present-page" th:value="${productList.number}">
                 <a th:if="${productList.hasPrevious()}"
-                   th:href="@{/product(page = ${productList.number - 1}, searchPhone = ${searchPhoneOld}, searchName =${searchNameOld})}">Previous</a>
+                   th:href="@{/product/(page = ${productList.number - 1}, searchName = ${searchNameOld}, searchPrice =${searchPriceOld})}">Previous</a>
                 <span th:text="${productList.number + 1}"></span>/<span th:text="${productList.totalPages}"></span>
                 <a th:if="${productList.hasNext()}"
-                   th:href="@{/product(page = ${productList.number + 1}, searchPhone = ${searchPhoneOld}, searchName =${searchNameOld})}">Next</a>
+                   th:href="@{/product(page = ${productList.number + 1}, searchName = ${searchNameOld}, searchPrice =${searchPriceOld})}">Next</a>
             </div>
-            <a th:href="@{/product/goCreate}"><span class="btn btn-primary">Add New Employee</span></a>
+            <a th:href="@{/product/goCreate}"><span class="btn btn-primary">Add New Product</span></a>
         </div>
     </div>
 </div>
@@ -99,37 +92,18 @@
         });
         let str = "";
         str += `<div id="selection">
-                    <form action="/product" id="request-search">
-                        <input type="text" name="searchPhone" placeholder="search by phone"/>
-                        <input type="text" name="searchName" placeholder="search by name"/>
+                    <form action="/product" id="request-search" class="bg-light">
+                        <label>Tên sản phẩm
+                        <input type="text" name="searchName" placeholder="Nhập tên sản phẩm"/></label>
+                        <label>Giá bắt đầu
+                        <input type="text" name="searchPrice" placeholder="Nhập giá bắt đầu"/></label>
+                        <button type="submit">Search</button>
                     </form>
                 </div>`
         $("#selection").html(str);
         $("#search").click(function () {
             $("#request-search").submit();
         });
-        // $("#search").click(function () {
-        //     let searchId = $("#searchId").val();
-        //     let searchName = $("#searchName").val();
-        //     let urlSearch = "http://localhost:8080/employeeRest/search";
-        //     if (searchId != null) {
-        //         urlSearch += "/" + searchId;
-        //     } else if (searchName != null) {
-        //         urlSearch += "/" + searchName;
-        //     }
-        //     console.log(urlSearch);
-        //     $.ajax({
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'application/json'
-        //         },
-        //         type: "GET",
-        //         url: "http://localhost:8080/employeeRest/search" + searchId + "/" + searchName,
-        //         success: function (data, statusContent, header) {
-        //             console.log(data);
-        //         }
-        //     });
-        // });
 
     });
 </script>

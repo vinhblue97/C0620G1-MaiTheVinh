@@ -17,4 +17,9 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> findAll() {
         return this.itemRepository.findAll();
     }
+
+    @Override
+    public Item findById(Integer id) {
+        return this.itemRepository.findById(id).orElse(null);
+    }
 }

@@ -1,10 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Add new service</title>
+    <th:block th:insert="home_page::header"></th:block>
 </head>
 <body>
-$END$
+<th:block th:insert="home_page::navbar"></th:block>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 bg-light" id="create-form">
+            <form action="/service/create" method="post" style="margin: 5px" th:object="${service}">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label>Id</label>
+                        <input id="service-id" type="text" class="form-control" placeholder="Id"
+                               th:field="*{serviceId}">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Name</label>
+                        <input type="text" class="form-control" placeholder="Name" th:field="*{serviceName}">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Area</label>
+                        <input type="number" class="form-control" placeholder="Area" th:field="*{serviceArea}">
+                        <small style="color: red" th:if="${#fields.hasErrors('serviceArea')}" th:errors="*{serviceArea}"></small>
+
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Cost</label>
+                        <input type="number" class="form-control" placeholder="Cost" th:field="*{serviceCost}">
+                        <small style="color: red" th:if="${#fields.hasErrors('serviceCost')}" th:errors="*{serviceCost}"></small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-lg-4">
+                        <label>Max People</label>
+                        <input type="number" class="form-control" th:field="*{serviceMaxPeople}">
+                        <small style="color: red" th:if="${#fields.hasErrors('serviceMaxPeople')}" th:errors="*{serviceMaxPeople}"></small>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Floor Quantity</label>
+                        <input type="number" class="form-control" th:field="*{serviceNumFloor}" id="service-floor">
+                        <small style="color: red" th:if="${#fields.hasErrors('serviceNumFloor')}" th:errors="*{serviceNumFloor}"></small>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Pool Area</label>
+                        <input type="number" class="form-control" th:field="*{servicePoolArea}" id="service-pool">
+                        <small style="color: red" th:if="${#fields.hasErrors('servicePoolArea')}" th:errors="*{servicePoolArea}"></small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" th:field="*{serviceDescription}" id="service-des"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-lg-2">
+                        <label>Type</label>
+                        <select th:field="*{serviceType}" id="service-type">
+                            <option th:each="type:${serviceTypelist}" th:value="${type.id}"
+                                    th:text="${type.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-2">
+                        <label>Standard</label>
+                        <select th:field="*{serviceStandard}" id="service-standard">
+                            <option value="1*">1*</option>
+                            <option value="2*">2*</option>
+                            <option value="3*">3*</option>
+                            <option value="4*">4*</option>
+                            <option value="5*">5*</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-2"></div>
+                    <div class="form-group col-lg-2">Rent type</div>
+                    <div class="form-group col-lg-1">
+                        <input type="number" min="0" value="0" class="form-control" th:field="*{serviceRentType.year}">
+                    </div>
+                    <div class="form-group col-lg-1">
+                        <input type="number" min="0" value="0" class="form-control" th:field="*{serviceRentType.month}">
+                    </div>
+                    <div class="form-group col-lg-1">
+                        <input type="number" min="0" value="0" class="form-control" th:field="*{serviceRentType.day}">
+                    </div>
+                    <div class="form-group col-lg-1">
+                        <input type="number" min="0" value="0" class="form-control" th:field="*{serviceRentType.hour}">
+                    </div>
+                </div>
+                <input type="hidden" id="check-contract" name="checkContract"/>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+<th:block th:insert="home_page::jquery_cdn"></th:block>
+<script>
+    $(document).ready(function () {
+        $("#service-type").change(function () {
+            if ($(this).val() == "2") {
+                $("#service-floor").prop('disabled', true);
+                $("#check-contract").val("true");
+            } else if (($(this).val() == "3")) {
+                $("#service-standard").prop('disabled', true);
+                $("#service-des").prop('disabled', true);
+                $("#service-pool").prop('disabled', true);
+                $("#service-floor").prop('disabled', true);
+                $("#check-contract").val("false");
+            } else {
+                $("#service-standard").prop('disabled', false);
+                $("#service-des").prop('disabled', false);
+                $("#service-pool").prop('disabled', false);
+                $("#service-floor").prop('disabled', false);
+                $("#check-contract").val("true");
+            }
+        });
+    });
+</script>
 </body>
 </html>

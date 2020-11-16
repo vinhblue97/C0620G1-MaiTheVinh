@@ -1,18 +1,16 @@
-package com.vinhblue.model.repository.employee;
+package com.vinhblue.model.repository.product;
 
-import com.vinhblue.model.entity.employee.Product;
+import com.vinhblue.model.entity.product.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, String> {
 
-    Page<Product> findALlByEmployeePhone(String employeePhone, Pageable pageable);
-
-    Page<Product> findAllByEmployeeNameContaining(String employeeName, Pageable pageable);
-
-    Page<Product> findAllByEmployeeNameContainingAndEmployeePhone(String employeeName, String employeePhone, Pageable pageable);
+    Page<Product> findAllByProductNameContainingAndProductPriceContaining(String productName,
+                                                                          String productPrice,
+                                                                          Pageable pageable);
 
 }

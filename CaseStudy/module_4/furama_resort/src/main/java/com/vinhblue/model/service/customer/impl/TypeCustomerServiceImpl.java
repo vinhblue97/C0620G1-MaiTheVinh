@@ -1,8 +1,8 @@
-package com.vinhblue.model.service.impl;
+package com.vinhblue.model.service.customer.impl;
 
 import com.vinhblue.model.entity.customer.TypeCustomer;
-import com.vinhblue.model.repository.TypeCustomerRepository;
-import com.vinhblue.model.service.TypeCustomerService;
+import com.vinhblue.model.repository.customer.TypeCustomerRepository;
+import com.vinhblue.model.service.customer.TypeCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

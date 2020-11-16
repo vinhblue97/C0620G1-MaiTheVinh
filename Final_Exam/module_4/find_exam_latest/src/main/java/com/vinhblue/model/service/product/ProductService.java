@@ -1,26 +1,21 @@
-package com.vinhblue.model.service.employee;
+package com.vinhblue.model.service.product;
 
-import com.vinhblue.model.entity.employee.Product;
+import com.vinhblue.model.entity.product.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
-public interface EmployeeService {
+public interface ProductService {
     Page<Product> findAll(Pageable pageable);
 
     void save(Product product);
 
-    Product findById(Integer id);
+    Product findById(String id);
 
-    List<Product> findAll();
+    void delete(Product product);
 
-    void deleteById(Integer employeeId);
+    Page<Product> findAllByProductNameContainingAndProductPriceContaining(String productName,
+                                                                          String productPrice,
+                                                                          Pageable pageable);
 
-    Page<Product> findALlByEmployeePhone(String employeePhone, Pageable pageable);
-
-    Page<Product> findAllByEmployeeNameContaining(String employeeName, Pageable pageable );
-
-    Page<Product> findAllByEmployeeNameContainingAndEmployeePhone(String employeeName, String employeePhone, Pageable pageable);
 
 }

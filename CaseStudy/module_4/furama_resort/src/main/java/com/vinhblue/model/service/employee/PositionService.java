@@ -1,4 +1,4 @@
-package com.vinhblue.model.service;
+package com.vinhblue.model.service.employee;
 
 import com.vinhblue.model.entity.employee.Position;
 

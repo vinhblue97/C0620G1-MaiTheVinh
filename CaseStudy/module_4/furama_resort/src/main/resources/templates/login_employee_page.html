@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Login</title>
+    <th:block th:insert="home_page::header"></th:block>
 </head>
 <body>
-$END$
+<th:block th:insert="home_page::navbar"></th:block>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 bg-light">
+            <h2><i class="fas fa-lock"></i>Login</h2>
+            <form action="/checkLogin" method="post" class="bg-light">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Email</span><br><br>
+                        <span>Password</span>
+                    </div>
+                    <div class="col-lg-9">
+                        <input type="email" name="username"><br><br>
+                        <input type="password" name="password">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <input type="checkbox" name="rememberMe"><span>Remember Me</span><br>
+                            <span class="btn btn-primary" type="submit">Log in</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
 </body>
 </html>

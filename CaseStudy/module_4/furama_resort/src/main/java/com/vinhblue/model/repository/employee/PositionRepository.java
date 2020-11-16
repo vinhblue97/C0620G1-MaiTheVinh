@@ -1,4 +1,4 @@
-package com.vinhblue.model.repository;
+package com.vinhblue.model.repository.employee;
 
 import com.vinhblue.model.entity.employee.Position;
 import org.springframework.data.jpa.repository.JpaRepository;

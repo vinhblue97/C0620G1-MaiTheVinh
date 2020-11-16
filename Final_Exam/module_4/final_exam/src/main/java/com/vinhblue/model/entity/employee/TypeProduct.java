@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity(name="position")
 @Getter @Setter @NoArgsConstructor
-public class Position {
+public class TypeProduct {
     @Id
     @Column(name="position_id")
     private Integer id;

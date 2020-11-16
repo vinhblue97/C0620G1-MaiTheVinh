@@ -16,6 +16,7 @@
                     <div class="form-group col-md-4">
                         <label>Id</label>
                         <input type="text" class="form-control" placeholder="Id" th:field="*{customerId}">
+                        <small style="color: red" th:if="${#fields.hasErrors('customerId')}" th:errors="*{customerId}"></small>
                     </div>
                     <div class="form-group col-md-4">
                         <label>Name</label>
@@ -38,16 +39,19 @@
                     <div class="form-group col-lg-4">
                         <label>Id Card</label>
                         <input type="text" class="form-control" th:field="*{customerIdCard}">
+                        <small style="color: red" th:if="${#fields.hasErrors('customerIdCard')}" th:errors="*{customerIdCard}"></small>
                     </div>
                     <div class="form-group col-lg-4">
                         <label>Phone</label>
                         <input type="text" class="form-control" th:field="*{customerPhone}">
+                        <small style="color: red" th:if="${#fields.hasErrors('customerPhone')}" th:errors="*{customerPhone}"></small>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Email</label>
                         <input type="text" class="form-control" th:field="*{customerEmail}">
+                        <small style="color: red" th:if="${#fields.hasErrors('customerEmail')}" th:errors="*{customerEmail}"></small>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Type</label>

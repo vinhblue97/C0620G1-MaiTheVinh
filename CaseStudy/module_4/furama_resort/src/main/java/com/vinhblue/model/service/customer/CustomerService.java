@@ -1,8 +1,10 @@
-package com.vinhblue.model.service;
+package com.vinhblue.model.service.customer;
 
 import com.vinhblue.model.entity.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 public interface CustomerService {
     Page<Customer> findAll(Pageable pageable);
@@ -11,7 +13,9 @@ public interface CustomerService {
 
     void save(Customer customer);
 
-    void delete(String id);
+    void delete(Customer customer);
 
     Customer findById(String id);
+
+    List<Customer> findAll();
 }

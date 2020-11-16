@@ -1,10 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Add new contract</title>
+    <th:block th:insert="home_page::header"></th:block>
 </head>
 <body>
-$END$
+<th:block th:insert="home_page::navbar"></th:block>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 bg-light" id="create-form">
+            <form action="/contract/create" method="post" style="margin: 5px" th:object="${contract}">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Begin Date</label>
+                        <input type="date" class="form-control" placeholder="Name" th:field="*{startDate}">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>End Date</label>
+                        <input type="date" class="form-control" placeholder="Area" th:field="*{endDate}">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Deposit</label>
+                        <input type="number" class="form-control" placeholder="Cost" th:field="*{deposit}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-lg-4">
+                        <label>Total Money</label>
+                        <input type="number" class="form-control" th:field="*{totalMoney}">
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Employee</label>
+                        <select class="form-control" th:field="*{employee}">
+                            <option th:each="employee:${employeeList}" th:value="${employee.employeeId}"
+                                    th:text="${employee.employeeName}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Customer</label>
+                        <select class="form-control" th:field="*{customer}">
+                            <option th:each="customer:${customerList}" th:value="${customer.customerId}"
+                                    th:text="${customer.customerName}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-lg-6">
+                        <label>Service</label>
+                        <select class="form-control" th:field="*{serviceFurama}">
+                            <option th:each="service : ${serviceList}" th:value="${service.serviceId}"
+                                    th:text="${service.serviceName}"></option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <label>Attach Service</label>
+                            <th:block th:each="attachService:${attachServiceList}" id="service-type">
+                                <input type="checkbox" th:field="*{attachServiceSet}" th:value="${attachService.id}"
+                                       th:text="${attachService.name}"/>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="check-contract" name="checkContract"/>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+<th:block th:insert="home_page::jquery_cdn"></th:block>
 </body>
 </html>

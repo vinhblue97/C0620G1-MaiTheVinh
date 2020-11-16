@@ -1,10 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Service List</title>
+    <th:block th:insert="home_page::header"></th:block>
 </head>
 <body>
-$END$
+<th:block th:insert="home_page::navbar"></th:block>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-11">
+            <table class="table table-hover bg-light" style="opacity: 0.9">
+                <thead>
+                <tr>
+                    <th scope="col"><small><b>Id</b></small></th>
+                    <th scope="col"><small><b>Type</b></small></th>
+                    <th scope="col"><small><b>Name</b></small></th>
+                    <th scope="col"><small><b>Area</b></small></th>
+                    <th scope="col"><small><b>Cost</b></small></th>
+                    <th scope="col"><small><b>Max people</b></small></th>
+                    <th scope="col"><small><b>Rent type(year,month,day,hour)</b></small></th>
+                    <th scope="col"><small><b>Standard</b></small></th>
+                    <th scope="col"><small><b>Description</b></small></th>
+                    <th scope="col"><small><b>Pool area</b></small></th>
+                    <th scope="col"><small><b>Floor Quantity</b></small></th>
+                    <th scope="col"><small><b>Action</b></small></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="service:${serviceList}">
+                    <tr>
+                        <th scope="row"><small><b th:text="${service.serviceId}"></b></small></th>
+                        <td><small th:text="${service.serviceType.name}"></small></td>
+                        <td><small th:text="${service.serviceName}"></small></td>
+                        <td><small th:text="${service.serviceArea}"> </small></td>
+                        <td><small th:text="${service.serviceCost}"> </small></td>
+                        <td><small th:text="${service.serviceMaxPeople}"> </small></td>
+                        <td>
+                            <small th:text="${service.serviceRentType.year+'(y), '}"></small>
+                            <small th:text="${service.serviceRentType.month+'(m), '}"></small>
+                            <small th:text="${service.serviceRentType.day+'(d), '}"></small>
+                            <small th:text="${service.serviceRentType.hour+'(h)'}"></small>
+                        </td>
+                        <td><small th:text="${service.serviceStandard}"></small></td>
+                        <td><small th:text="${service.serviceDescription}"></small></td>
+                        <td><small th:text="${service.servicePoolArea}"></small></td>
+                        <td><small th:text="${service.serviceNumFloor}"></small></td>
+                        <td>
+                            <a th:href="@{/service/goUpdate(id=${service.serviceId})}" style="text-decoration: none">
+                                <i class="fas fa-user-edit" style="color:blue"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fas fa-user-minus btn-delete" style="color:black"
+                                   th:value="${service.serviceId}" data-toggle="modal"
+                                   data-target="#exampleModal"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+<!--            <div th:align="center">-->
+<!--                <input type="hidden" id="present-page" th:value="${serviceList.number}">-->
+<!--                <a th:if="${serviceList.hasPrevious()}"-->
+<!--                   th:href="@{/customer(page = ${serviceList.number - 1})}">Previous</a>-->
+<!--                <span th:text:="${serviceList.number + 1}"></span>/<span th:text="${serviceList.totalPages}"></span>-->
+<!--                <a th:if="${serviceList.hasNext()}"-->
+<!--                   th:href="@{/customer(page = ${serviceList.number + 1})}">Next</a>-->
+<!--            </div>-->
+            <a th:href="@{/service/goCreate}"><span class="btn btn-primary">Add New Service</span></a>
+            <a href="#"><span class="btn btn-danger">Add New Contract</span></a>
+        </div>
+    </div>
+</div>
+
+<!-- modal-delete-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete this service?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="#" id="continue"><button type="button" class="btn btn-primary" >Delete</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:insert="home_page::jquery_cdn"></th:block>
+<script>
+    $(document).ready(function () {
+        $(".btn-delete").click(function () {
+            let id = $(this).attr("value");
+            $("#continue").attr("href", `/service/delete?id=${id}`);
+
+        });
+    });
+</script>
 </body>
 </html>

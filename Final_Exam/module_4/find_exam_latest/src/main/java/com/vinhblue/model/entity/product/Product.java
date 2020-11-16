@@ -1,11 +1,13 @@
-package com.vinhblue.model.entity.employee;
+package com.vinhblue.model.entity.product;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity(name = "product")
 @Getter
@@ -15,20 +17,20 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id", columnDefinition = "int")
-    private Integer productId;
+    private String productId;
 
     @Column(name = "product_name")
-    @NotBlank(message = "do not blank product name")
+    @Pattern(regexp = "^\\w{5,50}$", message = "do not blank product name")
     private String productName;
 
 
     @Column(name = "product_price", columnDefinition = "double")
-    @NotBlank(message = "do not blank price")
+    @Pattern(regexp = "^\\d*$", message = "do not blank product name")
+    @Min(100000)
     private String productPrice;
 
 
     @Column(name = "product_status")
-    @NotBlank(message = "do not blank product status")
     private String productStatus;
 
     @ManyToOne()

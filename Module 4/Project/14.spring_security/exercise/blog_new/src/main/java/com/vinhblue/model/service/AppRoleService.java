@@ -4,6 +4,6 @@ import com.vinhblue.model.entity.AppRole;
 
 import java.util.List;
 
-public interface UserRoleService {
+public interface AppRoleService {
     List<AppRole> findAll();
 }

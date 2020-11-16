@@ -3,47 +3,36 @@ package com.vinhblue.model.entity.employee;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import javax.validation.constraints.NotBlank;
 
-@Entity(name = "employee")
-@Getter @Setter @NoArgsConstructor
-public class Employee {
+@Entity(name = "product")
+@Getter
+@Setter
+@NoArgsConstructor
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employee_id", columnDefinition = "int")
-    private Integer employeeId;
+    @Column(name = "product_id", columnDefinition = "int")
+    private Integer productId;
 
-    @Column(name = "employee_name")
-    private String employeeName;
+    @Column(name = "product_name")
+    @NotBlank(message = "do not blank product name")
+    private String productName;
 
-    @Column(name = "employee_birthday")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate employeeBirthDay;
 
-    @Column(name = "employe_idcard")
-    private String employeeIdCard;
+    @Column(name = "product_price", columnDefinition = "double")
+    @NotBlank(message = "do not blank price")
+    private String productPrice;
 
-    @Column(name = "employee_phone")
-    private String employeePhone;
 
-    @Column(name = "employee_email")
-    private String employeeEmail;
-
-    @Column(name = "employee_salary")
-    private Long employeeSalary;
+    @Column(name = "product_status")
+    private String productStatus;
 
     @ManyToOne()
     @JoinColumn(name = "education_degree_id", referencedColumnName = "education_degree_id")
     private EducationDegree employeeEducationDegree;
 
-    @ManyToOne()
-    @JoinColumn(name = "position_id", referencedColumnName = "position_id")
-    private Position employeePosition;
 
-    @ManyToOne()
-    @JoinColumn(name = "division_id", referencedColumnName = "division_id")
-    private Division employeeDivision;
 }

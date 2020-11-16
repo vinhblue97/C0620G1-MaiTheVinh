@@ -1,4 +1,4 @@
-package com.vinhblue.model.service.user_impl;
+package com.vinhblue.model.service.user.impl;
 
 import com.vinhblue.model.entity.user.AppRole;
 import com.vinhblue.model.entity.user.AppUser;

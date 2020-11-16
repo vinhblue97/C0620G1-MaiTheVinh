@@ -24,8 +24,14 @@ public class HomeController {
     }
 
     @PostMapping("/buy")
-    private String orderItem(@ModelAttribute User user, Model model){
+    private String orderItem(@ModelAttribute User user, Model model) {
         model.addAttribute("user", user);
-        return "display_item";
+        return "display_item_page";
+    }
+
+    @GetMapping("/detail/{id}")
+    private String detailItem(@PathVariable Integer id, Model model) {
+        model.addAttribute("detailItem", this.itemService.findById(id));
+        return "detail_page";
     }
 }

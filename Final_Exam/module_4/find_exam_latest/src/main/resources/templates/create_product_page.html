@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Add New Employee</title>
@@ -12,58 +12,40 @@
         <div class="col-lg-2"></div>
         <div class="col-lg-8 bg-light" id="create-form">
             <form action="/product/create" method="post" style="margin: 5px" th:object="${product}">
+                <input type="hidden" th:field="*{productId}">
                 <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label>Name</label>
-                        <input type="text" class="form-control" placeholder="Email" th:field="*{employeeName}">
+                    <div class="form-group col-md-6">
+                        <label>Tên sản phẩm</label>
+                        <input type="text" class="form-control" placeholder="Tên sản phẩm" th:field="*{productName}">
+                        <small style="color: red" th:if="${#fields.hasErrors('productName')}"
+                               th:errors="*{productName}"></small>
                     </div>
-                    <div class="form-group col-lg-4">
-                        <label>Id Card</label>
-                        <input type="text" class="form-control" th:field="*{employeeIdCard}">
-                    </div>
-                    <div class="form-group col-lg-4">
-                        <label>Id Card</label>
-                        <input type="date" class="form-control" th:field="*{employeeBirthDay}">
+                    <div class="form-group col-lg-6">
+                        <label>Giá bắt đầu</label>
+                        <input type="text" class="form-control" placeholder="Giá sản phẩm" th:field="*{productPrice}">
+                        <small style="color: red" th:if="${#fields.hasErrors('productPrice')}"
+                               th:errors="*{productPrice}"></small>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-lg-4">
-                        <label>Phone</label>
-                        <input type="text" class="form-control" th:field="*{employeePhone}">
-                    </div>
-                    <div class="form-group col-lg-4">
-                        <label>Email</label>
-                        <input type="email" class="form-control" th:field="*{employeeEmail}">
-                    </div>
-                    <div class="form-group col-lg-4">
-                        <label>Salary</label>
-                        <input type="number" class="form-control" th:field="*{employeeSalary}">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-lg-4">
-                        <label>Education Degree</label>
-                        <select th:field="*{employeeEducationDegree}">
-                            <option th:each="education:${educationList}" th:value="${education.id}"
-                                    th:text="${education.name}"></option>
+                    <div class="form-group col-lg-6">
+                        <label>Loại sản phẩm</label>
+                        <select th:field="*{typeProduct}">
+                            <option th:each="type:${typeProductList}" th:value="${type.typeProductId}"
+                                    th:text="${type.typeProductName}"></option>
                         </select>
                     </div>
-                    <div class="form-group col-lg-4">
-                        <label>Position</label>
-                        <select th:field="*{employeePosition}">
-                            <option th:each="positionL:${positionlist}" th:value="${positionL.id}"
-                                    th:text="${positionL.name}"></option>
-                        </select>
-                    </div>
-                    <div class="form-group col-lg-4">
-                        <label>Division</label>
-                        <select th:field="*{employeeDivision}">
-                            <option th:each="divisionL:${divisionList}" th:value="${divisionL.id}"
-                                    th:text="${divisionL.name}"></option>
+                    <div class="form-group col-lg-6">
+                        <label>Tình trạng</label>
+                        <select th:field="*{productStatus}">
+                            <option value="Chờ duyệt" selected>Chờ duyệt</option>
+                            <option value="Đang đấu giá">Đang đấu giá</option>
+                            <option value="Đã bán">Đã bán</option>
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <a th:href="@{/product}"><span class="btn btn-secondary">Cancel</span></a>
+                <button type="submit" class="btn btn-primary">Create</button>
             </form>
         </div>
         <div class="col-lg-2"></div>

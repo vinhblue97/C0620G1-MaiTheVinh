@@ -29,7 +29,8 @@
                 <tbody>
                 <th:block th:each="customer:${customerList}">
                     <tr>
-                        <th scope="row"><small><b th:text="${customer.customerId}"></b></small></th>
+                        <th scope="row"><small><b th:text="${customer.customerId}"></b></small>
+                        </th>
                         <td><small th:text="${customer.customerName}"></small></td>
                         <td><small th:text="${customer.customerBirthDay}"></small></td>
                         <td th:switch="${customer.customerGender}">
@@ -48,7 +49,7 @@
                             </a>
                             <a href="#">
                                 <i class="fas fa-user-minus btn-delete" style="color:black"
-                                   th:value="${customer.customerId}"></i>
+                                   th:value="${customer.customerId}" data-toggle="modal" data-target="#exampleModal"></i>
                             </a>
                         </td>
                     </tr>
@@ -59,7 +60,7 @@
                 <input type="hidden" id="present-page" th:value="${customerList.number}">
                 <a th:if="${customerList.hasPrevious()}"
                    th:href="@{/customer(page = ${customerList.number - 1}, keyword = ${keywordOld})}">Previous</a>
-                <span id="list-page"></span>
+                <span th:text="${customerList.number + 1}"></span>/<span th:text="${customerList.totalPages}"></span>
                 <a th:if="${customerList.hasNext()}"
                    th:href="@{/customer(page = ${customerList.number + 1}, keyword = ${keywordOld})}">Next</a>
             </div>
@@ -70,30 +71,62 @@
 <form action="/customer/delete">
     <input type="hidden" id="id-delete">
 </form>
+
 <div id="my-modal-delete">
     <p>Are you sur to delete this customer</p>
     <a th:href="@{/customer/delete}"></a><span class="btn btn-primary">Yes</span>
     <a href="#"></a><span class="btn btn-light">No</span>
 </div>
+
+<!-- modal-delete-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete this customer?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="#" id="continue"><button type="button" class="btn btn-primary" >Delete</button></a>
+            </div>
+        </div>
+    </div>
+</div>
 <th:block th:insert="home_page::jquery_cdn"></th:block>
 <script>
 
-    function pageAble() {
-        let str = "";
-        let present = parseInt($("#present-page").val());
-        for (let i = present; i < present + 3; i++) {
-            str += `<a th:href='@{/customer(page = ${i})'><span class='btn btn-primary'> ${(i + 1)}</span></a>`;
-        }
-        document.getElementById("list-page").innerHTML = str;
-    }
-
-    pageAble();
-
     $(document).ready(function () {
+        let str = "";
+        str += `<div id="selection">
+                    <form action="/customer" id="request-search">
+                        <input type="text" name="keyword" placeholder="search by name"/>
+                     </form>
+                </div>`
+        $("#selection").html(str);
         $("#my-modal-delete").hide();
         $("#btn-delete").click(function () {
             // alert($(".btn-delete").val($(this)));
         });
+
+        $("#search").click(function () {
+            $("#request-search").submit();
+        });
+
+        $(".btn-delete").click(function () {
+            let id = $(this).attr("value");
+            $("#continue").attr("href", `/customer/delete?id=${id}`);
+
+        })
+
+        // $("#delete-btn").click(function () {
+        //
+        // });
     });
 </script>
 </body>

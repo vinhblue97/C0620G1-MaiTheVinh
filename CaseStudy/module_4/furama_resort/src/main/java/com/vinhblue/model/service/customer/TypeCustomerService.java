@@ -1,4 +1,4 @@
-package com.vinhblue.model.service;
+package com.vinhblue.model.service.customer;
 
 import com.vinhblue.model.entity.customer.TypeCustomer;
 

@@ -1,9 +1,9 @@
 package com.vinhblue.model.service.employee;
 
-import com.vinhblue.model.entity.employee.Position;
+import com.vinhblue.model.entity.employee.TypeProduct;
 
 import java.util.List;
 
 public interface PositionService {
-    List<Position> findAll();
+    List<TypeProduct> findAll();
 }
