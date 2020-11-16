@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+    <th:block th:insert="home_page::header"></th:block>
+</head>
+<body>
+<th:block th:insert="home_page::navbar"></th:block>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-10">
+            <table class="table table-hover bg-light" style="opacity: 0.9" id="result">
+                <thead>
+                <tr>
+                    <th scope="col"><small><b>Id</b></small></th>
+                    <th scope="col"><small><b>Name</b></small></th>
+                    <th scope="col"><small><b>Id card</b></small></th>
+                    <th scope="col"><small><b>Birth day</b></small></th>
+                    <th scope="col"><small><b>Phone</b></small></th>
+                    <th scope="col"><small><b>Email</b></small></th>
+                    <th scope="col"><small><b>Education Degree</b></small></th>
+                    <th scope="col"><small><b>Position</b></small></th>
+                    <th scope="col"><small><b>Division</b></small></th>
+                    <th scope="col"><small><b>Salary</b></small></th>
+                    <th scope="col"><small><b>Action</b></small></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="product:${productList}">
+                    <tr>
+                        <th scope="row"><small><b th:text="${product.employeeId}"></b></small></th>
+                        <td><small th:text="${product.employeeName}"></small></td>
+                        <td><small th:text="${product.employeeIdCard}"> </small></td>
+                        <td><small th:text="${product.employeeBirthDay}"> </small></td>
+                        <td><small th:text="${product.employeePhone}"> </small></td>
+                        <td><small th:text="${product.employeeEmail}"> </small></td>
+                        <td><small th:text="${product.employeeEducationDegree.name}"></small></td>
+                        <td><small th:text="${product.employeePosition.name}"></small></td>
+                        <td><small th:text="${product.employeeDivision.name}"></small></td>
+                        <td><small th:text="${product.employeeSalary}"></small></td>
+                        <td>
+                            <a th:href="@{/product/goUpdate(id=${product.employeeId})}" style="text-decoration: none">
+                                <i class="fas fa-user-edit" style="color:blue"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fas fa-user-minus btn-delete" style="color:black"
+                                   th:value="${product.employeeId}" data-toggle="modal"
+                                   data-target="#exampleModal"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+            <div th:align="center">
+                <input type="hidden" id="present-page" th:value="${productList.number}">
+                <a th:if="${productList.hasPrevious()}"
+                   th:href="@{/product(page = ${productList.number - 1}, searchPhone = ${searchPhoneOld}, searchName =${searchNameOld})}">Previous</a>
+                <span th:text="${productList.number + 1}"></span>/<span th:text="${productList.totalPages}"></span>
+                <a th:if="${productList.hasNext()}"
+                   th:href="@{/product(page = ${productList.number + 1}, searchPhone = ${searchPhoneOld}, searchName =${searchNameOld})}">Next</a>
+            </div>
+            <a th:href="@{/product/goCreate}"><span class="btn btn-primary">Add New Employee</span></a>
+        </div>
+    </div>
+</div>
+<!-- modal-delete-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete this product?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="#" id="continue">
+                    <button type="button" class="btn btn-primary">Delete</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".btn-delete").click(function () {
+            let id = $(this).attr("value");
+            $("#continue").attr("href", `/product/delete?id=${id}`);
+
+        });
+        let str = "";
+        str += `<div id="selection">
+                    <form action="/product" id="request-search">
+                        <input type="text" name="searchPhone" placeholder="search by phone"/>
+                        <input type="text" name="searchName" placeholder="search by name"/>
+                    </form>
+                </div>`
+        $("#selection").html(str);
+        $("#search").click(function () {
+            $("#request-search").submit();
+        });
+        // $("#search").click(function () {
+        //     let searchId = $("#searchId").val();
+        //     let searchName = $("#searchName").val();
+        //     let urlSearch = "http://localhost:8080/employeeRest/search";
+        //     if (searchId != null) {
+        //         urlSearch += "/" + searchId;
+        //     } else if (searchName != null) {
+        //         urlSearch += "/" + searchName;
+        //     }
+        //     console.log(urlSearch);
+        //     $.ajax({
+        //         headers: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json'
+        //         },
+        //         type: "GET",
+        //         url: "http://localhost:8080/employeeRest/search" + searchId + "/" + searchName,
+        //         success: function (data, statusContent, header) {
+        //             console.log(data);
+        //         }
+        //     });
+        // });
+
+    });
+</script>
+</body>
+</html>

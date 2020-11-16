@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <th:block th:fragment="header">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+        <link rel="stylesheet" href="../css/CssFile.css"/>
+    </th:block>
+</head>
+<body>
+<th:block th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.9">
+        <a class="navbar-brand" href="#"><img src="../image/logo.jpg"
+                                              style="width:100px; height: 45px; opacity: 0.9"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/customer">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/product">Employee</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/service">Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contract">Contract</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" sec:authorize="isAuthenticated()"
+                       sec:authentication="principal.username" id="user"></a>
+                </li>
+            </ul>
+            <div id="selection"></div>
+            <button class="btn btn-outline-success my-2 my-sm-0" id="search">Search</button>
+            <a th:href="@{/logout}"><button class="btn btn-outline-danger my-2 my-sm-0" id="log-out">Log out</button></a>
+        </div>
+    </nav>
+</th:block>
+<th:block th:fragment="jquery_cdn">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+</th:block>
+
+</body>
+</html>
