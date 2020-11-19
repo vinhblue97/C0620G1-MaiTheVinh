@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer List</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Birth Day</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="customer:${customerList}">
+        <td th:text="${customer.getCustomerId()}"></td>
+        <td th:text="${customer.getCustomerName()}"></td>
+        <td th:text="${customer.getCustomerBirthDay()}"></td>
+        <td th:text="${customer.getCustomerEmail()}"></td>
+        <td th:text="${customer.getCustomerAddress()}"></td>
+        <td>
+            <a th:href="@{/customer/goUpdate/{customerId}(customerId = ${customer.getCustomerId()})}">
+                <button>Update</button>
+            </a>
+            <a th:href="@{/customer/delete/{customerId}(customerId = ${customer.getCustomerId()})}">
+                <button>Delete</button>
+            </a>
+        </td>
+    </tr>
+</table>
+<div th:fragment="footerCustomer">
+    <a th:href="@{/customer/create}">Create Customer</a>
+</div>
+</body>
+</html>

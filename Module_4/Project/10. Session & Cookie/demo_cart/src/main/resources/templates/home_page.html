@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10"></div>
+        <div class="col-lg-2" th:text="${userLogin.userName}"></div>
+    </div>
+    <form action="/home/buy" method="post" th:object="${user}">
+        <div class="row">
+            <th:block th:each="item:${itemList}">
+                <div class="col-lg-4">
+                    <a th:href="@{/detail/{id}(id=${item.itemId})}"><img th:src="${item.itemName}"
+                                                                         style="width: 50px; height:50px" th:alt="${item.itemName}"></a>
+                    <input type="checkbox" th:value="${item.itemId}" th:field="*{likedItem}"/>
+                </div>
+            </th:block>
+        </div>
+        <button type="submit">Order</button>
+    </form>
+</div>
+</body>
+</html>

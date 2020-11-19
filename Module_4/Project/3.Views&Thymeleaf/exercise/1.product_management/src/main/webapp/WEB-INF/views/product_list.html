@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <style>
+        #_background {
+            background-image: url("/images/darker.jpg");
+            background-size: 100%;
+        }
+    </style>
+</head>
+<body id="_background">
+
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+    </tr>
+    <tr th:each="product:${productList}">
+        <td th:text="${product.getProductId()}"></td>
+        <td th:text="${product.getProductName()}"></td>
+        <td th:text="${product.getProductPrice()}"></td>
+        <td th:text="${product.getProductQuantity()}"></td>
+    </tr>
+</table>
+<a th:href="@{/product/create}">
+    <button>Add new Product</button>
+</a>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in</title>
+</head>
+<body>
+<form action="/checkSignIn" method="post" th:object="${newUser}">
+    <p>User Name:</p>
+    <input type="text" name="userName" th:value="*{userName}">
+    <p>Password:</p>
+    <input type="password" name="encrytedPassword" th:value="*{encrytedPassword}">
+    <th:block th:each="role:${roleList}" >
+        <label th:text="${role.roleName}"></label>
+        <input type="checkbox" th:value="${role.roleId}" th:field="*{appRole}">
+    </th:block>
+    <button type="submit">Sign in</button>
+</form>
+</body>
+</html>

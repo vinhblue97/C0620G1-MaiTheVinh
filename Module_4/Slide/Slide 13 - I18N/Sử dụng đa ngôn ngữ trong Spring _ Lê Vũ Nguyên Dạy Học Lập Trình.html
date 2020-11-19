@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/ -->
+<html lang="en" class="grwf2"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta property="fb:app_id" content="236029874433209">
+
+		<link href="https://levunguyen.com/blog/rss.xml" rel="alternate" type="application/rss+xml" title="Học lập trình ">
+		<title>Sử dụng đa ngôn ngữ trong Spring | Lê Vũ Nguyên Dạy Học Lập Trình</title>
+		
+
+
+		<link rel="icon" href="https://levunguyen.com/images/favicon.png">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/bootstrap.min.css">
+		<!-- style CSS -->
+		<link rel="stylesheet" href="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/style.css">
+
+		<link rel="stylesheet" href="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/pygments-3024-night.css">
+
+		<script src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/cb=gapi.loaded_2" async=""></script><script type="text/javascript" async="" src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/analytics.js.download"></script><script src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/cb=gapi.loaded_1" async=""></script><script src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/cb=gapi.loaded_0" async=""></script><script src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/260524451750950" async=""></script><script src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/sdk.js.download" async="" crossorigin="anonymous"></script><script async="" src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/fbevents.js.download"></script><script src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/jquery-1.12.1.min.js.download"></script>
+		<!-- bootstrap js -->
+		<script src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/bootstrap.min.js.download"></script>
+		<!-- custom js -->
+		<script src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/custom.js.download"> </script>
+
+		<script async="" defer="" crossorigin="anonymous" src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/sdk.js(1).download"></script>
+
+		<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Sử dụng đa ngôn ngữ trong Spring | blog</title>
+<meta name="generator" content="Jekyll v3.9.0">
+<meta property="og:title" content="Sử dụng đa ngôn ngữ trong Spring">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="Hiểu về đa ngôn ngữ i18n trong lập trình spring. Hướng dẫn cách cấu hình và đa ngôn ngữ trong lập trình spring.">
+<meta property="og:description" content="Hiểu về đa ngôn ngữ i18n trong lập trình spring. Hướng dẫn cách cấu hình và đa ngôn ngữ trong lập trình spring.">
+<link rel="canonical" href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/">
+<meta property="og:url" content="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/">
+<meta property="og:site_name" content="blog">
+<meta property="og:image" content="https://levunguyen.com/images/blog/spring.png">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-04-22T00:00:00+00:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:image" content="https://levunguyen.com/images/blog/spring.png">
+<meta property="twitter:title" content="Sử dụng đa ngôn ngữ trong Spring">
+<meta name="twitter:site" content="@">
+<script type="application/ld+json">
+{"image":"https://levunguyen.com/images/blog/spring.png","@type":"BlogPosting","headline":"Sử dụng đa ngôn ngữ trong Spring","dateModified":"2020-04-22T00:00:00+00:00","datePublished":"2020-04-22T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/"},"url":"https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/","description":"Hiểu về đa ngôn ngữ i18n trong lập trình spring. Hướng dẫn cách cấu hình và đa ngôn ngữ trong lập trình spring.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+		<script src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/platform.js.download" gapi_processed="true"></script>
+
+		<!-- Facebook Pixel Code -->
+		<script>
+			!function(f,b,e,v,n,t,s)
+			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+					n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+				if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+				n.queue=[];t=b.createElement(e);t.async=!0;
+				t.src=v;s=b.getElementsByTagName(e)[0];
+				s.parentNode.insertBefore(t,s)}(window, document,'script',
+					'https://connect.facebook.net/en_US/fbevents.js');
+			fbq('init', '260524451750950');
+			fbq('track', 'PageView');
+		</script>
+		<noscript><img height="1" width="1" style="display:none"
+					   src="https://www.facebook.com/tr?id=260524451750950&ev=PageView&noscript=1"
+				/></noscript>
+		<!-- End Facebook Pixel Code -->
+
+<script data-ad-client="ca-pub-4551247919940215" async="" src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/f.txt"></script>
+
+<link type="text/css" rel="stylesheet" href="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/gr_wf_v2.css"><style type="text/css" data-fbcssmodules="css:fb.css.basecss:fb.css.dialog css:fb.css.iframewidget">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style></head>
+
+	<body>
+
+
+		<div id="layout">
+			<header class="main_menu">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-12">
+				<nav class="navbar navbar-expand-lg navbar-light">
+					<a class="navbar-brand" href="https://levunguyen.com/">
+						<img src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/logo.png" alt="Le Vu Nguyen">
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse main-menu-item justify-content-center" id="navbarSupportedContent">
+						<ul class="navbar-nav">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#" id="navbarJava" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Java
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-java">Java </a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-spring-core">Spring Core </a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-spring-web">Spring Web</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#" id="navbarFE" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									FrontEnd
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-html">HTML</a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-css">CSS</a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-bootstrap">Bootstrap</a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-javascript">JavaScript</a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-typescript">TypeScript</a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-angular">Angular</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#" id="navbarCraftmanship" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Craftmanship
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-java-chuyen-sau">The Best Coder</a>
+									<a class="dropdown-item" href="https://levunguyen.com/ky-thuat-lap-trinh-java-refactoring">Refactoring</a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-design-pattern">Design Pattern</a>
+
+								</div>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#" id="navbarDB" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Database
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="https://levunguyen.com/co-so-du-lieu-mysql">My SQL</a>
+									<a class="dropdown-item" href="https://levunguyen.com/co-so-du-lieu-none-relational-database">Mongo DB</a>
+								</div>
+							</li>
+
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#" id="navbarDevops" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Devops
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-docker">Docker </a>
+									<a class="dropdown-item" href="https://levunguyen.com/ky-thuat-deploy"> Monitor </a>
+									<a class="dropdown-item" href="https://levunguyen.com/ky-thuat-lap-trinh-ci-cd">CI/CD </a>
+								</div>
+							</li>
+							<!--<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarTesting" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Testing
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="single-blog.html">Manual Testing</a>
+									<a class="dropdown-item" href="elements.html">Automation Testing</a>
+									<a class="dropdown-item" href="elements.html">Agile Testing</a>
+								</div>
+							</li>-->
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Nghề Devs
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="https://levunguyen.com/tam-su-nghe-lap-trinh-vien">Tâm Sự Dev </a>
+									<a class="dropdown-item" href="https://levunguyen.com/ky-nang-hoc-lap-trinh">Softskills</a>
+									<a class="dropdown-item" href="https://levunguyen.com/cac-cau-hoi-phong-van"> Phỏng Vấn </a>
+									<a class="dropdown-item" href="https://levunguyen.com/ve-tac-gia"> Về Tác Giả </a>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+				</nav>
+			</div>
+		</div>
+	</div>
+</header>
+			<div style="clear: both"></div>
+		</div>
+
+		<!-- banner post -->
+			<section class="banner_post">
+    <div class="container-fluid">
+        <div class="row justify-content-between">
+            <img src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/banner.JPG" style="max-width: 100%">
+        </div>
+    </div>
+</section>
+
+		<!-- end banner post-->
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-2 col-sm-2" style="display: table;font-size: medium;padding: 0px;line-height: 40px;">
+					<div>
+						<span style="background: #fde3db; display: block; color: red; font-size: large;text-align: center"> Spring Framework </span>
+					</div>
+					<div>
+
+									<div class="relatedpost">
+										<ul style="list-style-type:decimal;">
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/02/01/springmvc/">Spring MVC </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/02/02/tao-du-an-springmvc/">Tạo dự án spring MVC </a>
+											</li>
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/01/t%E1%BA%A1o-du-an-bang-springboot/">Tạo dự án spring Boot </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/05/phan-biet-request-param-va-path-variable-trong-springmvc/">Request Param và PathVariable </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/06/su-dung-optional-path-variable-trong-springmvc/">Optional Path Variable </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/07/su-dung-view-resolve-trong-springmvc/">View Resolve </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/08/su-dung-thymeleaf-trong-springmvc/">Thymeleaf </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/09/model-modlemap-modelview/">Model ModelMap ModelView </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/10/su-dung-data-binding-trong-springmvc/">Data Binding </a>
+											</li>
+											
+											
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/12/su-dung-entity-manager-trong-spring/">Entity Manager </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/13/su-dung-spring-jpa-trong-springboot/">Spring Data JPA </a>
+											</li>
+											
+											
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/15/su-dung-one-to-one-trong-spring-jpa/">OneToOne </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/">OneToMany </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/17/su-dung-many-to-many-trong-spring-jpa/">Many To Many </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/18/su-dung-generation-identifier-trong-spring/">Generation Identifier </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/19/su-dung-validation-trong-spring/">Validation </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/20/su-dung-session-cookie-trong-spring/">Session và Cookie </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/21/su-dung-spring-security-trong-spring/">Spring Security </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/">I18n </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/23/cac-phuong-thuc-http-trong-lap-trinh-web/">Các phương thức HTTP </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/24/su-dung-webservice-trong-lap-trinh-spring/">Webservice </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/25/su-dung-json-web-token-trong-spring/">Json Web Token </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/26/su-dung-restful-trong-springboot/">Restful </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/27/su-dung-aop-advise-trong-spring/">AOP Advise </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/27/spring-aop-pointcut-trong-spring/">AOP Pointcut </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/27/spring-aop-annotation-trong-spring/">AOP Annotation </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/28/tong-hop-cac-annotation-trong-spring-web/">Các Anotation trong Spring </a>
+											</li>
+											
+											
+										</ul>				
+									</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-7 col-sm-7" style="border:5px solid #fde3db">
+					<div id="page">
+						<div style="width:100%;text-align:center;padding-top: 30px"> <img src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/feature_i18n.jpeg"></div>
+						<h1 style="margin-top: 0px;padding-top: 0px;font-size: 50px;color:red">Sử dụng đa ngôn ngữ trong Spring</h1>
+						<div class="post-meta">
+							<div class="post-meta-content" style="text-align: right">
+								<span class="post-auhor-date">
+									<span>
+										<a class="post-author">nguyen.le</a>
+									</span>,
+									<a class="post-date">
+										
+									</a>
+								</span>
+								<span class="post-readtime">
+									<i class="icon icon-clock"></i> 15 min <span>read</span> </span>
+								
+							</div>
+						</div>
+						
+						<div id="contentPost">
+							
+							<nav class="toc">
+<input id="ac-toc" name="accordion-toc" type="checkbox" checked="">
+<label for="ac-toc">Nội dung bài viết</label>
+<div class="toc__menu">
+<ul id="markdown-toc">
+  <li><a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#gi%E1%BB%9Bi-thi%E1%BB%87u-n%E1%BB%99i-dung-b%C3%A0i-vi%E1%BA%BFt" id="markdown-toc-giới-thiệu-nội-dung-bài-viết"><strong>Giới thiệu nội dung bài viết</strong></a></li>
+  <li><a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#hi%E1%BB%83u-v%E1%BB%81-kh%C3%A1i-ni%E1%BB%87m-%C4%91a-ng%C3%B4n-ng%E1%BB%AF" id="markdown-toc-hiểu-về-khái-niệm-đa-ngôn-ngữ">Hiểu về khái niệm đa ngôn ngữ</a></li>
+  <li><a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#1-h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C3%A1ch-l%C3%A0m-%C4%91a-ng%C3%B4n-ng%E1%BB%AF" id="markdown-toc-1-hướng-dẫn-cách-làm-đa-ngôn-ngữ"><strong>1. Hướng dẫn cách làm đa ngôn ngữ</strong></a>    <ul>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#b%C6%B0%E1%BB%9Bc-1--th%C3%AAm-dependency-spring-boot-v%C3%A0o-file-pomxml" id="markdown-toc-bước-1--thêm-dependency-spring-boot-vào-file-pomxml">Bước 1 : Thêm dependency spring boot vào file pom.xml</a></li>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#b%C6%B0%E1%BB%9Bc-2-c%E1%BA%A5u-h%C3%ACnh-localeresolver" id="markdown-toc-bước-2-cấu-hình-localeresolver">Bước 2 Cấu hình LocaleResolver</a></li>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#b%C6%B0%E1%BB%9Bc-3-c%E1%BA%A5u-h%C3%ACnh-localechangeinterceptor" id="markdown-toc-bước-3-cấu-hình-localechangeinterceptor">Bước 3 cấu hình LocaleChangeInterceptor</a></li>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#b%C6%B0%E1%BB%9Bc-4-%C4%91%E1%BB%8Bnh-ngh%C4%A9a-n%E1%BB%99i-dung-locale-trong-file--message-sources" id="markdown-toc-bước-4-định-nghĩa-nội-dung-locale-trong-file--message-sources">Bước 4 Định nghĩa nội dung locale trong file  Message Sources</a></li>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#b%C6%B0%E1%BB%9Bc-5-t%E1%BA%A1o-controller-v%C3%A0-trang--html" id="markdown-toc-bước-5-tạo-controller-và-trang--html">Bước 5 Tạo Controller và trang  HTML</a></li>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#b%C6%B0%E1%BB%9Bc-6--running-the-application" id="markdown-toc-bước-6--running-the-application">Bước 6  Running the Application</a></li>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#v%C3%A0-b%C3%A2y-gi%E1%BB%9D-h%C3%A3y-c%C3%B9ng-xem-code-demo-%E1%BB%9F-b%C3%AAn-d%C6%B0%E1%BB%9Bi-%C4%91%E1%BB%83-hi%E1%BB%83u-r%C3%B5-h%C6%A1n-nh%C3%A9-" id="markdown-toc-và-bây-giờ-hãy-cùng-xem-code-demo-ở-bên-dưới-để-hiểu-rõ-hơn-nhé-">Và bây giờ, hãy cùng xem code demo ở bên dưới để hiểu rõ hơn nhé .</a></li>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#ch%C3%BAng-ta-c%C5%A9ng-c%C3%B3-th%E1%BB%83-l%C3%A0m-locale-cho-webservice-m%E1%BB%8Di-ng%C6%B0%E1%BB%9Di-xem-github-n%C3%A0y-nh%C3%A9" id="markdown-toc-chúng-ta-cũng-có-thể-làm-locale-cho-webservice-mọi-người-xem-github-này-nhé">chúng ta cũng có thể làm locale cho webservice mọi người xem github này nhé</a></li>
+    </ul>
+  </li>
+</ul>
+
+  </div>
+</nav>
+
+<h1 id="giới-thiệu-nội-dung-bài-viết"><strong>Giới thiệu nội dung bài viết</strong></h1>
+
+<p>Chào các bạn, các bạn đã từng thấy qua một trang web có thể hiển thị nhiều thứ tiếng khác nhau chưa ? Ví dụ trang lazada nếu ta chọn tiếng Việt ta sẽ nhìn thấy
+trang web là tiếng Việt ,nếu ta chọn tiếng Anh thì trang web sẽ hiển thị tiếng Anh? Để làm được như vậy thì ta dùng cái gì trong Spring để làm . Hôm nay anh sẽ giới thiệu
+cho mọi người các sử dụng <b>đa ngôn ngữ i18n</b> trong Spring.</p>
+
+<p><br></p>
+<h1 id="hiểu-về-khái-niệm-đa-ngôn-ngữ">Hiểu về khái niệm đa ngôn ngữ</h1>
+
+<p>Đa ngôn ngữ là gì ? Anh lấy ví dụ như mọi người làm trang web  bán hàng. Đối với người Việt Nam thì mình người dùng sẽ chọn ngôn ngữ Việt Nam trên trang web . Khi đó
+tất cả nội dung của trang web sẽ hiển thị tiếng Việt . Cũng là trang web bán hàng đó , nếu là người Mỹ vào , họ sẽ chọn ngôn ngữ tiếng Anh .  Khi đó tất cả nội dung của trang web sẽ hiển thị tiếng Anh.</p>
+
+<ul>
+  <li>
+    <p><b>Internationalization</b> đa ngôn ngữ hoặc trong lập trình mình còn gọi là i18n. Bởi vì mình  có 18 ký tự ở giữa ký tự I và ký tự N.
+Internationalization (quốc tế hoá) là một kỹ thuật cho phép chúng ta tạo ra các ứng dụng mà có thể thích ứng với nhiều ngôn ngữ và nhiều khu vực khác nhau.</p>
+  </li>
+  <li>
+    <p><b>Localization</b> cũng có thể được viết tắt là l10n vì 10 ký tự ở giữa L và N. Localization (nội địa hoá) là kỹ thuật giúp tạo ra một ứng dụng có thể thích ứng với một ngôn ngữ và vùng miền cụ thể.
+Như vậy, một ứng dụng hỗ trợ đa ngôn ngữ thì gọi là Internationalization (quốc tế hoá) và khi người dùng chọn một ngôn ngữ cụ thể để hiển thị thì gọi là Localization (nội địa hoá).</p>
+  </li>
+</ul>
+
+<p><br></p>
+<h1 id="1-hướng-dẫn-cách-làm-đa-ngôn-ngữ"><strong>1. Hướng dẫn cách làm đa ngôn ngữ</strong></h1>
+
+<p>Bây giờ chúng ta sẽ đi từng bước để làm một ứng dụng đa ngôn ngữ trong Spring. Ở bài này mình sẽ làm cho tiếng Anh và tiếng Việt .
+Nào bắt đầu thôi .</p>
+
+<p><br></p>
+<h4 id="bước-1--thêm-dependency-spring-boot-vào-file-pomxml">Bước 1 : Thêm dependency spring boot vào file pom.xml</h4>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">boot</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">starter</span><span class="o">-</span><span class="n">thymeleaf</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mf">1.5</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="na">RELEASE</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p><br></p>
+<h4 id="bước-2-cấu-hình-localeresolver">Bước 2 Cấu hình LocaleResolver</h4>
+
+<p>Cấu hình file  LocaleResolver để ứng dụng có thể biết được <b>locale</b> (tiếng Mỹ , tiếng Việt hay tiếng Pháp) mà ứng dụng đang sử dụng là gì ? .</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="nc">LocaleResolver</span> <span class="nf">localeResolver</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">SessionLocaleResolver</span> <span class="n">slr</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SessionLocaleResolver</span><span class="o">();</span>
+    <span class="n">slr</span><span class="o">.</span><span class="na">setDefaultLocale</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">slr</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p><b>LocaleResolver</b> interface có khả năng xát định được ngôn ngữ nào đang sử dụng bởi vì nó có cài đặt chức năng xát định locale
+dựa trên session , cookie , <b>Accept-Language</b> , hoặc những giá trị mình thêm trên header của request.</p>
+
+<p>Trong ví dụ của chúng ta mình sẽ sử dụng Session để chuyển đổi qua lại các ngôn ngữ .</p>
+
+<p><br></p>
+<h4 id="bước-3-cấu-hình-localechangeinterceptor">Bước 3 cấu hình LocaleChangeInterceptor</h4>
+
+<p>Tiếp theo , chúng ta cần thêm một Interceptor có nhiệm vụ chuyển đổi qua lại giữa các  locale mới khi giá trị thay đổi.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="nc">LocaleChangeInterceptor</span> <span class="nf">localeChangeInterceptor</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">LocaleChangeInterceptor</span> <span class="n">lci</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LocaleChangeInterceptor</span><span class="o">();</span>
+    <span class="n">lci</span><span class="o">.</span><span class="na">setParamName</span><span class="o">(</span><span class="s">"lang"</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">lci</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Trong file configure <b>@Configuration</b> class chúng ta  implement the <b>WebMvcConfigurer</b> interface và  override the addInterceptors() method:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">addInterceptors</span><span class="o">(</span><span class="nc">InterceptorRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">registry</span><span class="o">.</span><span class="na">addInterceptor</span><span class="o">(</span><span class="n">localeChangeInterceptor</span><span class="o">());</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p><br></p>
+<h4 id="bước-4-định-nghĩa-nội-dung-locale-trong-file--message-sources">Bước 4 Định nghĩa nội dung locale trong file  Message Sources</h4>
+
+<p>Mặc định , Spring Boot sẽ tìm kiếm các file messageresource trong thư mục /src/main/resources.
+File locale mặc định là message.properties . Các nước khác nhau thì có định dang file khác nhau message_XX.properties. XX là locale code của mỗi nước.
+Ví dụ tiếng Anh  thì sẽ là message_en.properties , tiếng Việt sẽ là message_vi.properties.</p>
+
+<p>Sau đây là ví dụ file locale tiếng Anh  messages.properties:</p>
+
+<p>greeting=Hello! Welcome to our website!
+lang.change=Change the language
+lang.eng=English
+lang.vi=VietNam</p>
+
+<p>Tiếp chúng ta sẽ tạo file locale tiếng Việt message_vi.properties có key giống như file message ở trên .</p>
+
+<p>greeting= Xin Chào ! Chào mừng bạn đến với website
+lang.change= Thay đổi ngôn ngữ
+lang.eng=Tiếng Anh
+lang.vi =Tiếng Việt</p>
+
+<p><br></p>
+<h4 id="bước-5-tạo-controller-và-trang--html">Bước 5 Tạo Controller và trang  HTML</h4>
+
+<p>Chúng ta sẽ tạo controller sẽ mapping với request của người dung là /international .</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PageController</span> <span class="o">{</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/international"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getInternationalPage</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"international"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Chúng ta sẽ sử dụng thymeleaf để hiển thị kết quả trên trang HTML .</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="nt">&lt;h1</span> <span class="na">th:text=</span><span class="s">"#{greeting}"</span><span class="nt">&gt;&lt;/h1&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Nếu ta muốn thực hiện đổi ngôn ngữ tiếng Anh sang  tiếng Việt thì chỉ cần thêm tham số lang=vi  trên URL trong forrm /international?lang=vi
+Nếu ta muốn thực hiện đổi ngôn ngữ tiếng Việt  sang  tiếng Anh thì chỉ cần thêm tham số lang=en   trên URL trong forrm /international?lang=en<br>
+Nếu không có tham số lang trên URL thì ứng dụng sẽ lấy locale mặc định trong trường hợp này sẽ lấy giá trị trong file message.properties.</p>
+
+<p>Đây là đoạn mã themeleaf để cho người dùng chọn ngôn ngữ. Chúng ta sẽ truyền giá trị người dùng chọn là en hay vi lên cho controller từ đó ta thay
+đổi ngôn ngữ .</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="nt">&lt;span</span> <span class="na">th:text=</span><span class="s">"#{lang.change}"</span><span class="nt">&gt;&lt;/span&gt;</span>:
+<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"locales"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">""</span><span class="nt">&gt;&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"en"</span> <span class="na">th:text=</span><span class="s">"#{lang.eng}"</span><span class="nt">&gt;&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"vi "</span> <span class="na">th:text=</span><span class="s">"#{lang.fr}"</span><span class="nt">&gt;&lt;/option&gt;</span>
+<span class="nt">&lt;/select&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p><br></p>
+<h4 id="bước-6--running-the-application">Bước 6  Running the Application</h4>
+
+<p><br></p>
+<h3 id="và-bây-giờ-hãy-cùng-xem-code-demo-ở-bên-dưới-để-hiểu-rõ-hơn-nhé-">Và bây giờ, hãy cùng xem code demo ở bên dưới để hiểu rõ hơn nhé .</h3>
+
+<div class="youtube-wrapper">
+    <iframe src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/dlJnvmLFu8w.html" frameborder="0" allowfullscreen="">
+    </iframe>
+</div>
+<p><br></p>
+
+<h3 id="chúng-ta-cũng-có-thể-làm-locale-cho-webservice-mọi-người-xem-github-này-nhé">chúng ta cũng có thể làm locale cho webservice mọi người xem github này nhé</h3>
+<p>https://github.com/codegymdanang/CGDN-SpringBoot-Localization</p>
+
+							
+							
+							<h3>Mọi người hãy subcribe kênh youtube dưới đây nhé. Videos về các kỹ năng mềm và lập trình sẽ được cập nhật hằng tuần</h3>
+							<div id="___ytsubscribe_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 111px; height: 24px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 111px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I0_1604027558265" name="I0_1604027558265" src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/subscribe_embed.html" data-gapiattached="true"></iframe></div>
+						</div>
+
+						<div>
+							<hr style="border: 1px solid red">
+							<h4>Comments</h4>
+							<div class="fb-comments fb_iframe_widget fb_iframe_widget_fluid_desktop" data-href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/" data-colorscheme="dark" data-num-posts="4" data-width="706" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=236029874433209&amp;color_scheme=dark&amp;container_width=883&amp;height=100&amp;href=https%3A%2F%2Flevunguyen.com%2Flaptrinhspring%2F2020%2F04%2F22%2Fsu-dung-da-ngon-ngu-trong-spring%2F&amp;locale=vi_VN&amp;sdk=joey&amp;version=v6.0&amp;width=706"><span style="vertical-align: bottom; width: 706px; height: 178px;"><iframe name="f1e4c31bbfe544" width="706px" height="100px" data-testid="fb:comments Facebook Social Plugin" title="fb:comments Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/comments.html" style="border: none; visibility: visible; width: 706px; height: 178px;" __idm_frm__="75" class=""></iframe></span></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-3">
+					<div>
+						<div class="single_post post_1" style="margin-top : 10px">
+							<div style="width: 300px;">
+								<a href="https://danang.codegym.vn/">
+									<img src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/dcc.jpg" style="max-width: 100%"> <br>
+								</a>
+							</div>
+							<div style="width: 300px;">
+								<a href="https://danang.codegym.vn/khoa-hoc-accelerator-java/">
+									<img src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/bannerlopdem.jpg" style="max-width: 100%">
+								</a>
+							</div>
+
+							<h6> <span style="color:#fc4600">    <span> </span></span></h6>
+							<div class="fb-group fb_iframe_widget" data-href="https://www.facebook.com/groups/codegymdanang" data-width="300" data-show-social-context="false" data-show-metadata="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=236029874433209&amp;container_width=366&amp;href=https%3A%2F%2Fwww.facebook.com%2Fgroups%2Fcodegymdanang&amp;locale=vi_VN&amp;sdk=joey&amp;show_metadata=true&amp;show_social_context=false&amp;width=300"><span style="vertical-align: bottom; width: 300px; height: 342px;"><iframe name="fde72b660f92bc" width="300px" height="1000px" data-testid="fb:group Facebook Social Plugin" title="fb:group Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/group.html" style="border: none; visibility: visible; width: 300px; height: 342px;" __idm_frm__="76" class=""></iframe></span></div>
+							<h6> <span style="color:#fc4600">  <span> </span></span></h6>
+							<div class="fb-group fb_iframe_widget" data-href="https://www.facebook.com/groups/danangagiledeveloper/" data-width="300" data-show-social-context="true" data-show-metadata="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=236029874433209&amp;container_width=366&amp;href=https%3A%2F%2Fwww.facebook.com%2Fgroups%2Fdanangagiledeveloper%2F&amp;locale=vi_VN&amp;sdk=joey&amp;show_metadata=true&amp;show_social_context=true&amp;width=300"><span style="vertical-align: bottom; width: 300px; height: 370px;"><iframe name="ff73a8cea05b4" width="300px" height="1000px" data-testid="fb:group Facebook Social Plugin" title="fb:group Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/group(1).html" style="border: none; visibility: visible; width: 300px; height: 370px;" __idm_frm__="77" class=""></iframe></span></div>
+
+						</div>
+
+
+						<!-- Display Google Ads -->
+						<div>
+							<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4551247919940215" data-ad-slot="1895345148" data-ad-format="auto" data-full-width-responsive="true"></ins>
+							<script>
+							     (adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
+						</div>
+					<!-- End Display Google Ads -->
+
+
+
+					</div>
+				</div>
+
+
+			</div>
+
+		</div>
+
+
+		<div id="footer">
+			<footer class="footer-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-sm-6 mb-4 mb-xl-0 single-footer-widget">
+                <h4 style="text-align: justify;color:white">Về Tác giả </h4>
+                <h5 style="text-align: justify;color:white">
+                    Blog tập trung những khiến thức và những trải nghiệm của anh về ngành phần mềm. Nhằm giúp đỡ các bạn học sinh, sinh viên hiểu sâu hơn
+                    về nghề lập trình thông qua các kinh nghiệm thực tế mà anh làm trong các doanh nghiệp Âu, Mỹ và Nhật. Trong Blog này anh có chuyển đổi nội dung
+                    một số kiến thức từ các blog nổi tiếng bằng tiếng Anh sang tiếng Việt nhằm giúp mọi người hiểu được nguyên lý dể dàng hơn.
+                </h5>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-sm-6 mb-4 mb-xl-0 single-footer-widget">
+                <h4 style="text-align: justify;color:white">Newsletter</h4>
+                <!-- Begin Mailchimp Signup Form -->
+                <script type="text/javascript" src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/view_webform_v2.js.download" data-webform-id="SoNPY" data-wf2url="https://app.getresponse.com/site2/g1_blog_levunguyen?u=G6iXR&amp;webforms_id=SoNPY&amp;v=0"></script><div class="grwf2-wrapper wf2-embedded" style="width: 460px; height: 238px; top: 0px; left: 0px; border-radius: 0px; margin: auto;" id="grwf2_36900705_gv9vo"><iframe src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/g1_blog_levunguyen.html" width="460" height="238" sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-top-navigation" scrolling="no" allowtransparency="true" name="webform_SoNPY" style="border: none; height: 238px; width: 460px;"></iframe></div>
+                <!--End mc_embed_signup-->
+
+            </div>
+        </div>
+        <div class="copyright_text">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="copyright_part">
+                        <h6 class="footer-text m-0"><span class="px-2" style="color:white">Copyright © 2020 All rights reserved | By Lê Vũ Nguyên </span></h6>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center text-lg-right">
+                    <div class="footer-social">
+                        <a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#"><i class="ti-facebook"></i></a>
+                        <a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#"><i class="ti-instagram"></i></a>
+                        <a href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/#"><i class="ti-skype"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+		</div>
+
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/js"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-164153673-1');
+</script>
+
+	
+<script async="" src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/f.txt"></script>
+
+
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div><iframe name="oauth2relay504466325" id="oauth2relay504466325" src="./Sử dụng đa ngôn ngữ trong Spring _ Lê Vũ Nguyên Dạy Học Lập Trình_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{home_page::bootstrap}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:insert="home_page::nab">
+</th:block>
+<div class="container-fluid">
+    <div class="row" style="margin-top:40px">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <form action="/create" method="post" th:object="${borrow}">
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label for="inputName">Full Name</label>
+                        <input type="text" class="form-control " id="inputName" placeholder="Mai The Vinh"
+                               th:field="*{borrowerName}">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="inputBook">Book</label>
+                        <select class="form-control" id="inputBook" th:field="*{bookManagement}"
+                                onchange="send_request(this.value)">
+                            <th:block th:each="book:${bookList}">
+                                <option th:value="${book.bookId}" th:text="${book.bookName}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputQuantity">Quantity</label>
+                        <input type="text" id="inputQuantity" th:field="${borrow.bookManagement.bookQuantity}" disabled/>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+<div>
+    <form action="/getQuantity" method="post" id="id_submit">
+        <input type="hidden" id="name_request" name="name_request">
+        <input type="hidden" id="id_request" name="id_request"/>
+    </form>
+</div>
+</body>
+<script>
+    function send_request(id) {
+        console.log(id);
+        document.getElementById("id_request").value = id;
+        document.getElementById("name_request").value = document.getElementById("inputName").value;
+        document.getElementById("id_submit").submit();
+    }
+</script>
+</html>

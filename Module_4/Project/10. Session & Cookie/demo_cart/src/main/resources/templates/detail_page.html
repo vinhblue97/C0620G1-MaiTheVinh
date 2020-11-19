@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+<p th:text="${detailItem.itemId}"></p>
+<p th:text="${detailItem.itemName}"></p>
+<a th:href="@{/home}">
+    <button>Back</button>
+</a>
+</body>
+</html>

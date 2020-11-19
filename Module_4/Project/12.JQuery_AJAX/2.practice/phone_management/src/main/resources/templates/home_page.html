@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <th:block th:fragment="bootstrap">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+    </th:block>
+</head>
+<body>
+
+<span id="display"></span>
+
+<input id="btn_create" type="button" value="Add new Phone"/>
+<input id="btn_load_list" type="button" value="Load List"/>
+<div id="create_form" class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <p>Name:</p>
+            <input type="text" id="create_phone_name"/>
+            <button th:align="center" id="create_btn">Create</button>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $("#create_form").hide();
+
+        $("#btn_create").click(function () {
+            $("#create_form").show();
+        });
+
+        $("#create_btn").click(function () {
+            let phoneName = $("#create_phone_name").val();
+            let objPhone = {"phoneName": phoneName};
+            console.log(objPhone);
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "POST",
+                data: JSON.stringify(objPhone),
+                url: "http://localhost:8080/phoneRest/create",
+                success: function (data, statusContent, header) {
+                    console.log("1: " + statusContent);
+                    console.log("2: " + header.status);
+                },
+                error: function (content) {
+                    console.log(content);
+                }
+            });
+        });
+
+        $("#btn_load_list").click(function () {
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "GET",
+                url: "http://localhost:8080/phoneRest/list",
+                success: function (data, statusContent, header) {
+                    var phoneList = data;
+                    let displayList = "<table class=\"table table-bordered\">\n" +
+                        "    <thead>\n" +
+                        "    <tr>\n" +
+                        "        <th scope=\"col\">Id</th>\n" +
+                        "        <th scope=\"col\">Name</th>\n" +
+                        "        <th scope=\"col\">Action</th>\n" +
+                        "    </tr>\n" +
+                        "    </thead>\n" +
+                        "    <tbody>";
+                    for (var phone of phoneList) {
+                        displayList += "<tr>" +
+                            `<td id='phone_id' >${phone.phoneId}</td>` +
+                            `<td id='phone_name'>${phone.phoneName}</td>` +
+                            `<td><button class='btn_update' th:value=`${phone.phone_id}`>Update</button>` +
+                            `<button class='btn_delete' th:value=`${phone.phone_id}`>Delete</button></td>` +
+                            "</tr>"
+                    }
+                    displayList += "   </tbody>\n" +
+                        "</table>"
+                    $("#display").html(displayList);
+                },
+                error: function (content) {
+                    console.log(content);
+                }
+            });
+        });
+
+        $(".btn_update").click(function () {
+            $()
+        });
+    });
+</script>
+</body>
+</html>

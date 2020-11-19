@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<!-- saved from url=(0086)https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/ -->
+<html lang="en" class="grwf2"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta property="fb:app_id" content="236029874433209">
+
+		<link href="https://levunguyen.com/blog/rss.xml" rel="alternate" type="application/rss+xml" title="Học lập trình ">
+		<title>Sử dụng OneToMany Relationship trong spring jpa | Lê Vũ Nguyên Dạy Học Lập Trình</title>
+		
+
+
+		<link rel="icon" href="https://levunguyen.com/images/favicon.png">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/bootstrap.min.css">
+		<!-- style CSS -->
+		<link rel="stylesheet" href="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/style(1).css">
+
+		<link rel="stylesheet" href="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/pygments-3024-night.css">
+
+		<script src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/cb=gapi.loaded_2" async=""></script><script type="text/javascript" async="" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/analytics.js.download"></script><script src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/cb=gapi.loaded_1" async=""></script><script src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/cb=gapi(2).loaded_0" async=""></script><script src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/260524451750950" async=""></script><script src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/sdk.js.download" async="" crossorigin="anonymous"></script><script async="" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/fbevents.js.download"></script><script src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/jquery-1.12.1.min.js.download"></script>
+		<!-- bootstrap js -->
+		<script src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/bootstrap.min.js.download"></script>
+		<!-- custom js -->
+		<script src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/custom.js.download"> </script>
+
+		<script async="" defer="" crossorigin="anonymous" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/sdk.js(1).download"></script>
+
+		<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Sử dụng OneToMany Relationship trong spring jpa | blog</title>
+<meta name="generator" content="Jekyll v3.9.0">
+<meta property="og:title" content="Sử dụng OneToMany Relationship trong spring jpa">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="Sử dụng @OneToMany mapping trong lập trình Spring. Hướng dẫn sử dụng annotation @onetomany trong spring data jpa.">
+<meta property="og:description" content="Sử dụng @OneToMany mapping trong lập trình Spring. Hướng dẫn sử dụng annotation @onetomany trong spring data jpa.">
+<link rel="canonical" href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/">
+<meta property="og:url" content="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/">
+<meta property="og:site_name" content="blog">
+<meta property="og:image" content="https://levunguyen.com/images/blog/spring.png">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-04-16T00:00:00+00:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:image" content="https://levunguyen.com/images/blog/spring.png">
+<meta property="twitter:title" content="Sử dụng OneToMany Relationship trong spring jpa">
+<meta name="twitter:site" content="@">
+<script type="application/ld+json">
+{"image":"https://levunguyen.com/images/blog/spring.png","@type":"BlogPosting","headline":"Sử dụng OneToMany Relationship trong spring jpa","dateModified":"2020-04-16T00:00:00+00:00","datePublished":"2020-04-16T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/"},"url":"https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/","description":"Sử dụng @OneToMany mapping trong lập trình Spring. Hướng dẫn sử dụng annotation @onetomany trong spring data jpa.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+		<script src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/platform.js.download" gapi_processed="true"></script>
+
+		<!-- Facebook Pixel Code -->
+		<script>
+			!function(f,b,e,v,n,t,s)
+			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+					n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+				if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+				n.queue=[];t=b.createElement(e);t.async=!0;
+				t.src=v;s=b.getElementsByTagName(e)[0];
+				s.parentNode.insertBefore(t,s)}(window, document,'script',
+					'https://connect.facebook.net/en_US/fbevents.js');
+			fbq('init', '260524451750950');
+			fbq('track', 'PageView');
+		</script>
+		<noscript><img height="1" width="1" style="display:none"
+					   src="https://www.facebook.com/tr?id=260524451750950&ev=PageView&noscript=1"
+				/></noscript>
+		<!-- End Facebook Pixel Code -->
+
+<script data-ad-client="ca-pub-4551247919940215" async="" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/f.txt"></script>
+
+<link type="text/css" rel="stylesheet" href="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/gr_wf_v2.css"><style type="text/css" data-fbcssmodules="css:fb.css.basecss:fb.css.dialog css:fb.css.iframewidget">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style><style>.gc-bubbleDefault{table-layout:auto!important}.gc-bubbleDefault,.gc-reset{background-color:transparent!important;text-align:left;padding:0!important;margin:0!important;border:0!important}.pls-bubbleTop{border-bottom:1px solid #ccc!important}.pls-contentLeft,.pls-topTail,.pls-vertShimLeft{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/border_3.gif)!important}.pls-topTail{background-repeat:repeat-x!important;background-position:bottom!important}.pls-vertShim{background-color:#fff!important;text-align:right}.tbl-grey .pls-vertShim{background-color:#f5f5f5!important}.pls-vertShimLeft{background-repeat:repeat-y!important;background-position:100%!important;height:4px}.pls-vertShimRight{height:4px}.pls-confirm-container .pls-vertShim{background-color:#fff3c2!important}.pls-contentWrap{background-color:#fff!important;position:relative!important;vertical-align:top}.pls-contentLeft{background-repeat:repeat-y;background-position:100%;vertical-align:top}.pls-dropRight{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropR_3.png)!important;background-repeat:repeat-y!important}.pls-dropBL,.pls-dropBottom,.pls-dropRight,.pls-dropTR .pls-dropBR,.pls-tailleft,.pls-vert,.pls-vert img{vertical-align:top}.pls-dropBottom{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropB_3.png)!important;background-repeat:repeat-x!important;width:100%}.pls-topLeft{text-align:right}.pls-topLeft,.pls-topRight{background:inherit!important;vertical-align:bottom}.pls-topRight{text-align:left}.pls-bottomLeft{background:inherit!important;text-align:right}.pls-bottomRight{background:inherit!important;text-align:left;vertical-align:top}.pls-tailbottom,.pls-tailleft,.pls-tailright,.pls-tailtop{display:none;position:relative}.pls-dropBL,.pls-dropBR,.pls-dropTR,.pls-tailbottom,.pls-tailleft,.pls-tailright,.pls-tailtop{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite_3.png)!important;background-repeat:no-repeat}.tbl-grey .pls-dropBL,.tbl-grey .pls-dropBR,.tbl-grey .pls-dropTR,.tbl-grey .pls-tailbottom,.tbl-grey .pls-tailleft,.tbl-grey .pls-tailright,.tbl-grey .pls-tailtop{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite-grey.png)!important}.pls-tailbottom{background-position:-23px 0}.pls-confirm-container .pls-tailbottom{background-position:-23px -10px}.pls-tailtop{background-position:-19px -20px}.pls-tailright{background-position:0 0}.pls-tailleft{background-position:-10px 0}.pls-tailtop{vertical-align:top}.gc-bubbleDefault td{line-height:0;font-size:0}.pls-tailbottom,.pls-topLeft img,.pls-topRight img{vertical-align:bottom}.bubbleDropTR,.pls-bottomLeft,.pls-bottomLeft img,.pls-dropBottom img,.pls-dropBottomL img,.pls-dropBottomR img{vertical-align:top}.pls-dropTR{background-position:0 -22px}.pls-dropBR{background-position:0 -27px}.pls-dropBL{background-position:0 -16px}.pls-spacerbottom,.pls-spacerleft,.pls-spacerright,.pls-spacertop{position:static!important}.pls-spinner{bottom:0;position:absolute;left:0;margin:auto;right:0;top:0}</style></head>
+
+	<body>
+
+
+		<div id="layout">
+			<header class="main_menu menu_fixed animated fadeInDown">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-12">
+				<nav class="navbar navbar-expand-lg navbar-light">
+					<a class="navbar-brand" href="https://levunguyen.com/">
+						<img src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/logo.png" alt="Le Vu Nguyen">
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse main-menu-item justify-content-center" id="navbarSupportedContent">
+						<ul class="navbar-nav">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#" id="navbarJava" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Java
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-java">Java </a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-spring-core">Spring Core </a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-spring-web">Spring Web</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#" id="navbarFE" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									FrontEnd
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-html">HTML</a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-css">CSS</a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-bootstrap">Bootstrap</a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-javascript">JavaScript</a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-typescript">TypeScript</a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-angular">Angular</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#" id="navbarCraftmanship" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Craftmanship
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-java-chuyen-sau">The Best Coder</a>
+									<a class="dropdown-item" href="https://levunguyen.com/ky-thuat-lap-trinh-java-refactoring">Refactoring</a>
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-design-pattern">Design Pattern</a>
+
+								</div>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#" id="navbarDB" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Database
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="https://levunguyen.com/co-so-du-lieu-mysql">My SQL</a>
+									<a class="dropdown-item" href="https://levunguyen.com/co-so-du-lieu-none-relational-database">Mongo DB</a>
+								</div>
+							</li>
+
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#" id="navbarDevops" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Devops
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="https://levunguyen.com/hoc-lap-trinh-docker">Docker </a>
+									<a class="dropdown-item" href="https://levunguyen.com/ky-thuat-deploy"> Monitor </a>
+									<a class="dropdown-item" href="https://levunguyen.com/ky-thuat-lap-trinh-ci-cd">CI/CD </a>
+								</div>
+							</li>
+							<!--<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarTesting" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Testing
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="single-blog.html">Manual Testing</a>
+									<a class="dropdown-item" href="elements.html">Automation Testing</a>
+									<a class="dropdown-item" href="elements.html">Agile Testing</a>
+								</div>
+							</li>-->
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Nghề Devs
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="https://levunguyen.com/tam-su-nghe-lap-trinh-vien">Tâm Sự Dev </a>
+									<a class="dropdown-item" href="https://levunguyen.com/ky-nang-hoc-lap-trinh">Softskills</a>
+									<a class="dropdown-item" href="https://levunguyen.com/cac-cau-hoi-phong-van"> Phỏng Vấn </a>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+				</nav>
+			</div>
+		</div>
+	</div>
+</header>
+			<div style="clear: both"></div>
+		</div>
+
+		<!-- banner post -->
+			<section class="banner_post">
+    <div class="container-fluid">
+        <div class="row justify-content-between">
+            <img src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/banner.JPG" style="max-width: 100%">
+        </div>
+    </div>
+</section>
+
+		<!-- end banner post-->
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-2 col-sm-2" style="display: table;font-size: medium;padding: 0px;line-height: 40px;">
+					<div>
+						<span style="background: #fde3db; display: block; color: red; font-size: large;text-align: center"> Spring Framework </span>
+					</div>
+					<div>
+
+									<div class="relatedpost">
+										<ul style="list-style-type:decimal;">
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/02/01/springmvc/">Spring MVC </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/02/02/tao-du-an-springmvc/">Tạo dự án spring MVC </a>
+											</li>
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/01/t%E1%BA%A1o-du-an-bang-springboot/">Tạo dự án spring Boot </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/05/phan-biet-request-param-va-path-variable-trong-springmvc/">Request Param và PathVariable </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/06/su-dung-optional-path-variable-trong-springmvc/">Optional Path Variable </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/07/su-dung-view-resolve-trong-springmvc/">View Resolve </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/08/su-dung-thymeleaf-trong-springmvc/">Thymeleaf </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/09/model-modlemap-modelview/">Model ModelMap ModelView </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/10/su-dung-data-binding-trong-springmvc/">Data Binding </a>
+											</li>
+											
+											
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/12/su-dung-entity-manager-trong-spring/">Entity Manager </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/13/su-dung-spring-jpa-trong-springboot/">Spring Data JPA </a>
+											</li>
+											
+											
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/15/su-dung-one-to-one-trong-spring-jpa/">OneToOne </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/">OneToMany </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/17/su-dung-many-to-many-trong-spring-jpa/">Many To Many </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/18/su-dung-generation-identifier-trong-spring/">Generation Identifier </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/19/su-dung-validation-trong-spring/">Validation </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/20/su-dung-session-cookie-trong-spring/">Session và Cookie </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/21/su-dung-spring-security-trong-spring/">Spring Security </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/22/su-dung-da-ngon-ngu-trong-spring/">I18n </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/23/cac-phuong-thuc-http-trong-lap-trinh-web/">Các phương thức HTTP </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/24/su-dung-webservice-trong-lap-trinh-spring/">Webservice </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/25/su-dung-json-web-token-trong-spring/">Json Web Token </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/26/su-dung-restful-trong-springboot/">Restful </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/27/su-dung-aop-advise-trong-spring/">AOP Advise </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/27/spring-aop-pointcut-trong-spring/">AOP Pointcut </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/27/spring-aop-annotation-trong-spring/">AOP Annotation </a>
+											</li>
+											
+											
+											
+											<li>
+												<a style="color:black" href="https://levunguyen.com/laptrinhspring/2020/04/28/tong-hop-cac-annotation-trong-spring-web/">Các Anotation trong Spring </a>
+											</li>
+											
+											
+										</ul>				
+									</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-7 col-sm-7" style="border:5px solid #fde3db">
+					<div id="page">
+						<div style="width:100%;text-align:center;padding-top: 30px"> <img src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/feature_manytomany.png"></div>
+						<h1 style="margin-top: 0px;padding-top: 0px;font-size: 50px;color:red">Sử dụng OneToMany Relationship trong spring jpa</h1>
+						<div class="post-meta">
+							<div class="post-meta-content" style="text-align: right">
+								<span class="post-auhor-date">
+									<span>
+										<a class="post-author">nguyen.le</a>
+									</span>,
+									<a class="post-date">
+										
+									</a>
+								</span>
+								<span class="post-readtime">
+									<i class="icon icon-clock"></i> 15 min <span>read</span> </span>
+								
+							</div>
+						</div>
+						
+						<div id="contentPost">
+							
+							<nav class="toc">
+<input id="ac-toc" name="accordion-toc" type="checkbox" checked="">
+<label for="ac-toc">Nội dung bài viết</label>
+<div class="toc__menu">
+<ul id="markdown-toc">
+  <li><a href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#gi%E1%BB%9Bi-thi%E1%BB%87u-n%E1%BB%99i-dung-b%C3%A0i-vi%E1%BA%BFt" id="markdown-toc-giới-thiệu-nội-dung-bài-viết"><strong>Giới thiệu nội dung bài viết</strong></a></li>
+  <li><a href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#1-one-to-many-annotation" id="markdown-toc-1-one-to-many-annotation"><strong>1. One To Many annotation</strong></a></li>
+  <li><a href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#2-tri%E1%BB%83n-khai-trong-java-code" id="markdown-toc-2-triển-khai-trong-java-code">**2. Triển khai trong Java code</a>    <ul>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#b%C6%B0%E1%BB%9Bc-1-t%E1%BA%A1o-c%C3%A1c-tables--cart-v%C3%A0-item" id="markdown-toc-bước-1-tạo-các-tables--cart-và-item">Bước 1. Tạo các tables : Cart và Item</a></li>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#b%C6%B0%E1%BB%9Bc-2-th%C3%AAm-dependency-trong-maven" id="markdown-toc-bước-2-thêm-dependency-trong-maven">Bước 2. Thêm dependency trong maven</a></li>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#b%C6%B0%E1%BB%9Bc-3-t%E1%BA%A1o-entity-cart" id="markdown-toc-bước-3-tạo-entity-cart">Bước 3. Tạo Entity Cart</a></li>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#b%C6%B0%E1%BB%9Bc-4-t%E1%BA%A1o-entity-items" id="markdown-toc-bước-4-tạo-entity-items">Bước 4. Tạo Entity Items</a></li>
+      <li><a href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#b%C6%B0%E1%BB%9Bc-5-test-%E1%BB%A9ng-d%E1%BB%A5ng" id="markdown-toc-bước-5-test-ứng-dụng">Bước 5. Test ứng dụng</a></li>
+    </ul>
+  </li>
+  <li><a href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#3-k%E1%BA%BFt-lu%E1%BA%ADn" id="markdown-toc-3-kết-luận"><strong>3. Kết luận</strong></a></li>
+</ul>
+
+  </div>
+</nav>
+
+<h1 id="giới-thiệu-nội-dung-bài-viết"><strong>Giới thiệu nội dung bài viết</strong></h1>
+
+<p>Chào các em ,chủ đề hôm nay chúng ta sẽ nói về các annotation <b>@OneToMany</b> và <b>@ManyToOne</b> trong Spring JPA .</p>
+
+<p><br></p>
+<h1 id="1-one-to-many-annotation"><strong>1. One To Many annotation</strong></h1>
+
+<p>Anh lấy ví dụ như mình làm ứng dụng về bán hàng. Mình có chức năng thêm sản phẩm (Item)  vào  giỏ hàng (cart) .
+Trong giỏ hàng (cart) sẽ chứa nhiều sản phẩm (Items). Như vậy quan hệ giữa giỏ hàng và sản phẩm  là One To Many nghĩa là 1 giỏ hàng chứa nhiều sản  phẩm.</p>
+
+<p>Nếu ta thiết kết database thì ta có 2 bảng là cart và item như sau .</p>
+
+<figure class="highlight"><pre><code class="language-mysql" data-lang="mysql"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre>CREATE TABLE `Cart` (
+  `cart_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`cart_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `Items` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `cart_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cart_id` (`cart_id`),
+  CONSTRAINT `items_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `Cart` (`cart_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Như vậy mối quan hệ trong database giữa Cart và Item là một nhiều . Column cart_id là khoá chính trong bảng Cart và là khoá phụ trong bảng Items.</p>
+
+<p>Trong Java mình thể hiện mối quan hệ 1 - nhiều qua annotation <b>@OneToMany</b>. Ví dụ như ta khai báo lớp Cart có quan hệ một nhiều với lớp Item như sau.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Cart</span> <span class="o">{</span>
+
+    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span><span class="o">=</span><span class="s">"cart"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Items</span><span class="o">&gt;</span> <span class="n">items</span><span class="o">;</span>
+
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Chúng ta sử dụng annotation <b>@OneToMany</b> để nói lên mối liên hệ một nhiều. Như ví dụ trên ta có thể thấy 1 giỏ hảng (Cart) có nhiều sản phẩm Items. Ở trên chúng ta sử dụng collection là Set vì chúng ta muốn tập hợp sản phẩm không được trùng lập nhau. Các em có thể sử dụng các tập hợp khác như List , Map cũng được. Tuỳ theo mục đích sử dụng mà mình chọn tập hợp cho đúng</p>
+
+<p><br></p>
+<h1 id="2-triển-khai-trong-java-code">**2. Triển khai trong Java code</h1>
+
+<p>Bây giờ anh sẽ hướng dẫn các bạn xây dựng ứng dụng shopping cart . Sử dụng <b>@OneToMany và @ManyToOne</b> để thiết lập mối quan hệ giữa
+Cart (gio hang) và Item (san phẩm).</p>
+
+<p><br></p>
+<h4 id="bước-1-tạo-các-tables--cart-và-item">Bước 1. Tạo các tables : Cart và Item</h4>
+
+<figure class="highlight"><pre><code class="language-mysql" data-lang="mysql"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre>CREATE TABLE `Cart` (
+  `cart_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`cart_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `Items` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `cart_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cart_id` (`cart_id`),
+  CONSTRAINT `items_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `Cart` (`cart_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p><br></p>
+<h4 id="bước-2-thêm-dependency-trong-maven">Bước 2. Thêm dependency trong maven</h4>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>        <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">boot</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">starter</span><span class="o">-</span><span class="n">data</span><span class="o">-</span><span class="n">jpa</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+
+         <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">mysql</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">mysql</span><span class="o">-</span><span class="n">connector</span><span class="o">-</span><span class="n">java</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">scope</span><span class="o">&gt;</span><span class="n">runtime</span><span class="o">&lt;/</span><span class="n">scope</span><span class="o">&gt;</span>
+         <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p><br></p>
+<h4 id="bước-3-tạo-entity-cart">Bước 3. Tạo Entity Cart</h4>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"CART"</span><span class="o">)</span> <span class="c1">// tên này trùng với tên Table trong database .</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Cart</span> <span class="o">{</span>
+
+    <span class="c1">//...</span>
+
+    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span><span class="o">=</span><span class="s">"cart"</span><span class="o">)</span> <span class="c1">// chú ý biến cart này được khai báo trong Class Item bên dưới. Chúng phải giống y chang nhau cái tên</span>
+    <span class="kd">private</span> <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Items</span><span class="o">&gt;</span> <span class="n">items</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Items</span><span class="o">&gt;</span> <span class="nf">getItems</span> <span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">items</span> <span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Chúng ta chú ý, theo yêu cầu thì một giỏ hàng (Cart) sẽ chứa nhiều sản phẩm giống như trong database mô tả . Để làm được việc đó
+Ta sử dụng <b>@OneToMany</b> trong Class Cart, điều đó có nghĩa 1 giỏ hàng sẽ có nhiều sản phẩm (Items) .</p>
+
+<p>Tiếp đến ta sẽ thấy từ mappedBy = “cart”. <b>MappedBy</b> dùng để đinh nghĩa Class Cart và Class Item sẽ liên kết với nhau thông qua tên “cart”.
+Và bắt buộc tên “cart” phải được định nghĩa trong Class Item. MappedBy giống như là 1 cầu nối để ta có thể từ Class Cart mình gọi hàm getItems mình sẽ nhận được một danh sách Items</p>
+
+<p><br></p>
+<h4 id="bước-4-tạo-entity-items">Bước 4. Tạo Entity Items</h4>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"ITEMS"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Items</span> <span class="o">{</span>
+
+    <span class="c1">//...</span>
+    <span class="nd">@ManyToOne</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"cart_id"</span><span class="o">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">false</span><span class="o">)</span> <span class="c1">//cart_id chính là trường khoá phụ trong table Item liên kết với khoá chính trong table Cart</span>
+    <span class="kd">private</span> <span class="nc">Cart</span> <span class="n">cart</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Items</span><span class="o">()</span> <span class="o">{}</span>
+
+    <span class="c1">// getters and setters</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Chúng ta thấy trong lớp Cart chúng ta định nghĩa <b>@OneToMany</b> và <b>mappedBy</b> với  giá trị “cart” để tạo liên kết giữa lớp Cart và Item  . Để liên kết
+đó hoạt động thì ta cũng phải cấu hình biến “cart” trong Class Item.</p>
+
+<p>Đầu tiên chúng ta sử dụng  @ManyToOne và <b>@JoinColumn</b> để định nghĩa cho biến cart để tạo sự liên kết ngược lại  giữa Class Items và Cart  .
+.Trong @JoinColumn ta định nghĩa name = “car_id” . Cái ‘cart_id ‘ chính là  column khoá phụ trong table Items mà ta định nghĩa trong database . nullable = false là ta ràng buộc dữ liệu không được phép null</p>
+
+<p><br></p>
+<h4 id="bước-5-test-ứng-dụng">Bước 5. Test ứng dụng</h4>
+
+<p>Chúng ta sẽ lưu giỏ hàng và các sản phẩm xuống database theo cách sau. Khi dữ liệu được lưu thì nó sẽ được lưu xuống cả 2 tables cùng một lúc.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre> <span class="nc">Items</span> <span class="n">item1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Items</span> <span class="o">(</span><span class="s">"Item 1"</span><span class="o">);</span>
+ <span class="nc">Items</span> <span class="n">item2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Items</span> <span class="o">(</span><span class="s">"Item 2"</span><span class="o">);</span>
+ <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Items</span><span class="o">&gt;</span> <span class="n">items</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;</span><span class="nc">Items</span><span class="o">&gt;();</span>
+ <span class="n">items</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">item1</span><span class="o">);</span>
+ <span class="n">items</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">item2</span><span class="o">);</span>
+
+ <span class="nc">Cart</span> <span class="n">cart</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Cart</span><span class="o">();</span>
+ <span class="n">cart</span><span class="o">.</span><span class="na">setItems</span><span class="o">(</span><span class="n">items</span><span class="o">);</span>
+ <span class="n">cart</span><span class="o">.</span><span class="na">save</span><span class="o">();</span> <span class="c1">// như vậy ta sẽ lưu dữ liệu xuống 2 bảng Cart và Items</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p><br></p>
+<h1 id="3-kết-luận"><strong>3. Kết luận</strong></h1>
+
+<p>Như vậy chúng ta sử dụng annotaion @OneToMany và @ManyToOne để thực hiện việc liên kết giữa hai entity với nhau. Trong lập trình sẽ có những lúc khi ta có thể query từ Cart lấy ra tất cả các dòng dữ liệu Items trong Cart đó hoặc sẽ có những trường hợp ngược lại là từ những Items trong Cart đó ta có thể lấy được Cart đó là gì thông qua các Item. Đó chính là Bidirectional chúng ta có thể query Cart lấy Item hoặc query ngược từ Item ra Cart. Để làm được việc này thì ta phải sử dụng @JoinColumn và MappedBy để thực hiện Bidriectional</p>
+
+<div class="youtube-wrapper" style="text-align: center;">
+    <iframe src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/JSnxij3p6nU.html" frameborder="0" allowfullscreen="">
+    </iframe>
+</div>
+
+							
+							
+							<h3>Mọi người hãy subcribe kênh youtube dưới đây nhé. Videos về các kỹ năng mềm và lập trình sẽ được cập nhật hằng tuần</h3>
+							<div id="___ytsubscribe_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 111px; height: 24px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 111px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I0_1603175640179" name="I0_1603175640179" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/subscribe_embed.html" data-gapiattached="true"></iframe></div>
+						</div>
+
+						<div>
+							<hr style="border: 1px solid red">
+							<h4>Comments</h4>
+							<div class="fb-comments fb_iframe_widget fb_iframe_widget_fluid_desktop" data-href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/" data-colorscheme="dark" data-num-posts="4" data-width="706" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=236029874433209&amp;color_scheme=dark&amp;container_width=883&amp;height=100&amp;href=https%3A%2F%2Flevunguyen.com%2Flaptrinhspring%2F2020%2F04%2F16%2Fsu-dung-one-to-many-trong-spring-jpa%2F&amp;locale=vi_VN&amp;sdk=joey&amp;version=v6.0&amp;width=706"><span style="vertical-align: bottom; width: 706px; height: 178px;"><iframe name="f18e96883eec8e4" width="706px" height="100px" data-testid="fb:comments Facebook Social Plugin" title="fb:comments Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/comments.html" style="border: none; visibility: visible; width: 706px; height: 178px;" __idm_frm__="138" class=""></iframe></span></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-3">
+					<div>
+						<div class="single_post post_1" style="margin-top : 10px">
+							<div style="width: 300px;">
+								<a href="https://danang.codegym.vn/">
+									<img src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/dcc.jpg" style="max-width: 100%"> <br>
+								</a>
+							</div>
+							<div style="width: 300px;">
+								<a href="https://danang.codegym.vn/khoa-hoc-accelerator-java/">
+									<img src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/bannerlopdem.jpg" style="max-width: 100%">
+								</a>
+							</div>
+
+							<h6> <span style="color:#fc4600">    <span> </span></span></h6>
+							<div class="fb-group fb_iframe_widget" data-href="https://www.facebook.com/groups/codegymdanang" data-width="300" data-show-social-context="false" data-show-metadata="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=236029874433209&amp;container_width=366&amp;href=https%3A%2F%2Fwww.facebook.com%2Fgroups%2Fcodegymdanang&amp;locale=vi_VN&amp;sdk=joey&amp;show_metadata=true&amp;show_social_context=false&amp;width=300"><span style="vertical-align: bottom; width: 300px; height: 342px;"><iframe name="f356648be01e7b" width="300px" height="1000px" data-testid="fb:group Facebook Social Plugin" title="fb:group Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/group.html" style="border: none; visibility: visible; width: 300px; height: 342px;" __idm_frm__="139" class=""></iframe></span></div>
+							<h6> <span style="color:#fc4600">  <span> </span></span></h6>
+							<div class="fb-group fb_iframe_widget" data-href="https://www.facebook.com/groups/danangagiledeveloper/" data-width="300" data-show-social-context="true" data-show-metadata="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=236029874433209&amp;container_width=366&amp;href=https%3A%2F%2Fwww.facebook.com%2Fgroups%2Fdanangagiledeveloper%2F&amp;locale=vi_VN&amp;sdk=joey&amp;show_metadata=true&amp;show_social_context=true&amp;width=300"><span style="vertical-align: bottom; width: 300px; height: 370px;"><iframe name="fd07613eb4cccc" width="300px" height="1000px" data-testid="fb:group Facebook Social Plugin" title="fb:group Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/group(1).html" style="border: none; visibility: visible; width: 300px; height: 370px;" __idm_frm__="140" class=""></iframe></span></div>
+
+						</div>
+
+
+						<!-- Display Google Ads -->
+						<div>
+							<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4551247919940215" data-ad-slot="1895345148" data-ad-format="auto" data-full-width-responsive="true"></ins>
+							<script>
+							     (adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
+						</div>
+					<!-- End Display Google Ads -->
+
+
+
+					</div>
+				</div>
+
+
+			</div>
+
+		</div>
+
+
+		<div id="footer">
+			<footer class="footer-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-sm-6 mb-4 mb-xl-0 single-footer-widget">
+                <h4 style="text-align: justify;color:white">Về Tác giả </h4>
+                <h5 style="text-align: justify;color:white">
+                    Chào các bạn, anh là Lê Vũ Nguyên đây. Hẳn các bạn đã đọc đâu đó bài viết của anh rồi và anh rất vui được gặp các bạn tại Blog này.
+                    Với hơn 10 năm kinh nghiệm trong lĩnh vực phát triển phần mềm cho các công ty Âu, Mỹ và Nhật, anh luôn mong muốn được chia sẻ những kiến thức trong nghề lập trình để truyền cảm hứng và tiếp thêm kiến thức cho những ai đang theo đuổi công nghệ thông tin.
+                    Anh đã có 2 năm giữ vị trí giám đốc vận hành tại công ty IT  SmartDev ( Thuỵ Sĩ), 1 năm là Group Leader tại công ty Framgia (Nhật) và
+                    hơn 8 năm kinh nghiệm Fullstack Developer tại các công ty phần mềm Mỹ. Co-Founder sáng lập nhóm lập trình Agile Developer Đà Nẵng và là diễn giả của cộng đồng Agile Việt Nam.
+                    Anh cũng thường xuyên đi coaching quy trình cho các doanh nghiệp phần mềm. Và hiện nay, anh đang là cố vấn công nghệ tại CodeGym Đà Nẵng. Nếu muốn gặp và trao đổi về nghề lập trình cùng anh, các bạn có thể tới CodeGym Đà Nẵng! Và đừng quên đăng ký để nhận thông tin bài viết về công nghệ mới nhất trong ngành lập trình nhé!
+                </h5>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-sm-6 mb-4 mb-xl-0 single-footer-widget">
+                <h4 style="text-align: justify;color:white">Newsletter</h4>
+                <!-- Begin Mailchimp Signup Form -->
+                <script type="text/javascript" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/view_webform_v2.js.download" data-webform-id="SoNPY" data-wf2url="https://app.getresponse.com/site2/g1_blog_levunguyen?u=G6iXR&amp;webforms_id=SoNPY&amp;v=0"></script><div class="grwf2-wrapper wf2-embedded" style="width: 460px; height: 238px; top: 0px; left: 0px; border-radius: 0px; margin: auto;" id="grwf2_36900705_htgdt"><iframe src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/g1_blog_levunguyen.html" width="460" height="238" sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-top-navigation" scrolling="no" allowtransparency="true" name="webform_SoNPY" style="border: none; height: 238px; width: 460px;"></iframe></div>
+                <!--End mc_embed_signup-->
+
+            </div>
+        </div>
+        <div class="copyright_text">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="copyright_part">
+                        <h6 class="footer-text m-0"><span class="px-2" style="color:white">Copyright © 2020 All rights reserved | By Lê Vũ Nguyên </span></h6>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center text-lg-right">
+                    <div class="footer-social">
+                        <a href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#"><i class="ti-facebook"></i></a>
+                        <a href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#"><i class="ti-instagram"></i></a>
+                        <a href="https://levunguyen.com/laptrinhspring/2020/04/16/su-dung-one-to-many-trong-spring-jpa/#"><i class="ti-skype"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+		</div>
+
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/js"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-164153673-1');
+</script>
+
+	
+<script async="" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/f.txt"></script>
+
+
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div><iframe name="oauth2relay759930404" id="oauth2relay759930404" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><div style="display: block; visibility: hidden; position: absolute; width: 106px; left: -1000px; top: -1000px;"><table cellpadding="0" cellspacing="0" dir="ltr" style="width:106px;" frame="void" rules="none" class=" gc-bubbleDefault pls-container"><tbody><tr class="gc-reset"><td class="pls-topLeft gc-reset"><img class="gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/border_3.gif"></td><td class="pls-topTail gc-reset"><img class="pls-tailbottom gc-reset" style="width:15px !important; height:9px !important; max-width: 15px !important; max-height: 9px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"><img class="pls-spacerbottom gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"></td><td class="pls-topRight gc-reset"><img class="gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/border_3.gif"></td></tr><tr class="gc-reset"><td class="pls-vertShimLeft gc-reset"><img class="gc-reset" style="width:1px !important; height:4px !important; max-width: 1px !important; max-height: 4px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"></td><td class="pls-vertShim gc-reset"><img class="gc-reset" style="width:1px !important; height:4px !important; max-width: 1px !important; max-height: 4px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"></td><td class="pls-vertShimRight gc-reset"><img class="pls-dropTR gc-reset" style="width:5px !important; height:4px !important; max-width: 5px !important; max-height: 4px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"></td></tr><tr class="gc-reset"><td class="pls-contentLeft gc-reset"><img class="pls-tailright gc-reset" style="width:9px !important; height:15px !important; max-width: 9px !important; max-height: 15px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"><img class="pls-spacerright gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"></td><td class="pls-contentWrap gc-reset"><div class="goog-bubble-content gc-reset"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="margin:0px;position:absolute;z-index:1;border-style:none;outline:none;width:100px;" tabindex="0" vspace="0" width="100%" id="I0_1603175641338" name="I0_1603175641338" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/subscribe_embed(1).html"></iframe></div></td><td class="pls-dropRight gc-reset"><img class="pls-tailleft gc-reset" style="width:12px !important; height:19px !important; max-width: 12px !important; max-height: 19px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"><img class="pls-spacerleft gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"></td></tr><tr class="gc-reset"><td class="pls-bottomLeft gc-reset"><img class="gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/border_3.gif"></td><td class="gc-reset"><table cellpadding="0" cellspacing="0" style="width:100%" class="gc-reset"><tbody><tr class="gc-reset"><td class="pls-vert gc-reset"><img class="pls-dropBL gc-reset" style="width:4px !important; height:5px !important; max-width: 4px !important; max-height: 5px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"></td><td class="pls-dropBottom gc-reset"><img class="pls-tailtop gc-reset" style="width:19px !important; height:13px !important; max-width: 19px !important; max-height: 13px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"><img class="pls-spacertop gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"></td></tr></tbody></table></td><td class="pls-vert gc-reset"><img class="pls-dropBR gc-reset" style="width:5px !important; height:5px !important; max-width: 5px !important; max-height: 5px !important;" src="./Sử dụng OneToMany Relationship trong spring jpa _ Lê Vũ Nguyên Dạy Học Lập Trình_files/spacer.gif"></td></tr></tbody></table></div></body></html>
