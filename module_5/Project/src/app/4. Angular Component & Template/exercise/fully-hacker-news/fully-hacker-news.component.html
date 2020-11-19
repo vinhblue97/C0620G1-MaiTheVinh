@@ -1,0 +1,4 @@
+<app-navbar-fully-hacker-news></app-navbar-fully-hacker-news>
+<div *ngFor="let art of articles">
+  <span>{{art.index}}. </span><a href="{{art.url}}" target="_blank">{{art.title}}</a>
+</div>
