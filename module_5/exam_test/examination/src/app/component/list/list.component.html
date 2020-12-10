@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>Customer list</h2>
+      <table class="table table-striped bg-light" style="opacity: 0.9">
+        <thead>
+        <tr align="center">
+          <th>Car Id</th>
+          <th>Type</th>
+          <th>Supplier</th>
+          <th>Begin place</th>
+          <th>End Place</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Begin Time</th>
+          <th>End Time</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let car of carList">
+        <tr align="center">
+          <th>{{car.id}}</th>
+          <td>{{car.type}}</td>
+          <td>{{car.supplier}}</td>
+          <td>{{car.beginPlace}}</td>
+          <td>{{car.endingPlace}}</td>
+          <td>{{car.numberPhone}}</td>
+          <td>{{car.email}}</td>
+          <td>{{car.beginTime}}</td>
+          <td>{{car.endTime}}</td>
+          <td align="center">
+            <a href="#" [routerLink]="['/edit/', car.id]" class="btn btn-primary mr-3">Edit</a>
+            <button (click)="openDialog(car.id)" class="btn btn-danger">Delete</button>
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

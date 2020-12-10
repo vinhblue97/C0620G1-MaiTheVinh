@@ -1,0 +1,17 @@
+<p>Name: {{customer.customerName}}</p>
+<p>Birth Day: {{customer.customerBirthDay}}</p>
+<p ngSwitch="{{customer.customerGender}}">Gender:
+  <span *ngSwitchCase='0'>Female</span>
+  <span *ngSwitchCase='1'>Male</span>
+  <span *ngSwitchDefault>Other</span>
+</p>
+<p>Phone: {{customer.customerPhone}}</p>
+<p>Email: {{customer.customerEmail}}</p>
+<p ngSwitch="{{customer.customerType}}">Type:
+  <span *ngSwitchCase='0'>Diamond</span>
+  <span *ngSwitchCase='1'>Platinium</span>
+  <span *ngSwitchCase='2'>Gold</span>
+  <span *ngSwitchCase='3'>Silver</span>
+  <span *ngSwitchDefault>Member</span>
+</p>
+<p>Address: {{customer.customerAddress}}</p>

@@ -1,0 +1,9 @@
+<div *ngIf="studentChild">
+  <p>Id: {{studentChild.id}}</p>
+  <p>Id: {{studentChild.name}}</p>
+  <p>Id: {{studentChild.age}}</p>
+  <p>Id: {{studentChild.mark}}</p>
+  <label>Change mark: <input type="number" class="form-text" min="0" max="10"
+                             (change)="changeMark($event)" value="{{studentChild.mark}}">
+  </label>
+</div>

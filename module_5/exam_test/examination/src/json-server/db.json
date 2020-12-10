@@ -1,0 +1,48 @@
+{
+  "list": [
+    {
+      "id": "2311",
+      "type": "Ghế ngồi",
+      "supplier": "Mai Linh",
+      "beginPlace": "Đà Nẵng",
+      "endingPlace": "Huế",
+      "numberPhone": "0935845632",
+      "email": "mailinh@gmail.com",
+      "beginTime": "06:20",
+      "endTime": "08:00"
+    },
+    {
+      "id": "1231",
+      "type": "Haha",
+      "supplier": "Phương Trang",
+      "beginPlace": "Đà Nẵng",
+      "endingPlace": "Hà Nội",
+      "numberPhone": "0935841632",
+      "email": "phuongtrang@gmail.com",
+      "beginTime": "21:20",
+      "endTime": "08:00"
+    },
+    {
+      "id": "9401",
+      "type": "Giường nằm",
+      "supplier": "Mai Linh",
+      "beginPlace": "Đà Nẵng",
+      "endingPlace": "Thanh Hoá",
+      "numberPhone": "0935845632",
+      "email": "mailinh@gmail.com",
+      "beginTime": "20:20",
+      "endTime": "09:00"
+    },
+    {
+      "id": "8476",
+      "type": "Ghế ngồi",
+      "supplier": "Phương Trang",
+      "beginPlace": "Đà Nẵng",
+      "endingPlace": "Nha Trang",
+      "numberPhone": "0935841632",
+      "email": "phuongtrang@gmail.com",
+      "beginTime": "13:20",
+      "endTime": "23:00"
+    }
+  ]
+}

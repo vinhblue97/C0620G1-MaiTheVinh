@@ -1,0 +1,19 @@
+tạo project:
++ npm install -g @angular/cli
++ ng new project_name
+tạo service: ng g s service_name
+install json server:
+       npm install -g json-server
+install serach-filter
+     npm install search-filter --save
+install pagination
+    npm install ngx-pagination --save
+install datepicker
++ install hamerjs: npm i --save hammerjs
++ install CDK angular:
+npm install --save @angular/material @angular/animations @angular/cdk
++ import theme trong style.css
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+get data from URL:
++ import ActivatedRoute
+formGroup.patchValue(data) -> đổ data vào template

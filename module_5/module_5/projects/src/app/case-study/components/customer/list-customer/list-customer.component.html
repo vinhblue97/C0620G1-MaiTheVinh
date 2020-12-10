@@ -1,0 +1,55 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+    <div class="col-lg-10">
+      <h2>Customer list</h2>
+      <table class="table table-striped bg-light" style="opacity: 0.9">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Birth Day</th>
+          <th>Gender</th>
+          <th>Id Card</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Type</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let customer of customerList">
+        <tr>
+          <td>{{customer.customerId}}</td>
+          <td><a [routerLink]="['detail-customer', customer.customerIdCard]"
+                 style="text-decoration: none; color: black">{{customer.customerName}}</a></td>
+          <td>{{customer.customerBirthDay}}</td>
+          <td ngSwitch="{{customer.customerGender}}">
+            <span *ngSwitchCase='0'>Female</span>
+            <span *ngSwitchCase='1'>Male</span>
+            <span *ngSwitchDefault>Other</span>
+          </td>
+          <td>{{customer.customerIdCard}}</td>
+          <td>{{customer.customerPhone}}</td>
+          <td>{{customer.customerEmail}}</td>
+          <td ngSwitch="{{customer.customerType}}">
+            <span *ngSwitchCase='0'>Diamond</span>
+            <span *ngSwitchCase='1'>Platinium</span>
+            <span *ngSwitchCase='2'>Gold</span>
+            <span *ngSwitchCase='3'>Silver</span>
+            <span *ngSwitchDefault>Member</span>
+          </td>
+          <td>{{customer.customerAddress}}</td>
+          <td align="center">
+            <a href="#"><span><i class="fas fa-user-edit" style="color:blue"></i></span></a>
+            <span><i class="fas fa-user-times" style="color:red" (click)="deleteCustomer(customer)"></i></span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

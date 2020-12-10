@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+.background-form{
+  background-image: url("https://i.pinimg.com/originals/d0/d5/bd/d0d5bdb27664dbde7513d37d2b9f2f79.jpg");
+  background-size: 100%;
+}
+
+.label-form{
+  color: white
+}

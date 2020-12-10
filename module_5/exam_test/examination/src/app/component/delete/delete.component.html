@@ -1,0 +1,6 @@
+<h2>Delete</h2>
+<p>Are you sure to delete {{car.id}} </p>
+<div class="justify-content-end my-3" style="float: right">
+  <button class="btn btn-secondary mr-3" (click)="dialogRef.close()">Cancel</button>
+  <button class="btn btn-danger mr-3" (click)="delete(car.id)">Delete</button>
+</div>

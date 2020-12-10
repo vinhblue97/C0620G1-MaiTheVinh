@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>List Student</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Mark</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody *ngFor="let student of studentList">
+    <tr>
+      <td>{{student.id}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.age}}</td>
+      <td [ngStyle]="{'color':fontColor}">{{student.mark}}</td>
+      <td><button class="btn btn-secondary" (click)="getData(student)">Detail</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<app-detail [studentChild]="studentParent"></app-detail>

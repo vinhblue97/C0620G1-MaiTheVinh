@@ -1,0 +1,122 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10 background-form">
+      <form (ngSubmit)="onSubmit()" [formGroup]="formCreate">
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label class="label-form">Id</label>
+            <input type="text" class="form-control" placeholder="KH-XXXX" ngModel formControlName="id"
+                   required>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.id?.touched && formCreate.controls.id?.errors?.required">
+              Id is required
+            </small>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.id?.touched && formCreate.controls.id?.errors?.pattern">
+              Id is KH-XXXX
+            </small>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputName" class="label-form">Name</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Name" ngModel formControlName="name"
+                   required>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.name?.touched && formCreate.controls.name?.errors?.required">
+              Name is required
+            </small>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputBirthDay" class="label-form">Birth Day</label>
+            <input type="date" class="form-control" id="inputBirthDay" ngModel formControlName="birthDay" required>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.birthDay?.touched && formCreate.controls.birthDay?.errors?.required">
+              Birth Day is required
+            </small>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.birthDay?.touched && formCreate.controls.birthDay?.errors?.birthDayError
+                   && !formCreate.controls.birthDay?.errors?.required">
+              You're not enough 18 year old
+            </small>
+
+          </div>
+          <div class="form-group col-md-2">
+            <label class="label-form">Gender</label><br>
+            <select class="form-control" ngModel formControlName="gender" required>
+              <option value="0">Female</option>
+              <option value="1">Male</option>
+              <option value="2">Other</option>
+            </select>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.gender?.touched && formCreate.controls.gender?.errors?.required">
+              Gender is required
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label class="label-form">Id Card</label>
+            <input type="text" class="form-control" ngModel formControlName="idCard" required>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.idCard?.touched && formCreate.controls.idCard?.errors?.required">
+              Id card is required
+            </small>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.idCard?.touched && formCreate.controls.idCard?.errors?.pattern">
+              Id card have 9 or 12 number
+            </small>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="label-form">Phone</label>
+            <input type="text" class="form-control" ngModel formControlName="phone" required>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.phone?.touched && formCreate.controls.phone?.errors?.required">
+              Phone is required
+            </small>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.phone?.touched && formCreate.controls.phone?.errors?.pattern">
+              Phone format is 090xxxxxxx or 091xxxxxxx or (84)+90xxxxxxx or (84)+91xxxxxxx
+            </small>
+          </div>
+          <div class="form-group col-md-4">
+            <label class="label-form">Email</label>
+            <input type="text" class="form-control" ngModel formControlName="email" required>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.email?.touched && formCreate.controls.email?.errors?.required">
+              Email is required
+            </small>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.email?.touched && formCreate.controls.email?.errors?.pattern">
+              Email must be right email's format
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="label-form">Customer Type</label><br>
+            <select class="form-control" ngModel formControlName="type" required>
+              <option value="0">Diamond</option>
+              <option value="1">Platium</option>
+              <option value="2">Gold</option>
+              <option value="3">Silve</option>
+              <option value="4">Member</option>
+            </select>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.type?.touched && formCreate.controls.type?.errors?.required">
+              Type Customer is required
+            </small>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="label-form">Address</label>
+            <input type="text" class="form-control" ngModel formControlName="address" required>
+            <small style="color: red"
+                   *ngIf="formCreate.controls.address?.touched && formCreate.controls.address?.errors?.required">
+              Address is required
+            </small>
+          </div>
+        </div>
+        <button class="btn btn-primary">Sign in</button>
+      </form>
+    </div>
+  </div>
+</div>
